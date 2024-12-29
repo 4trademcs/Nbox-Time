@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="public/img/logo.webp" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../public/css/ventana-modal.css">
+    <link rel="stylesheet" href="../public/css/formulario.css">
+    <link rel="stylesheet" href="../public/css/general-format.css">
+    <link rel="stylesheet" href="public/css/home.css">
+    <title>Login Page</title>
+</head>
+
+<body style=" background: radial-gradient(circle,var(--primary-color),var(--secondary-color));">
+    <div class="flexbox modal ">
+        <div class="multistep-form-container">
+            <h2>Ingresar a la Oficina</h2>
+            <div class="form">
+                <form class="form" id="login" name="login" onsubmit="return sendLogin(event)" method="post">
+                    <img class="background-img" src="public/img/logo.webp" alt="logo de la compañia">
+                    <div class="page slide-page">
+                        <div class="field">
+                            <label class="label" for="login-email">Email:</label>
+                            <input id="login-email" type="email" placeholder="Ingresa tu e-mail de registro">
+                        </div>
+                        <div class="field">
+                            <label class="label" for="login-pass">Clave:</label>
+                            <input id="login-pass" type="password" placeholder="Establece tu contraseña" autocomplete="current-password">
+                        </div>
+                        <div class="field">
+                            <label class="label" for="login-name">Nombre de Usuario:</label>
+                            <input id="login-name" type="text" placeholder="UsuarioNbox">
+                        </div>
+                        <div class="field btns">
+                            <button class="prev" type="submit" id="login-submit">Ingresar</button>
+                            <div class="user-register user-btn" id="user-register" onclick="llamarFormularioModal(event)">Nuevo usuario</div>
+                        </div>
+                    </div>
+                 </form>
+            </div>
+        </div>
+    </div>
+
+    <script defer="" src="../public/js/contact.js"></script>
+    <script src="../public/js/validacionesFrontend3.js"></script>
+    <script src="../public/js/solicitudes.js"></script>
+    <script defer="" src="../public/js/static.js"></script>
+    <script src="public/js/home.js"></script>
+</body>
+
+</html>
+
+
+

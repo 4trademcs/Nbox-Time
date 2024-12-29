@@ -1,0 +1,29 @@
+{
+    "paypal": {
+      "usuario": "thoybrow",
+      "correo": "thoy.cel@gmail.com",
+      "enlace": "https>//www.paypal.me/thoybrow",
+      "info": "No mencionar nada referente a Cuba, MLC, CUP ni ninguna otra palabra que tenga que ver con Cuba, de lo contrario no se realizará el pago, usted trabaja con nuestra agencia y nosotros nos encargamos del proceso, por lo que, bajo ningun concepto usted hace transacciones con Cuba, sino con nosotros, por lo que puede clasificar el status como (envio como amigo o a familiares)"
+    },
+    "BBVA": {
+      "iban": "ES11 0182 5322 2702 0082 6172",
+      "codigo": "BBVAESMM",
+      "titular": "RENE BRAVO RAMIREZ",
+      "domicilio": "Calle Eugenio Serrano 12 28904 Getafe, Madrid",
+      "info": "Trabajamos y aceptamos envios de mas de 180 paises. No mencionar a Cuba ni ninguna otra palabra que tenga que haga referencia, de lo contrario no se realizará el pago, usted trabaja con nuestra agencia y nosotros nos encargamos del proceso, por lo que, bajo ningun concepto usted hace transacciones con Cuba. "
+    },
+    "revolut": {
+      "beneficiario": "Yoel Fuentes",
+      "usuario": "@yoelfuentes",
+      "iban": "LT153250036665172292",
+      "codigo": "REVOLT21",
+      "bank": "Nombre y direccion del banco: Revolut Bank UAB, Konstitucijos ave 21B,08130Vilnius,Lithuania",
+      "info": "No mencionar a Cuba ni ninguna otra palabra que tenga que haga referencia, de lo contrario no se realizará el pago, usted trabaja con nuestra agencia y nosotros nos encargamos del proceso, por lo que, bajo ningun concepto usted hace transacciones con Cuba."
+    },
+    "zelle": {
+      "numero": "+1 (346)673-2790",
+      "nombre": "MCL & MULTISERVICES LLC",
+      "info": "Tenga en cuenta: No hacer mencion a Cuba, envío de dinero, nombre de persona o domicilio.El banco puede bloquear el pago si detecta algo relacionado con Cuba,deje el campo de mensaje VACÍO. El envio nombre del titular de la cuenta que realizó el envío y captura con los detalles del pago"
+    }
+  }
+  

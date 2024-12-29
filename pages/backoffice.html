@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nbox Time-Backoffice</title>
+    <link rel="shortcut icon" href="public/img/logo.webp" type="image/x-icon">
+    <link rel="stylesheet" href="public/css/general-format.css">
+    <link rel="stylesheet" href="public/css/ventana-modal.css">
+    <link rel="stylesheet" href="public/css/formulario.css">
+    <link rel="stylesheet" href="public/css/home.css">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
+</head>
+<body class="grid-container">
+    <header class="header">
+        <div class="logo-inactive"></div>
+        <div class="logo flexbox">     
+            <svg class="svg-icon svg-logo">
+                <use href="public/img/svg/logo-ico.svg#logo"></use>
+            </svg>
+          <h4 id='logo-name'>Nbox Time</h4> 
+        </div> 
+        <section class="slider-container pay" style="--margin: auto;--width:90vwd;">
+            <div class="slider" reverse="true" style="--width: 100px;--height: 50px;--quantity: 10;--duration:15">
+                <div class="list">
+                    <div class="item" style="--position: 1"><img src="public/img/bizum.png" alt=""></div>
+                    <div class="item" style="--position: 2"><img src="public/img/bbva.png" alt=""></div>
+                    <div class="item" style="--position: 3"><img src="public/img/MoneyGram.png" alt=""></div>
+                    <div class="item" style="--position: 4"><img src="public/img/paypal.png" alt=""></div>
+                    <div class="item" style="--position: 5"><img src="public/img/Remitly.png" alt=""></div>
+                    <div class="item" style="--position: 6"><img src="public/img/Revolut.png" alt=""></div>
+                    <div class="item" style="--position: 7"><img src="public/img/sepa.png" alt=""></div>
+                    <div class="item" style="--position: 8"><img src="public/img/WesternUnion.png" alt=""></div>
+                    <div class="item" style="--position: 9"><img src="public/img/zelle.png" alt=""></div>
+                    <div class="item" style="--position: 10"><img src="public/img/crypto.png" alt=""></div>
+                </div>
+            </div>
+            </section>     
+        <div class="header-buttons">
+            <button id="darkModeToggle" class="icon-button">
+                <svg class="svg-negative">
+                    <use href="public/img/svg/mode-select-ico.svg#mode"></use>
+                </svg>                         
+            </button>
+            <div class="relative">
+                <button id="menuToggle" class="icon-button">
+                    <span class="icon">☰</span>
+                </button>
+                <nav id="menu" class="hidden">
+                    <a class="link" href="/">
+                        <svg class="svg-icon">
+                            <use href="public/img/svg/home-ico.svg#home"></use>
+                        </svg>Home
+                    </a>
+                    <buton class="link services" href="#">
+                        <svg class="svg-icon rotate-side">
+                            <use href="public/img/svg/servicios-ico.svg#servicios"></use>
+                        </svg>Servicios:</buton>                
+                    <div class="services-content hidden">
+                        <button id="user-register" class="link" onclick="llamarFormularioModal(event)">Registrar nuevo usuario</button>
+                        <button id="consignment-register" class="link" onclick="llamarFormularioModal(event)">Nueva remesa</button>
+                        <button id="show-users" class="link admin" onclick="solicitarData('show-users')">Ver lista de usuarios</button>
+                        <button id="show-consignment" class="link" onclick="solicitarData('show-consignment')">Ver lista de pedidos</button>
+                        <a id="login-button" class="link" href="/auth">Login</a>
+                    </div>
+                    <a class="link" href="#tutorial">
+                        <svg class="svg-icon">
+                            <use href="public/img/svg/tutorial-ico.svg#tutorial"></use>
+                        </svg> Tutorial</a>
+                    <button  class="link" onclick="solicitud('get','logout')">
+                        <svg class="svg-icon">
+                            <use href="public/img/svg/logout-ico.svg#logout"></use>
+                        </svg> Cerrar Sesión</button>
+                    <a class="link" href="/terminos">
+                        <svg class="svg-icon">
+                            <use href="public/img/svg/condiciones-ico.svg#condiciones"></use>
+                        </svg> Términos y Condiciones
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main container">        
+        <div class="banner office"></div>
+        <section>
+            <h2>Bienvenido a tu backoffice</h2>
+            <p>Aqui veras las ultimas novedades que tenemos listas para ti.</p>
+            <div class="card">
+                <h3>Nuestros Servicios</h3>
+                <ul>
+                    <li>Envío rápido de remesas</li>
+                    <li>Tasas de cambio competitivas</li>
+                    <li>Seguimiento en tiempo real de sus envíos</li>
+                    <li>Atención al cliente 24/7</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="">
+            <h2>Últimas Transacciones</h2>
+            <div id="tables-container" class=" tablas-dinamicas"></div>
+        </section>
+    </main>
+
+    <aside class="aside scroll-x">
+        <div class="aside-menu">
+            <h3>Enlaces rápidos</h3>
+
+            <a class="link" href="/">
+                <svg class="svg-icon">
+                    <use href="public/img/svg/home-ico.svg#home"></use>
+                </svg>Home</a>
+                <buton class="link services">
+                    <svg class="svg-icon rotate-side">
+                        <use href="public/img/svg/servicios-ico.svg#servicios"></use>
+                    </svg>Servicios:</buton>                
+                <div class="services-content hidden">
+                    <button id="user-register" class="link" onclick="llamarFormularioModal(event)">Registrar nuevo usuario</button>
+                    <button id="consignment-register" class="link" onclick="llamarFormularioModal(event)">Nueva remesa</button>
+                    <button id="show-users" class="link admin" onclick="solicitarData('show-users')">Ver lista de usuarios</button>
+                    <button id="show-consignment" class="link" onclick="solicitarData('show-consignment')">Ver lista de pedidos</button>
+                    <a id="login-button" class="link" href="/auth">Login</a>
+                </div>
+            <a class="link" href="#tutorial">
+                <svg class="svg-icon">
+                    <use href="public/img/svg/tutorial-ico.svg#tutorial"></use>
+                </svg> Tutorial</a>
+            <button  class="link" onclick="solicitud('get','logout')">
+                <svg class="svg-icon">
+                    <use href="public/img/svg/logout-ico.svg#logout"></use>
+                </svg> Cerrar Sesión</button>
+            <a class="link" href="/terminos">
+                <svg class="svg-icon">
+                    <use href="public/img/svg/condiciones-ico.svg#condiciones"></use>
+                </svg> Términos y Condiciones</a>
+        </div>
+    </aside>
+
+    <div id="tuto-capa" class=""></div>
+
+    <footer class="footer footer-content">
+        <div>
+            <h3>Nbox Time</h3>
+            <p>Su socio confiable para envíos de remesas internacionales.</p>
+        </div>
+        <div>
+            <h3>Enlaces rápidos</h3>
+            <ul>
+                <a class="link" href="/">Inicio</a>
+                <a class="link" href="/terminos">Términos y Condiciones</a>
+            </ul>
+        </div>
+        <div>
+            <h3>Contáctenos</h3>
+            <p>Email: nboxtime.services@gmail.com</p>
+            <p>Teléfono: +1 234 567 890</p>
+        </div>
+         <p class="author">Copyright © 2025 - Desarrollado por Michel.dev </p>
+    </footer>  
+
+    <script defer src="public/js/contact.js"></script>
+    <script defer src="public/js/static.js"></script>
+    <script src="public/js/validacionesFrontend3.js"></script>
+    <script defer src="public/js/solicitudes.js"></script>
+    <script src="public/js/home.js"></script>
+</body>
+</html>
