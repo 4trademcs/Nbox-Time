@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const multer = require('multer');
 const dbConect = require('./db'); // Asegúrate de que tienes acceso a tu módulo de conexión a la base de datos
+const { decryptID,getKey  } = require('./encryption');
 
 // Configurar multer con solo el destino
 const upload = multer({ dest: path.join(__dirname, '../public/img/uploads') }).single('file');
@@ -13,7 +14,8 @@ module.exports = {
             if (err) return res.status(500).json({ message: 'Error al subir el archivo' });
 
             const file = req.file;
-            const id = req.body.id;
+            //Desencriptar el id q va a ser el nuevo nombre del archivo
+            const id = decryptID(req.body.id);
 
             // Nueva ruta para renombrar el archivo
             const newPath = path.join(file.destination, `${id}${path.extname(file.originalname)}`);

@@ -26,7 +26,7 @@ const notificacionFront = (data) => {
     dialog.setAttribute('open', true);
     if (data.tableName) {
         // Llamar a `solicitarData` solo si `data.tableName` existe
-        data.tableName === 'usuarios' ? solicitarData('show-users') : solicitarData('show-consignment');}
+        data.tableName === 'usuarios' ? solicitarData('usuarios') : solicitarData('pedidos');}
 };
 
 
@@ -41,8 +41,8 @@ function solicitarDelete(e) {
 
 function solicitarEdit(e) {
     idActual = e.target.classList[0];
-    if (idActual.includes("Boxess")) lanzarModal('user-edit'); 
-    else if (idActual.includes("Pedido")) lanzarModal('consignment-edit'); 
+    if (tableDatos.table == 'usuarios') lanzarModal('user-edit'); 
+    else if (tableDatos.table == "pedidos") lanzarModal('consignment-edit'); 
     action = 'editar';    
 }
 
@@ -115,68 +115,147 @@ async function solicitud(method, ruta, objeto, contentType = 'application/json')
 
 
 //_________________________________MANEJO DE TABLA_____________________________________
-
 // Variables globales
 let tableDatos = [], indice = 0, entradastoshow = 10;
 
-// Obtener JSON del servidor 
-const solicitarData = async (id) => {
-    const tableName = id === 'show-users' ? 'usuarios' : id === 'show-consignment' ? 'pedidos' : null;
-    if (!tableName) return console.error('ID no válido');
+// Función para solicitar datos del backend
+const solicitarData = async (tableName) => {
+    if (!tableName) {
+        console.error('Nombre de tabla no válido');
+        return;
+    }
 
     try {
         const response = await fetch(`/show?table=${tableName}`);
-        const data = await response.json();
-        if (data.message) return notificacionFront(data);
+        const result = await response.json();
+        console.log('Respuesta del backend:', result);
 
-        tableDatos = data.length ? data : [];
+        // Verificar si la respuesta contiene `tableData` con estructura válida
+        if (!result.tableData || !Array.isArray(result.tableData.data)) {
+            console.error('Estructura de datos inválida recibida del backend.');
+            return;
+        }
+
+        // Guardar el objeto completo del backend en `tableDatos`
+        tableDatos = result.tableData;
+
+        if (tableDatos.data.length === 0) {
+            tableDatos.data = [{ mensaje: 'No se encontraron datos' }];
+            console.log('Tabla vacía, asignando mensaje predeterminado');
+        }
+
+        // Reiniciar índice y renderizar la tabla con `data`
         indice = 0;
-        imprimirDatos(tableName, tableDatos.length ? tableDatos : [{ mensaje: 'No se encontraron datos' }]);
+        imprimirDatos(tableDatos.table, tableDatos.data,tableDatos.userRole);
     } catch (error) {
         console.error('Error al obtener los datos:', error);
     }
 };
 
-// Imprimir los datos en la tabla
-const imprimirDatos = (tableName, data) => {
-    // Si no hay datos, muestra una notificación y termina la función
-    !data.length ? notificacionFront({ message: 'no hay coincidencias' }) : (() => {
-            const [tableHeaders, tableRows] = [ Object.keys(data[0]).map(key => `<th>${key}</th>`).join(''),data.slice(indice, indice + entradastoshow).map(row =>
-                    `<tr>${Object.values(row).map(val => `<td>${val}</td>`).join('')}</tr>`).join('')];
 
-            const buttonsFilter = `
-                <div class="filtred-navigation">      
-                    <select id="filterKey" onchange="displaySelectedOption()">
-                        ${Object.keys(data[0]).slice(0, -1).map(key => `<option value="${key}">${key}</option>`).join('')}
-                    </select>
-                    <input type="text" id="filterValue" placeholder="🔍..buscar" oninput="debouncedFilter('${tableName}')">
-                    <button class="table-navigation" onclick="applyFilter('${tableName}')">Filtrar</button>                         
-                </div>`;
 
-            const buttonsNav = 
-                `<div class="navigation"> 
-                    <button class="table-navigation" onclick="cambiarPagina(-1, '${tableName}')">Anterior</button>
-                    <button class="table-navigation" onclick="cambiarPagina(1, '${tableName}')">Siguiente</button>
-                </div> `;
 
-            const tableContainer = document.getElementById(`tables-container`);
-            tableContainer.style.display = 'flex';
-            tableContainer.innerHTML = `<table><tr>${tableHeaders}</tr>${tableRows}</table>`;
-            const filter = document.querySelector('.filtred-navigation');
-            const navigation = document.querySelector('.navigation');
-            filter ? (filter.remove(), tableContainer.insertAdjacentHTML('beforebegin', buttonsFilter)) : tableContainer.insertAdjacentHTML('beforebegin', buttonsFilter);
-            navigation ? (navigation.remove(), tableContainer.insertAdjacentHTML('afterend', buttonsNav)) : tableContainer.insertAdjacentHTML('afterend', buttonsNav);
-        })(); // Función autoejecutable
+// Función para renderizar datos en la tabla 
+const imprimirDatos = (tableName, data, userRole) => {
+    if (!data.length) { return notificacionFront({ message: 'No hay coincidencias' }); }
+
+    // Construcción de cabeceras
+    console.log(tableName);
+
+    const tableHeaders = Object.keys(data[0]).filter(key => key !== 'protectedId').map(key =>
+        `<th style="position: sticky; top: 0; background-color: #fff; z-index: 2;">${key}</th>`).join('');
+    const headerRow = `<tr>${tableHeaders}                            
+                         <th style="position: sticky; top: 0; background-color: #fff; z-index: 2;">Acciones</th>
+                       </tr>`;
+
+    // Construcción de filas de datos
+    const tableRows = data.slice(indice, indice + entradastoshow).map(row => {
+        const rowData = Object.keys(row).filter(key => key !== 'protectedId').map(key => {
+            if (key === 'Cliente') {
+                return `<td>${generarBotonesProceso(row, userRole, 'Cliente')}</td>`;
+            }
+            if (key === 'Gestor') {
+                return `<td>${generarBotonesProceso(row, userRole, 'Gestor')}</td>`;
+            }
+            return `<td>${row[key]}</td>`;
+        }).join('');
+
+        const accionesCell = `
+            <td>
+                <div style="display: flex;">
+                    <button class="${row.protectedId} page-button action-edit" onclick="solicitarEdit(event)">Editar</button>
+                    <button class="${row.protectedId} page-button action-delete" onclick="solicitarDelete(event)">Eliminar</button>
+                </div>
+            </td>`;
+        return `<tr>${rowData}${accionesCell}</tr>`;
+    }).join('');
+
+    // Contenedor de la tabla
+    const tableContainer = document.getElementById('tables-container');
+    tableContainer.style.display = 'flex';
+    tableContainer.innerHTML = `<table>
+                                    <thead>${headerRow}</thead>
+                                    <tbody>${tableRows}</tbody>
+                                </table>`;
+    // Controles adicionales
+    actualizarControles(data, tableName);
+};
+
+// Función para generar botones según el rol y columna
+const generarBotonesProceso = (row, userRole, column) => {
+    if (column === 'Cliente') {
+        if (userRole === 'Cliente') {
+            return row.Gestor !== 'Completado'
+                ? row.Cliente !== 'Pendiente'
+                    ? `<p>${row.Cliente}</p>`
+                    : `<label for="file-input-${row.protectedId}" class="page-button process">📥 Subir Foto</label>
+                       <input class="${row.protectedId} hidden" id="file-input-${row.protectedId}" type="file" name="file" onchange="uploadImg(event)"/>`
+                : `<button class="${row.protectedId} page-button process" onclick="confirmacionPago(event)">Confirmar</button>`;
+        }
+    } else if (column === 'Gestor') {
+        if (userRole === 'Gestor' || userRole === 'Admin') {
+            return row.Gestor === 'Completado'
+                ? `<p>✔</p>`
+                : `<button class="${row.protectedId} page-button process" onclick="confirmarGestor(event)">Gestor Done</button>`;
+        }
+    }
+    return `<p>${row[column]}</p>`;
 };
 
 
-// Mostrar la opción seleccionada en el select
+
+// Función para actualizar controles de navegación y filtrado
+const actualizarControles = (data, tableName) => {
+    const botonesFiltrado = `
+        <div class="filtred-navigation">      
+            <select id="filterKey" onchange="displaySelectedOption()">
+                ${Object.keys(data[0]).slice(0, -1).map(key => `<option value="${key}">${key}</option>`).join('')}
+            </select>
+            <input type="text" id="filterValue" placeholder="🔍..buscar" oninput="debouncedFilter('${tableName}')">
+            <button class="table-navigation" onclick="applyFilter('${tableName}')">Filtrar</button>                         
+        </div>`;
+    const botonesNavegacion = `
+        <div class="navigation"> 
+            <button class="table-navigation" onclick="cambiarPagina(-1, '${tableName}')">Anterior</button>
+            <button class="table-navigation" onclick="cambiarPagina(1, '${tableName}')">Siguiente</button>
+        </div>`;
+
+    const tableContainer = document.getElementById('tables-container');
+    const filter = document.querySelector('.filtred-navigation');
+    const navigation = document.querySelector('.navigation');
+
+    filter?.remove();
+    navigation?.remove();
+
+    tableContainer.insertAdjacentHTML('beforebegin', botonesFiltrado);
+    tableContainer.insertAdjacentHTML('afterend', botonesNavegacion);
+};
+
 const displaySelectedOption = () => {
     const select = document.getElementById('filterKey');
-    select.setAttribute('title', select.options[select.selectedIndex].text); // Mostrar la opción seleccionada
+    select.setAttribute('title', select.options[select.selectedIndex].text);
 };
 
-// Cambiar de página
 const cambiarPagina = (direccion, tableName) => {
     const nuevoIndice = indice + direccion * entradastoshow;
     if (nuevoIndice >= 0 && nuevoIndice < tableDatos.length) {
@@ -185,19 +264,18 @@ const cambiarPagina = (direccion, tableName) => {
     }
 };
 
-// Filtro de búsqueda con retardo
 let debounceTimer;
 const debouncedFilter = (tableName) => {
     clearTimeout(debounceTimer);
     debounceTimer = setTimeout(() => applyFilter(tableName), 1000);
 };
 
-// Aplicar el filtro de búsqueda
 const applyFilter = (tableName) => {
     const filterKey = document.getElementById('filterKey').value;
     const filterValue = document.getElementById('filterValue').value.toLowerCase();
-    
-    // Mostrar todos los datos si el campo de búsqueda está vacío
-    const filteredData = filterValue ? tableDatos.filter(row => String(row[filterKey]).toLowerCase().includes(filterValue)) : tableDatos;    indice = 0;
+    const filteredData = filterValue
+        ? tableDatos.filter(row => String(row[filterKey]).toLowerCase().includes(filterValue))
+        : tableDatos;
+    indice = 0;
     imprimirDatos(tableName, filteredData);
 };

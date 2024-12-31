@@ -63,7 +63,8 @@ module.exports = {
             if (err) return res.status(500).json({ message: 'Error al subir el archivo' });
 
             const file = req.file;
-            const id = req.body.id;
+            //Desencriptar el id q va a ser el nuevo nombre del archivo
+            const id = decryptID(req.body.id);
 
             if (!file || !id) {
                 return res.status(400).json({ message: 'Archivo o ID no proporcionado' });

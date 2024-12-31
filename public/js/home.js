@@ -67,24 +67,23 @@ document.addEventListener('DOMContentLoaded', () => {
         menuToggle.querySelector('.icon').textContent = '☰';
     });}
 
-    // mostrar banner
-    document.getElementById('modal-form').addEventListener('click', (event) => {
+     //mostrar banner
+        document.getElementById('modal-form').addEventListener('click', (event) => {
         banner.style.setProperty('--trigger','running');
     });
     
 }); 
 
-// ---------------------rotacion de iluminacion----------------------
-
-const animateOnView = (() => {
-    let anim;
-    const animate = (angle = 0) => {
-      document.getElementById('nbox-rotate').style.setProperty('--rotation', `${angle}deg`);
-      anim = requestAnimationFrame(() => animate((angle + .3) % 360));
-    };
-    return new IntersectionObserver(
-      ([entry]) => entry.isIntersecting 
-        ? !anim && animate() 
-        : (cancelAnimationFrame(anim), anim = null)
-    ).observe(document.getElementById('nbox-rotate'));
-  })();
+// // ---------------------rotacion de iluminacion----------------------
+ const animateOnView = (() => {
+     let anim;
+     const animate = (angle = 0) => {
+       document.getElementById('nbox-rotate').style.setProperty('--rotation', `${angle}deg`);
+       anim = requestAnimationFrame(() => animate((angle + .3) % 360));
+     };
+     return new IntersectionObserver(
+       ([entry]) => entry.isIntersecting 
+         ? !anim && animate() 
+         : (cancelAnimationFrame(anim), anim = null)
+     ).observe(document.getElementById('nbox-rotate'));
+   })();
