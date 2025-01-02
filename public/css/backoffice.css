@@ -1,0 +1,85 @@
+.min-h-screen {
+    min-height: 100vh;
+}
+.flex {
+    display: flex;
+}
+.flex-col {
+    flex-direction: column;
+}
+.flex-1 {
+    flex: 1;
+}
+.hidden {
+    display: none;
+}
+.w-64 {
+    width: 16rem;
+}
+.bg-white {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+.dark-bg {
+    background-color: rgba(50, 50, 50, 0.9);
+}
+.nav {
+    padding: 1rem;
+    border-right: 1px solid #ccc;
+}
+.nav button {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+}
+.nav button:hover {
+    background-color: #f0f0f0;
+}
+.container {
+    padding: 1rem;
+}
+.card-office {
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: #fff;
+}
+.card-office-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+.card-office-title {
+    font-weight: bold;
+}
+.tabs {
+    margin-top: 2rem;
+}
+.tabs-list {
+    display: flex;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #ccc;
+}
+.tabs-list button {
+    padding: 0.5rem 1rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+.tabs-list button.active {
+    font-weight: bold;
+    border-bottom: 2px solid #333;
+}
+.tabs-content {
+    display: none;
+}
+.tabs-content.active {
+    display: block;
+}

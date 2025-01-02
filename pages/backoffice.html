@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="public/css/ventana-modal.css">
     <link rel="stylesheet" href="public/css/formulario.css">
     <link rel="stylesheet" href="public/css/home.css">
+    <link rel="stylesheet" href="public/css/backoffice.css">
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 
 </head>
@@ -82,7 +83,7 @@
         </div>
     </header>
 
-    <main class="main container">        
+    <main class="main">        
         <div class="banner office"></div>
         <section>
             <h2>Bienvenido a tu backoffice</h2>
@@ -98,8 +99,66 @@
             </div>
         </section>
 
+        <section class="client flex-1 container">
+            <h1>Bienvenido, Juan</h1>
+            <p>Gestiona tus remesas y pagos de forma segura</p>
+
+            <!-- Cards -->
+            <div class="flex">
+                <div class="card-office">
+                    <div class="card-office-header">
+                        <span class="card-office-title">Total Enviado</span>
+                        <span>$1,234.89</span>
+                    </div>
+                    <p>+20.1% respecto al mes anterior</p>
+                </div>
+
+                <div class="card-office">
+                    <div class="card-office-header">
+                        <span class="card-office-title">Remesas Enviadas</span>
+                        <span>12</span>
+                    </div>
+                    <p>En los últimos 30 días</p>
+                </div>
+
+                <div class="card-office">
+                    <div class="card-office-header">
+                        <span class="card-office-title">Métodos de Pago</span>
+                        <span>3</span>
+                    </div>
+                    <p>Activos actualmente</p>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="tabs">
+                <div class="tabs-list">
+                    <button class="active" onclick="showTab('remesas')">Últimas Remesas</button>
+                    <button onclick="showTab('pagos')">Métodos de Pago</button>
+                </div>
+                <div id="remesas" class="tabs-content active">
+                    <div class="card-office">
+                        <div class="card-office-title">Histórico de Remesas</div>
+                        <p>Remesa a Venezuela: $500.00 (20 Dic 2023)</p>
+                        <p>Remesa a Colombia: $300.00 (15 Dic 2023)</p>
+                        <p>Remesa a México: $250.00 (10 Dic 2023)</p>
+                    </div>
+                </div>
+                <div id="pagos" class="tabs-content">
+                    <div class="card-office">
+                        <div class="card-office-title">Métodos de Pago Guardados</div>
+                        <p>Visa terminada en 4242 (Expira 12/24)</p>
+                        <p>Mastercard-office terminada en 8888 (Expira 09/25)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="admin">
+        </section>
+
         <section class="">
-            <h2>Últimas Transacciones</h2>
+            <h2>Datos Completos</h2>
             <div id="tables-container" class=" tablas-dinamicas"></div>
         </section>
     </main>
