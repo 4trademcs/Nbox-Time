@@ -64,12 +64,19 @@ const validateStep = (direction, ...validateInputs) => {
     const validationConfig = {
         sqlInjectionFilter: /^[^'";]+$/,
         email: { sel: ".validate-email", regex: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, msg: "Correo inválido." },
-        password: { sel: ".validate-password", regex: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,12}$/, msg: "La clave debe tener de 8 a 12 caracteres." },
+        password: { sel: ".validate-password", regex: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/, msg: "La clave debe tener mas de 8 caracteres, mayusculas,letras y numeros." },
+        confirmPassword: { sel: ".validate-confirm-password", 
+            regex: (() => {
+                const passwordInput = document.querySelector(".validate-password");
+                return passwordInput ? new RegExp(`^${passwordInput.value}$`) : /.^/; 
+            })(),
+            msg: "Las contraseñas no coinciden."
+        },
         name: { sel: ".validate-name", regex: /^[a-zA-ZÀ-ÿ\s]{1,50}$/, msg: "Nombre inválido." },
         dni: { sel: ".validate-dni", regex: /^\d{8,11}$/, msg: "DNI inválido (de 8 a 11 números)." },
         phone: { sel: ".validate-tel", regex: /^\d{8,16}$/, msg: "Entrada incompleta. Revise." },
         source: { sel: ".validate-sponsor.sql", regex: /^(Patrocinador|Remesa|Google)$/, msg: "Opción inválida." },
-        type: { sel: ".validate-type.sql", regex: /^(USD efectivo|CUP efectivo|Transferencia CUP|Transferencia MLC)$/, msg: "Selección inválida." },
+        type: { sel: ".validate-type.sql", regex: /^(USD efectivo|CUP efectivo|Transferencia CUP|Transferencia USD)$/, msg: "Selección inválida." },
         amount: { sel: ".validate-number", regex: /^(?:\d{2,4})$/, msg: "Monto inválido." },
         address: { sel: ".validate-address", regex: /^[a-zA-Z0-9À-ÿ\s,#]{1,200}$/, msg: "Dirección con caracteres no permitidos." }
     };

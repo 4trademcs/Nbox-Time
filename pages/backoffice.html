@@ -11,9 +11,10 @@
     <link rel="stylesheet" href="public/css/home.css">
     <link rel="stylesheet" href="public/css/backoffice.css">
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
-
 </head>
+
 <body class="grid-container">
+    <div class="background-rotate"></div>
     <header class="header">
         <div class="logo-inactive"></div>
         <div class="logo flexbox">     
@@ -57,12 +58,28 @@
                     <buton class="link services" href="#">
                         <svg class="svg-icon rotate-side">
                             <use href="public/img/svg/servicios-ico.svg#servicios"></use>
-                        </svg>Servicios:</buton>                
+                        </svg>Servicios</buton>                
                     <div class="services-content hidden">
-                        <button id="user-register" class="link" onclick="llamarFormularioModal(event)">Registrar nuevo usuario</button>
-                        <button id="consignment-register" class="link" onclick="llamarFormularioModal(event)">Nueva remesa</button>
-                        <button id="show-users" class="link admin" onclick="solicitarData('usuarios')">Ver lista de usuarios</button>
-                        <button id="show-consignment" class="link" onclick="solicitarData('pedidos')">Ver lista de pedidos</button>
+                        <button id="user-register" class="link" onclick="llamarFormularioModal(event)">Registrar nuevo usuario
+                            <svg class="svg-icon right">
+                                <use href="public/img/svg/new-user-ico.svg#new-user"></use>
+                            </svg>
+                        </button>
+                        <button id="consignment-register" class="link" onclick="llamarFormularioModal(event)">Nueva remesa
+                            <svg class="svg-icon right">
+                                <use href="public/img/svg/remesa-ico.svg#new-remesa"></use>
+                            </svg>
+                        </button>
+                        <button id="show-users" class="link admin" onclick="refreshBackoffice('usuarios')">Mis Referidos
+                            <svg class="svg-icon right">
+                                <use href="public/img/svg/user-list-ico.svg#user-list"></use>
+                            </svg>
+                        </button>
+                        <button id="show-consignment" class="link" onclick="refreshBackoffice('pedidos')">Histórico pedidos
+                            <svg class="svg-icon right">
+                                <use href="public/img/svg/historico-remesa-ico.svg#historico-remesa"></use>
+                            </svg>
+                        </button>
                         <a id="login-button" class="link" href="/auth">Login</a>
                     </div>
                     <a class="link" href="#tutorial">
@@ -88,7 +105,7 @@
         <section>
             <h2>Bienvenido a tu backoffice</h2>
             <p>Aqui veras las ultimas novedades que tenemos listas para ti.</p>
-            <div class="card">
+            <div class="card overload-margin" style="min-height: auto;">
                 <h3>Nuestros Servicios</h3>
                 <ul>
                     <li>Envío rápido de remesas</li>
@@ -99,74 +116,31 @@
             </div>
         </section>
 
-        <section class="client flex-1 container">
-            <h1>Bienvenido, Juan</h1>
-            <p>Gestiona tus remesas y pagos de forma segura</p>
-
-            <!-- Cards -->
-            <div class="flex">
-                <div class="card-office">
-                    <div class="card-office-header">
-                        <span class="card-office-title">Total Enviado</span>
-                        <span>$1,234.89</span>
-                    </div>
-                    <p>+20.1% respecto al mes anterior</p>
-                </div>
-
-                <div class="card-office">
-                    <div class="card-office-header">
-                        <span class="card-office-title">Remesas Enviadas</span>
-                        <span>12</span>
-                    </div>
-                    <p>En los últimos 30 días</p>
-                </div>
-
-                <div class="card-office">
-                    <div class="card-office-header">
-                        <span class="card-office-title">Métodos de Pago</span>
-                        <span>3</span>
-                    </div>
-                    <p>Activos actualmente</p>
-                </div>
-            </div>
-
-            <!-- Tabs -->
+        <section >
+            <h2>Gestiona tus remesas y pagos de forma segura</h2>
+            <div class="insert grid" style="--grid:300px"></div>
             <div class="tabs">
                 <div class="tabs-list">
-                    <button class="active" onclick="showTab('remesas')">Últimas Remesas</button>
-                    <button onclick="showTab('pagos')">Métodos de Pago</button>
+                    <button id="pay-trigger" class="active" onclick="showPay()">Métodos de Pago</button>
+                    <button id="tab-trigger" onclick="showTab()">Datos Detallados</button>                    
                 </div>
-                <div id="remesas" class="tabs-content active">
-                    <div class="card-office">
-                        <div class="card-office-title">Histórico de Remesas</div>
-                        <p>Remesa a Venezuela: $500.00 (20 Dic 2023)</p>
-                        <p>Remesa a Colombia: $300.00 (15 Dic 2023)</p>
-                        <p>Remesa a México: $250.00 (10 Dic 2023)</p>
-                    </div>
+               
+                <div id="pagos" class="tabs-content active">                    
+                    <div class="card-office-title">Métodos de Pago Guardados</div>
+                    <div id="pagos-container" class="">Aqui apareceran los metodos de pago ofrecidos por nosotros</div>
                 </div>
-                <div id="pagos" class="tabs-content">
-                    <div class="card-office">
-                        <div class="card-office-title">Métodos de Pago Guardados</div>
-                        <p>Visa terminada en 4242 (Expira 12/24)</p>
-                        <p>Mastercard-office terminada en 8888 (Expira 09/25)</p>
-                    </div>
+                <div id="tablas" class="tabs-content">                   
+                    <div class="card-office-title">Histórico de Remesas</div>
+                    <div id="tables-container" class=" tablas-dinamicas"></div>                   
                 </div>
             </div>
         </section>
-        
-        <section class="admin">
-        </section>
 
-        <section class="">
-            <h2>Datos Completos</h2>
-            <div id="tables-container" class=" tablas-dinamicas"></div>
-        </section>
     </main>
 
     <aside class="aside scroll-x">
         <div class="aside-menu">
             <h3>Enlaces rápidos</h3>
-
             <a class="link" href="/">
                 <svg class="svg-icon">
                     <use href="public/img/svg/home-ico.svg#home"></use>
@@ -176,10 +150,26 @@
                         <use href="public/img/svg/servicios-ico.svg#servicios"></use>
                     </svg>Servicios:</buton>                
                 <div class="services-content hidden">
-                    <button id="user-register" class="link" onclick="llamarFormularioModal(event)">Registrar nuevo usuario</button>
-                    <button id="consignment-register" class="link" onclick="llamarFormularioModal(event)">Nueva remesa</button>
-                    <button id="show-users" class="link admin" onclick="solicitarData('usuarios')">Ver lista de usuarios</button>
-                    <button id="show-consignment" class="link" onclick="solicitarData('pedidos')">Ver lista de pedidos</button>
+                    <button id="user-register" class="link" onclick="llamarFormularioModal(event)">Registrar nuevo usuario
+                        <svg class="svg-icon right">
+                            <use href="public/img/svg/new-user-ico.svg#new-user"></use>
+                        </svg>
+                    </button>
+                    <button id="consignment-register" class="link" onclick="llamarFormularioModal(event)">Nueva remesa
+                        <svg class="svg-icon right">
+                            <use href="public/img/svg/remesa-ico.svg#new-remesa"></use>
+                        </svg>
+                    </button>
+                    <button id="show-users" class="link admin" onclick="refreshBackoffice('usuarios')">Ver lista de usuarios
+                        <svg class="svg-icon right">
+                            <use href="public/img/svg/user-list-ico.svg#user-list"></use>
+                        </svg>
+                    </button>
+                    <button id="show-consignment" class="link" onclick="refreshBackoffice('pedidos')">Ver lista de pedidos
+                        <svg class="svg-icon right">
+                            <use href="public/img/svg/historico-remesa-ico.svg#historico-remesa"></use>
+                        </svg>
+                    </button>
                     <a id="login-button" class="link" href="/auth">Login</a>
                 </div>
             <a class="link" href="#tutorial">
@@ -193,7 +183,8 @@
             <a class="link" href="/terminos">
                 <svg class="svg-icon">
                     <use href="public/img/svg/condiciones-ico.svg#condiciones"></use>
-                </svg> Términos y Condiciones</a>
+                </svg> Términos y Condiciones
+            </a>
         </div>
     </aside>
 
@@ -223,6 +214,7 @@
     <script defer src="public/js/static.js"></script>
     <script src="public/js/validacionesFrontend3.js"></script>
     <script defer src="public/js/solicitudes.js"></script>
+    <script src="public/js/backoffice.js"></script>
     <script src="public/js/home.js"></script>
 </body>
 </html>

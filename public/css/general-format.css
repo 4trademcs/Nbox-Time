@@ -51,7 +51,6 @@ div.flexbox.modal {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    border-image-width: -88px;
 }
 
 .column {
@@ -81,8 +80,10 @@ div.flexbox.modal {
 }
 
 .page-button:hover {
-    box-shadow: 1px 1px 7px 2px #00000070;
+    transition: .2s all ease;
+    box-shadow: 0px 2px 4px 2px #0000002e;
     border: .1rem solid transparent;
+    scale: 1.2;
 }
 
 .process {
@@ -267,11 +268,12 @@ div.flexbox.modal {
     display: flex;
     overflow: scroll;
     flex-direction: column;
-    max-width: 90dvw;
+    /* max-width: 90dvw; */
     margin: 10px auto;
     border-radius: 1rem;
     border-left: var(--border);
     box-shadow: 9px 10px 10px -7px var(--elementColor);
+    background-color: var(--bgTable);
 }
 .table-navigation {
     font-weight: 300;
@@ -295,17 +297,33 @@ div.flexbox.modal {
 
 table {
     border-collapse: collapse;
+    border: none !important;
+}
+
+thead{
+    position: sticky;
+    top: 0px;
+    outline: .2rem solid #000000;
+    z-index: 1;
 }
 
 td,
 tr,
 th {
     border: none;
-    border-left: .2rem solid #000000;
+    border-right: 2px solid var(--secondary-color);
     border-collapse: collapse;
     text-align: center;
-    padding: 8px;
-    background-color: var(--bgTable);
+    padding: 2px 5px;
+    /* background-color: var(--bgTable); */
+}
+
+tr:nth-child(2n+1){
+    background-color: var(--background-color);
+}
+
+tr:hover {
+    background-color: var(--primary-color);
 }
 
 th {
@@ -316,37 +334,26 @@ th {
     text-wrap: nowrap;
 }
 
-th:first-child,
-td:first-child {
-    border-left: none;
+th:last-child,
+td:last-child {
+    border-left: none !important;
 }
 
 td {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-tr:nth-child(even) {
-    background-color: #dddddd;
-}
-
-tr:last-child td {
-    background-color: var(--bgTable);
-}
-
 /* ----------------------------svg title--------------------------------------- */
 
 .remittance-steps {
     padding: 0;
-    overflow: hidden scroll;
     margin: 0 auto;
-    height: 100dvh;
     background: url(../img/tuto-back.webp);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
     position: sticky;
-    top: var(--headerSize);
 }
 
 
@@ -498,23 +505,20 @@ tr:last-child td {
     position: relative;
     overflow: hidden;
   }
+
+.logo-coin{
+    height: min(29%, 500px);
+    aspect-ratio: 1 / 1;
+    animation: titilar 4s ease both 4s;
+    animation-play-state: var(--trigger);
+    border-radius: 50%;
+    /* box-shadow: 0px 2px 5px 3px var(--logo-middle); */
+    padding: 1rem;
+  }
 .svg-middle{
     z-index: 1;
-    height: min(25%, 500px);
     aspect-ratio: 1 / 1;
-    border: .2rem solid #000000;
-    outline: 1rem solid var(--primary-color);
-    opacity: 0;
-    animation: titilar 4s ease forwards 4s;
-    animation-play-state: var(--trigger);
-    --rotation:0deg;
-    /* background: linear-gradient(var(--rotation), var(--primary-color)80%, var(--secondary-color)120%); */
-    background: linear-gradient(var(--rotation), var(--primary-color)60%, lightgoldenrodyellow);
-    border-radius: 50%;
     fill: var(--secondary-color);
-    box-shadow: inset 0px 2px 20px var(--logo-middle);
-    filter: drop-shadow(0px 5px 5px var(--logo-middle));
-    transition: all .2s;
 }
 .banner.index{
     --urlback: url('../img/bg-banner.webp');
@@ -670,7 +674,7 @@ tr:last-child td {
     position: absolute;
     max-height: 70dvh;
     fill: var(--svg-color);
-    animation: country 9s infinite;
+    animation: country 9s infinite forwards;
 }
 @keyframes country{
     0%{--one:red;--two: var(--svg-color);--three:var(--svg-color);--four: var(--svg-color);}
@@ -831,9 +835,28 @@ tr:last-child td {
     transition:all .2s !important;
     animation: rotateSide 2s infinite;
 }
-@keyframes rotateSide{
+@keyframes rotateSide {
     0%{rotate:0deg;}
     33%{rotate:35deg;}
     66%{rotate:-35deg;}
     100%{rotate:0deg;}
+}
+
+.svg-back-rotate{
+    position: absolute;
+    border-radius: 50%;
+    height: min(25%, 500px);
+    background: linear-gradient(60deg,var(--primary-color)49%,var(--form-background-color));
+    aspect-ratio: 1 / 1;
+    border: 0.4rem solid var(--secondary-color);
+    outline: 1rem solid var(--primary-color);
+    box-shadow: inset 6px -4px 30px 0px #000000c9;
+    animation: backrot 5s infinite;
+    transition: all .5s;
+    filter: drop-shadow(0px 0px 5px var(--text-color));
+}
+
+@keyframes backrot {
+    0%{rotate:0deg}
+    100%{rotate:360deg}
 }

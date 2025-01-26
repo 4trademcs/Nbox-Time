@@ -37,6 +37,7 @@ router.put('/edit', routesController.handleEdit);
 router.patch('/client/confirm', routesController.handleCliente);
 router.patch('/manager/confirm', routesController.handleGestor);
 router.post('/upload', uploader.loadImg);
+router.get('/pagos', routesController.handlePago);
 // router.post('/accounts', routesController.modifAccounts);
 
 

@@ -141,7 +141,7 @@ body {
     position: absolute;
     height: var(--headerSize);
     width: max(205px,60%);
-    cursor: none;
+    /* cursor: none; */
     z-index: 2;
     background: transparent;
     inset: 0;
@@ -161,6 +161,14 @@ body {
     fill: var(--primary-color);
 }
 
+.right{
+    position: absolute;
+    right: 0;
+}
+
+.svg-icon.right{
+   width: 2.5rem; 
+}
 .svg-logo {
     width: 4rem;
     height: 4rem;
@@ -182,7 +190,7 @@ body {
     box-shadow: rgb(0, 0, 0) 0px 2px 10px;
     overflow: hidden;
     backdrop-filter: blur(6px);
-    translate: -30px 10px;
+    translate: -30px 5px;
     /* clip-path: polygon(-10.5% 110.66%, 110.5% 111.25%, 103% 16.68%, 100% 1.89%, 91.5% 10.14%, -12% 10.34%); */
 }
 
@@ -205,7 +213,7 @@ body {
 #menu .link:hover {
     background-color: var(--secondary-color);
     color: var(--primary-color);
-    .svg-icon { fill:var(--primary-color);}
+    .svg-icon {fill:var(--primary-color);}
 }
 .services{
     cursor:pointer;
@@ -213,19 +221,10 @@ body {
 .services .menu-item{
     color: var(--primary-color);
 }
+.services-content svg{
+     margin-right: 5px; 
+}
 
-.admin::after {
-    content: "ADMIN";
-    color: var(--primary-color);
-    position: absolute;
-    right: 0px;
-    font-family: 'Anton', sans-serif;
-    font-size: medium;
-    margin-right: 0.5em;
-}
-.admin::after {
-    color: var(--secondary-color);
-}
 .link {
     color: var(--primary-color);
     display: inherit;
@@ -244,6 +243,11 @@ body {
     gap: 10px;
     padding-left: 10px;
 }
+.link-inherit {
+    color:inherit;
+    text-decoration: inherit;
+}
+
 .link:not(:last-child){
     margin-bottom: 10px;
 }
@@ -274,11 +278,22 @@ body {
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(var(--grid), 1fr));
     gap: 1.5rem;
     padding: 1.5rem;
     max-width: 1200px;
     margin: auto;
+}
+@media (min-width:570px){
+    .card-office:last-child{
+        /* grid-column:1/-1; */
+    }
+}
+
+@media (min-width:846px) and (max-width:1120px){
+    .grid>.card:last-child{
+        grid-column:1/-1;
+    }
 }
 
 ul {
@@ -299,6 +314,7 @@ ul {
     max-width: 200px;
     margin: 0px;
     border-radius: 0.6em;
+    border: none;
 }
 
 #filterValue {
@@ -426,4 +442,3 @@ footer h3 {
         max-width: 1200px;
     }
 }
-

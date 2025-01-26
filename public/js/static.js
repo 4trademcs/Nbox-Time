@@ -106,7 +106,7 @@ function lanzarModal(id) {
                                                                 <option value="USD efectivo"></option>
                                                                 <option value="CUP efectivo"></option>
                                                                 <option value="Transferencia CUP">recibir CUP en su tarjeta</option>
-                                                                <option value="Transferencia MLC">recibir MLC en su tarjeta</option>
+                                                                <option value="Transferencia USD">recibir USD en su tarjeta</option>
                                                             </datalist>
                                                         </div>
                                                         <div class="field" id="dinamic-field"></div>
@@ -153,9 +153,25 @@ function lanzarModal(id) {
                                                 <div class="field">
                                                     <label class="label" for="contact-pass">Clave</label>
                                                     <input id="contact-pass" name="password" type="password" placeholder="Establece tu contraseña" autocomplete="new-password" class="validate-password sql">
+                                                        <svg class="pass-ico" onclick="showText(event)">
+                                                            <use href="public/img/svg/password-open.svg#pass-ico"></use>
+                                                        </svg>
+                                                        <svg class="pass-ico hidden" onclick="showText(event)">
+                                                            <use href="public/img/svg/password.svg#pass-ico"></use>
+                                                        </svg>
+                                                </div>        
+                                                <div class="field">  
+                                                    <label class="label" for="contact-pass-2fa">Reconfirme:</label>      
+                                                        <input id="contact-pass-2fa" name="password" type="password" placeholder="Repite tu contraseña" autocomplete="new-password" class="validate-confirm-password sql">
+                                                            <svg class="pass-ico" onclick="showText(event)">
+                                                                <use href="public/img/svg/password-open.svg#pass-ico"></use>
+                                                            </svg>
+                                                            <svg class="pass-ico hidden" onclick="showText(event)">
+                                                                <use href="public/img/svg/password.svg#pass-ico"></use>
+                                                            </svg>
                                                 </div>
                                                 <div class="field">
-                                                    <button class="next" onclick="navigateSteps(event, 'next1', 100, 'email', 'password')">Siguiente</button>
+                                                    <button class="next" onclick="navigateSteps(event, 'next1', 100, 'email', 'password','confirmPassword')">Siguiente</button>
                                                 </div>
                                             </div>
                             
@@ -270,9 +286,28 @@ function lanzarModal(id) {
     }
 }
 
-// Función para borrar un elemento por su ID 
-function eliminarHTML(id) {
-    const elemento = document.getElementById(id);
-    if (elemento) elemento.remove();
-    else console.warn(`Elemento con ID "${id}" no encontrado.`);
-}
+
+
+    // Función para borrar un elemento por su ID 
+    function eliminarHTML(id) {
+        const elemento = document.getElementById(id);
+        if (elemento) elemento.remove();
+        else console.warn(`Elemento con ID "${id}" no encontrado.`);
+    }
+
+
+    const showText = (event) => {
+        const Element = event.currentTarget;
+    
+        // Encontrar el input relacionado dentro del mismo contenedor .field
+        const field = Element.closest('.field'); // Encuentra el contenedor más cercano con la clase .field
+        const input = field.querySelector('input[type="password"], input[type="text"]'); // Selecciona el input en el contenedor
+    
+        if (input) {
+            input.type = input.type === "password" ? "text" : "password";    
+            // Alternar las clases 'hidden' entre los dos SVG en el contenedor
+            const svgs = field.querySelectorAll('svg.pass-ico');
+            svgs.forEach(svg => svg.classList.toggle('hidden'));
+        }
+    };
+    

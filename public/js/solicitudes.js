@@ -24,9 +24,10 @@ const notificacionFront = (data) => {
     textoElement.innerHTML = '';
     textoElement.textContent = data.message;
     dialog.setAttribute('open', true);
-    if (data.tableName) {
-        // Llamar a `solicitarData` solo si `data.tableName` existe
-        data.tableName === 'usuarios' ? solicitarData('usuarios') : solicitarData('pedidos');}
+      // Llamar a `solicitarData` solo si `data.tableName` existe
+    if(document.title=='Nbox Time-Backoffice'&& data.tableName){
+      refreshBackoffice(data.tableName); 
+    }   
 };
 
 
@@ -41,8 +42,8 @@ function solicitarDelete(e) {
 
 function solicitarEdit(e) {
     idActual = e.target.classList[0];
-    if (tableDatos.table == 'usuarios') lanzarModal('user-edit'); 
-    else if (tableDatos.table == "pedidos") lanzarModal('consignment-edit'); 
+    if (tableDatos.tableName == 'usuarios') lanzarModal('user-edit'); 
+    else if (tableDatos.tableName == "pedidos") lanzarModal('consignment-edit'); 
     action = 'editar';    
 }
 
@@ -76,12 +77,30 @@ function confirmarGestor(e) {
 
 function uploadImg(e) {
     const file = e.target.files[0];
+    if (!file) {
+        console.error('No se seleccionó ningún archivo');
+        return;
+    }
+
+    const className = e.target.classList[0]; // Obtener la primera clase
+    if (!className) {
+        console.error('El elemento input no tiene clases definidas');
+        return;
+    }
+
     const formData = new FormData();
-    formData.append('file', file);
-    formData.append('id', e.target.classList[0]);
-    
+    const newFileName = className + file.name.substring(file.name.lastIndexOf('.'));
+    formData.append('file', new File([file], newFileName)); // Renombrar archivo
+    formData.append('id', className); // Agregar la clase como ID
+
+    console.log('Datos que se envían al backend:');
+    console.log('Nombre del archivo:', formData.get('file').name);
+    console.log('ID:', formData.get('id'));
+
     solicitud('POST', 'upload', formData, null); // null para archivos
 }
+
+
 
 
 // ==============================================================================
@@ -90,28 +109,36 @@ function uploadImg(e) {
 
 
 // funcion generica para hacer solicitudes GET, POST, PUT, PATCH y enviar notificacion
-async function solicitud(method, ruta, objeto, contentType = 'application/json') {
+async function solicitud(method, ruta, objeto = null, contentType = 'application/json') {
     const options = {
         method,
-        headers: contentType ? { 'Content-Type': contentType } : undefined, // Si hay contentType, asignamos el header
-        body: contentType ? JSON.stringify(objeto) : objeto // Si hay contentType, serializamos como JSON, si no, usamos FormData
+        headers: contentType ? { 'Content-Type': contentType } : undefined,
+        body: method !== 'GET' && objeto ? (contentType ? JSON.stringify(objeto) : objeto) : undefined // No incluir body en GET
     };
 
     try {
         const response = await fetch(`/${ruta}`, options);
         const responseType = response.headers.get('Content-Type');
+        let data = null;
 
         // Procesar respuesta si es JSON
         if (responseType?.includes('application/json')) {
-            const data = await response.json();
-            if (data.message) notificacionFront(data);
+            data = await response.json();
+            if (data.message) notificacionFront(data); // Notificación si hay mensaje
         } else {
             window.location.href = `/${ruta}`;
         }
+
+        console.log('Datos obtenidos:', data);
+        console.log('Objeto de respuesta:', response);
+
+        return data;
     } catch (error) {
         console.error('Error:', error);
+        throw error; // Lanza el error para que pueda manejarse en el llamado
     }
 }
+
 
 
 //_________________________________MANEJO DE TABLA_____________________________________
@@ -120,85 +147,93 @@ let tableDatos = [], indice = 0, entradastoshow = 10;
 
 // Función para solicitar datos del backend
 const solicitarData = async (tableName) => {
-    if (!tableName) {
-        console.error('Nombre de tabla no válido');
-        return;
-    }
 
     try {
         const response = await fetch(`/show?table=${tableName}`);
         const result = await response.json();
         console.log('Respuesta del backend:', result);
-
         // Verificar si la respuesta contiene `tableData` con estructura válida
-        if (!result.tableData || !Array.isArray(result.tableData.data)) {
-            console.error('Estructura de datos inválida recibida del backend.');
-            return;
+        if (result.data && !Array.isArray(result.data)) {
+            result.message = 'Ocurrió un problema sin definir al procesar la solicitud.';
+            notificacionFront(result);
         }
-
+            
         // Guardar el objeto completo del backend en `tableDatos`
-        tableDatos = result.tableData;
-
-        if (tableDatos.data.length === 0) {
-            tableDatos.data = [{ mensaje: 'No se encontraron datos' }];
-            console.log('Tabla vacía, asignando mensaje predeterminado');
-        }
-
-        // Reiniciar índice y renderizar la tabla con `data`
-        indice = 0;
-        imprimirDatos(tableDatos.table, tableDatos.data,tableDatos.userRole);
+        tableDatos = result;      
+     
     } catch (error) {
         console.error('Error al obtener los datos:', error);
     }
 };
 
 
+const estadistica = async (tableName) => {
+    // Verificar si `tableDatos` está vacío o no tiene datos
+    if (!tableDatos.data || tableDatos.data.length === 0) {
+        await solicitarData(tableName);
+    }
+
+    if (tableName == 'pedidos'){
+    const data = tableDatos.data;
+    const totalEnviado = calcularTotalEnviado(data);
+    const remesas = contarRemesas(data);
+    const porcentajeCompletadas = calcularPorcentajeCompletadas(data);
+    const distribucionPorTipo = calcularDistribucionPorTipo(data);
+    const topClientes = calcularTopClientes(data);
+
+    // Generar el contenido HTML
+    smartCard(...totalEnviado,...remesas,...porcentajeCompletadas,...distribucionPorTipo,...topClientes );
+    }else if (tableName == 'usuarios'){
+        console.log('estadisticas usuarios');
+    }
+};
 
 
 // Función para renderizar datos en la tabla 
-const imprimirDatos = (tableName, data, userRole) => {
-    if (!data.length) { return notificacionFront({ message: 'No hay coincidencias' }); }
+const imprimirDatos = async (tableName = 'pedidos') => {
+    
+    const data = tableDatos.data;
+    const userRole = tableDatos.userRole;
+    if (!tableDatos.data ) notificacionFront(tableDatos);     
+    if (tableDatos.data.length == 0 || !tableDatos.data){
+        const table = document.getElementById('tablas');
+        table.innerHTML = `<h4>Aquí aparecerá una tabla detallada con las operaciones que realices con nosotros. Por ahora no hay ${tableDatos.tableName} que mostrar 
+                           <div id="tables-container" class=" tablas-dinamicas">`;
+    } else {
+        const tableHeaders = Object.keys(data[0]).filter(key => key !== 'protectedId').map(key =>
+            `<th>${key}</th>`).join('');
+        const headerRow = `<tr>${tableHeaders}<th>Acciones</th></tr>`;
 
-    // Construcción de cabeceras
-    console.log(tableName);
-
-    const tableHeaders = Object.keys(data[0]).filter(key => key !== 'protectedId').map(key =>
-        `<th style="position: sticky; top: 0; background-color: #fff; z-index: 2;">${key}</th>`).join('');
-    const headerRow = `<tr>${tableHeaders}                            
-                         <th style="position: sticky; top: 0; background-color: #fff; z-index: 2;">Acciones</th>
-                       </tr>`;
-
-    // Construcción de filas de datos
-    const tableRows = data.slice(indice, indice + entradastoshow).map(row => {
-        const rowData = Object.keys(row).filter(key => key !== 'protectedId').map(key => {
-            if (key === 'Cliente') {
-                return `<td>${generarBotonesProceso(row, userRole, 'Cliente')}</td>`;
-            }
-            if (key === 'Gestor') {
-                return `<td>${generarBotonesProceso(row, userRole, 'Gestor')}</td>`;
-            }
-            return `<td>${row[key]}</td>`;
-        }).join('');
-
-        const accionesCell = `
-            <td>
-                <div style="display: flex;">
-                    <button class="${row.protectedId} page-button action-edit" onclick="solicitarEdit(event)">Editar</button>
-                    <button class="${row.protectedId} page-button action-delete" onclick="solicitarDelete(event)">Eliminar</button>
-                </div>
-            </td>`;
-        return `<tr>${rowData}${accionesCell}</tr>`;
-    }).join('');
-
+        // Construcción de filas de datos
+        const tableRows = data.slice(indice, indice + entradastoshow).map(row => {
+            const rowData = Object.keys(row).filter(key => key !== 'protectedId').map(key => {
+                if (key === 'Cliente')return `<td>${generarBotonesProceso(row, userRole, 'Cliente')}</td>`;                
+                if (key === 'Gestor')return `<td>${generarBotonesProceso(row, userRole, 'Gestor')}</td>`;                
+                return `<td>${row[key]}</td>`;
+            }).join('');
+            const accionesCell = `<td>
+                                    <div style="display: flex;">
+                                        <button class="${row.protectedId} page-button action-edit" onclick="solicitarEdit(event)">Editar</button>
+                                        <button class="${row.protectedId} page-button action-delete" onclick="solicitarDelete(event)">Eliminar</button>
+                                    </div>
+                                </td>`;
+            return `<tr>${rowData}${accionesCell}</tr>`;
+        }).join('');   
+    
     // Contenedor de la tabla
-    const tableContainer = document.getElementById('tables-container');
-    tableContainer.style.display = 'flex';
-    tableContainer.innerHTML = `<table>
-                                    <thead>${headerRow}</thead>
-                                    <tbody>${tableRows}</tbody>
-                                </table>`;
-    // Controles adicionales
-    actualizarControles(data, tableName);
+    const tableContainer = document.getElementById('tablas');
+    tableContainer.innerHTML = `<div class="card-office-title">Historial de ${tableDatos.tableName}</div>
+                                <div id="tables-container" class=" tablas-dinamicas">
+                                    <table>
+                                        <thead>${headerRow}</thead>
+                                        <tbody>${tableRows}</tbody>
+                                    </table>
+                                </div> `;
+
+     // Controles adicionales
+     actualizarControles(data, tableName);
+     estadistica(tableName); 
+    }
 };
 
 // Función para generar botones según el rol y columna
@@ -256,26 +291,57 @@ const displaySelectedOption = () => {
     select.setAttribute('title', select.options[select.selectedIndex].text);
 };
 
+// --------cambiar paginas-------
 const cambiarPagina = (direccion, tableName) => {
     const nuevoIndice = indice + direccion * entradastoshow;
-    if (nuevoIndice >= 0 && nuevoIndice < tableDatos.length) {
-        indice = nuevoIndice;
-        imprimirDatos(tableName, tableDatos);
+
+    if (nuevoIndice >= 0 && nuevoIndice < tableDatos.data.length) {
+        indice = nuevoIndice; 
+        imprimirDatos(tableName);
+    } else {
+        notificacionFront({ message: direccion > 0? 'No hay más datos para mostrar.': 'Estás en la primera página.', });
     }
 };
 
+
+
+
+// --------------- filtros -------------
+const applyFilter = (tableName) => {
+    const filterKey = document.getElementById('filterKey').value.trim();
+    const filterValue = document.getElementById('filterValue').value.trim().toLowerCase();
+
+    if (!filterKey || !filterValue) { notificacionFront({ message: 'Ingrese un valor válido para filtrar.' });
+        return;
+    }
+    // Filtrar directamente en `tableDatos.data`
+    const filteredData = tableDatos.data.filter(row =>
+        String(row[filterKey]).toLowerCase().includes(filterValue)
+    );
+
+    if (filteredData.length === 0) { notificacionFront({ message: 'No hay coincidencias.' });
+        return;
+    }
+
+    // Actualizar índice y mostrar datos filtrados
+    indice = 0;
+    const originalData = tableDatos.data;
+    tableDatos.data = filteredData;
+    imprimirDatos(tableName);
+    tableDatos.data = originalData;
+};
+
+
+// ----------tiempo de demora-------
 let debounceTimer;
 const debouncedFilter = (tableName) => {
     clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(() => applyFilter(tableName), 1000);
+    debounceTimer = setTimeout(() => applyFilter(tableName), 2000);
 };
 
-const applyFilter = (tableName) => {
-    const filterKey = document.getElementById('filterKey').value;
-    const filterValue = document.getElementById('filterValue').value.toLowerCase();
-    const filteredData = filterValue
-        ? tableDatos.filter(row => String(row[filterKey]).toLowerCase().includes(filterValue))
-        : tableDatos;
-    indice = 0;
-    imprimirDatos(tableName, filteredData);
-};
+const refreshBackoffice = async (tableName) => {
+    await solicitarData(tableName);
+    if (!tableName.message){
+    await imprimirDatos(tableName);
+    await estadistica(tableName);}
+}

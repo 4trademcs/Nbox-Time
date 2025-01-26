@@ -19,6 +19,7 @@
     left: 0;
     bottom: 0;
     width: 70%;
+    z-index: 0;
 }
 .multistep-form-container {
     display: flex;
@@ -55,7 +56,7 @@
     transition: margin-left 0.3s ease-in-out;
     flex-direction: column;
     flex-wrap: nowrap;
-    gap: 45px;
+    /* gap: 45px; */
 }
 .form form .page .title {
     text-align: left;
@@ -84,8 +85,20 @@ form .page .field textarea {
     border-radius: 5px;
     padding-left: 15px;
     font-size: 18px;
-    background-color: #f0ffff7a;
+    background-image: url(../img/svg/);
     margin: 5px 0 0 0;
+}
+.pass-ico{
+    position: absolute;
+    right: 10px;
+    bottom: 3px;
+    fill: var(--secondary-color);
+    width: 1.8rem;
+    height: 1.8rem;
+    opacity:.5;
+}
+.pass-ico:hover{
+    opacity:1;
 }
 form .page .field textarea {
     padding: 15px;

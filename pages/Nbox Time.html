@@ -14,6 +14,12 @@
     <meta property="og:title"content="Envía Dinero a Cuba | Nbox-Time - Rápido y Seguro">
     <meta property="og:description" content="Envía dinero a Cuba de manera fácil y rápida con Nbox-Time. La mejor agencia de remesas con precios competitivos, entrega en efectivo USD y CUP. ¡Comienza hoy!">
     <meta property="og:image" content="public/img/metatag.png" />
+
+     <!-- Open Graph / WSP -->
+     <meta property="og:image" content="https://nbox-time-app.onrender.com/public/img/metatag.png" />
+     <meta property="og:image:width" content="400" />
+     <meta property="og:image:height" content="400" />
+     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://metatags.io/" />
@@ -117,9 +123,12 @@
 
     <main class="main">
         <div class="banner index" >
-            <svg class="svg-middle" id="nbox-rotate">
-                <use href="public/img/svg/logo-ico.svg#logo"></use>
-            </svg>
+            <div class="logo-coin flexbox">
+                <svg class="svg-middle" id="nbox-rotate">
+                    <use href="public/img/svg/logo-ico.svg#logo"></use>
+                </svg>
+                <div class="svg-back-rotate"></div>
+            </div>
         </div>
         <section class="info">
             <h2>Bienvenido a Nbox Time</h2>
@@ -150,7 +159,7 @@
 
         <section>
             <h2>¿Por qué elegir Nbox Time?</h2>
-            <div class="grid">
+            <div class="grid" style="--grid:250px">
                 <div class="card seguridad black-letters">
                     <h3>Seguridad</h3>
                     <img src="public/img/seguro.png" alt="">
@@ -214,7 +223,7 @@
                 </div>
                 <div class="flyer">
                     <ul style="padding: 10px;">         
-                   <li>Transferencias MLC</li>
+                   <li>Transferencias USD</li>
                    <li>Transferencias CUP</li>
                    <li>Efectivo USD</li>
                    <li>Efectivo CUP</li>
@@ -253,10 +262,7 @@
 
         <section class="remittance-steps" id="tutorial">
             <div class="steps-tuto-container">
-                <div class="tuto-title">
-                    <h2>¿Cómo funciona?</h2>
-                    <!-- <p class="intro-text">Sigue estos pasos para realizar tu remesa de forma rápida y segura con Nbox Time:</p> -->
-                </div>
+                
                 <div class="step-icon">1</div>
                 <div class="step-tuto">                    
                     <h3>Registro de usuario</h3>
@@ -293,7 +299,7 @@
                     <p>Una vez confirmada por ambas partes, tu remesa se marcará como completada y podrás verla en tu historial.</p>
                 </div>
             </div>
-        </section>            
+        </section>           
     </main>
 
 

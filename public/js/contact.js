@@ -108,15 +108,28 @@ function guardarRemesa() {
 
 // ======================== Manejo del Login ==============================
 function sendLogin(event) {
-    event.preventDefault();
-    let login = {
-        nombre: document.getElementById('login-name').value,
-        pass: document.getElementById('login-pass').value,
-        email: document.getElementById('login-email').value,
+        event.preventDefault();
+    
+        // Validar los campos del formulario
+        const isValid = validateStep("slide-page", "email", "password", "confirmPassword", "name");
+        if (!isValid) {
+            console.log("Validación fallida. Verifica los campos.");
+            return; // Detener la ejecución si la validación falla
+        }
+    
+        // Crear el objeto login solo si la validación es exitosa
+        const login = {
+            nombre: document.getElementById('login-name').value,
+            pass: document.getElementById('login-pass').value,
+            email: document.getElementById('login-email').value,
+        };
+    
+        console.log("Datos a enviar:", login);
+    
+        // Llamar a la función para enviar los datos
+        solicitud('POST', 'login', login);
     };
-    console.log(login);
-    solicitud('POST','login', login);   
-}
+    
 
 // ======================== Manejo de solicitudes de forms(logout) ==============================
 const form=document.querySelector('.form-get');
