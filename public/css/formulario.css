@@ -38,11 +38,13 @@
 .multistep-form-container h2 {
     font-size: 35px;
     font-weight: 500;
-    margin: 15px 0;
+    margin: 20px 0 25px 0;
 }
 .multistep-form-container .form {
     width: 95%;
-    overflow: hidden scroll;
+    overflow-x: clip;
+    overflow-y: visible;
+    min-height: 380px;
 }
 .multistep-form-container .form form {
     display: flex;
@@ -52,11 +54,11 @@
 .form form .page {
     display: flex;
     width: 25%;
-    height: 550px;
+    /* height: 550px; */
     transition: margin-left 0.3s ease-in-out;
     flex-direction: column;
     flex-wrap: nowrap;
-    /* gap: 45px; */
+    gap: 20px;
 }
 .form form .page .title {
     text-align: left;
@@ -65,7 +67,7 @@
     margin: 10px 0 0 0;
 }
 .form form .page .field {
-    height: 45px;
+    /* height: 55px; */
     margin: auto 0;
     display: flex;
     position: relative;
@@ -91,7 +93,7 @@ form .page .field textarea {
 .pass-ico{
     position: absolute;
     right: 10px;
-    bottom: 3px;
+    top: 15px;
     fill: var(--secondary-color);
     width: 1.8rem;
     height: 1.8rem;
@@ -129,15 +131,21 @@ form .page .field button, .alert-button, .user-btn {
     transition: 0.5s ease;
     align-content: space-evenly;
     /* position: absolute; */
-    bottom: 0;
+    /* bottom: 10px; */
     gap: 183px;
     /* display: flex; */
+}
+form .page .field button{
+    /* width:100%; */
+}
+div.field:last-child{
+    margin-bottom: 10px!important;
 }
 form .page .field button:hover, .user-btn:hover {
     color: #333;
 }
 form .page .btns button, .user-btn {
-    margin-bottom: 15px !important;
+    /* margin-bottom: 15px !important; */
 }
 form .page .btns button.next {
     margin-left: 3px;
@@ -230,7 +238,7 @@ form .page .btns button.next {
 }
 .btns {
     flex-wrap: nowrap !important;
-    margin-top: 100px !important;
+    /* margin-top: 100px !important; */
     gap: 10px;
 }
 .validation-message{

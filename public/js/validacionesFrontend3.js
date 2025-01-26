@@ -11,7 +11,9 @@ function check() {
             sponsorIdField.innerHTML = `
                 <label class="label dinamic-delete" for="contact-bono">ID de su patrocinador:</label>  
                 <input id="contact-bono" class="sql" type="text" placeholder="Alvarez1" required>`;
-        } else { sponsorIdField.innerHTML = ''; }
+        } else {
+            sponsorIdField.innerHTML = '';
+        }
     }
 
     // Manejo de campos dinámicos según el tipo de remesa
@@ -22,11 +24,11 @@ function check() {
         } else if (consignmentField.value.includes('Transferencia')) {
             dynamicField.innerHTML = `<label class="label dinamic-delete" for="remesa-card">Tarjeta </label>
                     <input class="validate-tel" type="tel" maxlength="16" placeholder="9230045604230957 sin espacios ni '-'" required>`;
-        } else { dynamicField.innerHTML = ''; }
+        } else {
+            dynamicField.innerHTML = '';
+        }
     }
 }
-
-
 
 let formStep = 1;
 
@@ -64,21 +66,22 @@ const validateStep = (direction, ...validateInputs) => {
     const validationConfig = {
         sqlInjectionFilter: /^[^'";]+$/,
         email: { sel: ".validate-email", regex: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, msg: "Correo inválido." },
-        password: { sel: ".validate-password", regex: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/, msg: "La clave debe tener mas de 8 caracteres, mayusculas,letras y numeros." },
-        confirmPassword: { sel: ".validate-confirm-password", 
-            regex: (() => {
-                const passwordInput = document.querySelector(".validate-password");
-                return passwordInput ? new RegExp(`^${passwordInput.value}$`) : /.^/; 
-            })(),
+        password: { sel: ".validate-password", regex: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/, msg: "La clave debe tener más de 8 caracteres, incluir letras y números." },
+        confirmPassword: { 
+            sel: ".validate-confirm-password", 
+            regex: (confirmElement) => {
+                const form = confirmElement.closest("form");
+                const passwordInput = form?.querySelector(".validate-password");
+                return passwordInput ? new RegExp(`^${passwordInput.value}$`) : /.^/; },
             msg: "Las contraseñas no coinciden."
         },
         name: { sel: ".validate-name", regex: /^[a-zA-ZÀ-ÿ\s]{1,50}$/, msg: "Nombre inválido." },
         dni: { sel: ".validate-dni", regex: /^\d{8,11}$/, msg: "DNI inválido (de 8 a 11 números)." },
-        phone: { sel: ".validate-tel", regex: /^\d{8,16}$/, msg: "Entrada incompleta. Revise." },
+        phone: { sel: ".validate-tel", regex: /^\d{8,16}$/, msg: "Número de teléfono inválido." },
         source: { sel: ".validate-sponsor.sql", regex: /^(Patrocinador|Remesa|Google)$/, msg: "Opción inválida." },
         type: { sel: ".validate-type.sql", regex: /^(USD efectivo|CUP efectivo|Transferencia CUP|Transferencia USD)$/, msg: "Selección inválida." },
-        amount: { sel: ".validate-number", regex: /^(?:\d{2,4})$/, msg: "Monto inválido." },
-        address: { sel: ".validate-address", regex: /^[a-zA-Z0-9À-ÿ\s,#]{1,200}$/, msg: "Dirección con caracteres no permitidos." }
+        amount: { sel: ".validate-number", regex: /^\d{2,4}$/, msg: "Monto inválido." },
+        address: { sel: ".validate-address", regex: /^[a-zA-Z0-9À-ÿ\s,#]{1,200}$/, msg: "Dirección inválida." }
     };
 
     const container = document.querySelector(`.${direction}`);
@@ -91,11 +94,10 @@ const validateStep = (direction, ...validateInputs) => {
         elements?.forEach(element => {
             clearValidationMessages(element);
 
-            // Permitir campo vacío solo si `action` es 'editar'
             const isEmpty = element.value.trim() === "";
-            const isValid = (isEmpty && action === 'editar') || 
-                            (regex.test(element.value) && 
-                             (!element.classList.contains("sql") || validationConfig.sqlInjectionFilter.test(element.value)));
+            const dynamicRegex = typeof regex === "function" ? regex(element) : regex;
+            const isValid = dynamicRegex.test(element.value) && 
+                            (!element.classList.contains("sql") || validationConfig.sqlInjectionFilter.test(element.value));
 
             if (!isValid) {
                 showValidationMessage(element, msg);
@@ -111,8 +113,6 @@ const showValidationMessage = (inputElement, message) => {
     inputElement.style.borderColor = "var(--alert-color)";
     const errorText = document.createElement("small");
     errorText.classList.add("validation-message");
-    errorText.style.color = "var(--alert-color)";
-    errorText.style.fontSize = "16px";
     errorText.textContent = message;
     inputElement.insertAdjacentElement("afterend", errorText);
 };
