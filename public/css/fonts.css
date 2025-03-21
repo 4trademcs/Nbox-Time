@@ -1,0 +1,32 @@
+/* Global Tipografía */
+.global-h2 {
+  font-family: 'Anton', sans-serif;
+  font-size: 2rem;
+}
+
+.global-h {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.5rem;
+}
+
+.global-p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  text-align:justify;
+}
+
+.global-link {
+  font-size: 1.1rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.global-h,.global-h2{
+  color: var(--text-color);
+  text-align: center;
+}
+
+/* Smooth scroll para la navegación */
+html {
+  scroll-behavior: smooth;
+}

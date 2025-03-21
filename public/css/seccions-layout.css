@@ -1,0 +1,70 @@
+.service-section {
+  padding: 1.5rem;
+  color: #000;
+}
+.service-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2em;
+  flex-wrap: nowrap;
+  flex-direction: row;
+}
+.service-container.reverse{
+  flex-direction: row-reverse;
+}
+/* Bloque de texto con columnas utilizando grid */
+.service-text {
+  display: grid;
+  text-align: justify;
+  gap: 1.5rem;
+  grid-template-columns: 2fr 2fr;
+}
+.service-image {
+  min-width: 45%;
+}
+.service-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 1rem;
+  animation: imageFadeIn 1s ease-out forwards;
+}  
+/* Animación de entrada para la sección */
+.animated-section {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInSection 1.5s ease-out forwards;
+  animation-delay: 0.3s;
+}  
+/* Keyframes para fade in de la sección */
+@keyframes fadeInSection {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Keyframes para animación de la imagen */
+@keyframes imageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Adaptaciones responsivas */
+@media (max-width: 768px) {
+  .service-container,.service-container.reverse {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .service-text, .service-image {
+    display: flex;
+    max-width: 100%;
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,96 @@
+:root {
+    --amarillo: #FFD700;
+    --negro: #2c3e50;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.tuto-modal {
+    position: fixed;
+    background: white;
+    inset: var(--inset);
+    padding: 3.5rem 1rem;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    scale: 0.8;
+    opacity: 0;
+    transition: all 0.5s ease;
+    width: clamp(200px, 80%, 400px);
+    height: clamp(200px, 25%, 500px);
+    z-index: -10;
+    margin: auto;
+    color: black;
+}
+.comprobante-img {
+    overflow:scroll;
+    width: clamp(200px, 80%, 1200px);
+    height: clamp(200px, 80%, 1000px);
+}
+.tuto-modal.active {
+    opacity: 1;
+    pointer-events: all;
+    scale: 1.1;
+}
+.tuto-modal img{
+    height: 100%;
+    width:auto;
+    opacity:.1;
+}
+.tuto-modal p{
+    color:black;
+}
+#modalTitle{
+    /* margin: 0; */
+    position: absolute;
+    top: 0;
+}
+.tuto-btn {
+    background: var(--amarillo);
+    color: var(--negro);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    position: absolute;
+    bottom: -18px;
+    margin: auto;
+}
+
+.tuto-btn:hover {
+    background: #FFA500;
+    transform: scale(1.05);
+}
+
+.focusSection {
+    outline: 2px solid var(--amarillo);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+    animation: highlightElement 1.5s ease-in-out infinite;
+    transition: all 0.3s ease;
+}
+
+.firstplane {z-index: 12 !important;}
+.secondplane {z-index: 11 !important;}
+.thirdplane {z-index: 10 !important;}
+
+@keyframes highlightElement {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
