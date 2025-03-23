@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nbox Time-Backoffice</title>
+    <link rel="shortcut icon" href="public/img/logo.webp" type="image/x-icon">
+    <link rel="stylesheet" href="public/css/general-format.css">
+    <link rel="stylesheet" href="public/css/ventana-modal.css">
+    <link rel="stylesheet" href="public/css/formulario.css">
+    <link rel="stylesheet" href="public/css/home.css">
+    <link rel="stylesheet" href="public/css/backoffice.css">
+    <link rel="stylesheet" href="public/css/tutorial.css">
+    <link rel="stylesheet" href="public/css/fonts.css">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+</head>
+
+<body class="grid-container">
+    <header class="header">
+        <div class="logo flexbox" onclick="showMenu()">     
+            <svg class="svg-icon svg-logo">
+                <use href="public/img/svg/logo-ico.svg#logo"></use>
+            </svg>
+          <h4 id='logo-name'>Nbox Time</h4> 
+        </div> 
+        <section class="slider-container pay" style="--margin: auto;--width:90vwd;">
+            <div class="slider" reverse="true" style="--width: 100px;--height: 50px;--quantity: 10;--duration:15">
+                <div class="list">
+                    <div class="item" style="--position: 1"><img src="public/img/bizum.png" alt=""></div>
+                    <div class="item" style="--position: 2"><img src="public/img/bbva.png" alt=""></div>
+                    <div class="item" style="--position: 3"><img src="public/img/MoneyGram.png" alt=""></div>
+                    <div class="item" style="--position: 4"><img src="public/img/paypal.png" alt=""></div>
+                    <div class="item" style="--position: 5"><img src="public/img/Remitly.png" alt=""></div>
+                    <div class="item" style="--position: 6"><img src="public/img/Revolut.png" alt=""></div>
+                    <div class="item" style="--position: 7"><img src="public/img/sepa.png" alt=""></div>
+                    <div class="item" style="--position: 8"><img src="public/img/WesternUnion.png" alt=""></div>
+                    <div class="item" style="--position: 9"><img src="public/img/zelle.png" alt=""></div>
+                    <div class="item" style="--position: 10"><img src="public/img/crypto.png" alt=""></div>
+                </div>
+            </div>
+            </section>     
+        <div class="header-buttons">
+            <button id="darkModeToggle" class="icon-button" onclick="darkModeToggle()">
+                <svg class="svg-negative">
+                    <use href="public/img/svg/mode-select-ico.svg#mode"></use>
+                </svg>                         
+            </button>
+            <div class="relative">
+                <button id="menuToggle" class="icon-button" onclick="showMenu()">
+                    <span class="icon">☰</span>
+                </button>
+                <nav id="menu" class="menu hidden">
+                    <a class="link" href="/">
+                        <svg class="svg-icon">
+                            <use href="public/img/svg/home-ico.svg#home"></use>
+                        </svg>Home
+                    </a>
+                    <buton class="link services" href="#" onclick="showServices()">
+                        <svg class="svg-icon rotate-side">
+                            <use href="public/img/svg/servicios-ico.svg#servicios"></use>
+                        </svg>Servicios</buton>                
+                    <div class="services-content hidden">
+                        <button id="user-register" class="link" onclick="lanzarModal('user-register')">Registrar nuevo usuario
+                            <svg class="svg-icon right">
+                                <use href="public/img/svg/new-user-ico.svg#new-user"></use>
+                            </svg>
+                        </button>
+                        <button id="consignment-register" class="link" onclick="lanzarModal('consignment-register')">Nueva remesa
+                            <svg class="svg-icon right">
+                                <use href="public/img/svg/remesa-ico.svg#new-remesa"></use>
+                            </svg>
+                        </button>
+                        <button id="show-users" class="link admin" onclick="showTable(event)">Mis Referidos
+                            <svg class="svg-icon right">
+                                <use href="public/img/svg/user-list-ico.svg#user-list"></use>
+                            </svg>
+                        </button>
+                        <button id="show-consignment" class="link" onclick="showTable(event)">Histórico pedidos
+                            <svg class="svg-icon right">
+                                <use href="public/img/svg/historico-remesa-ico.svg#historico-remesa"></use>
+                            </svg>
+                        </button>
+                        <a id="login-button" class="link" href="/auth">Login</a>
+                    </div>
+                    <button class="link" onclick="generarTutorial()">
+                        <svg class="svg-icon">
+                            <use href="public/img/svg/tutorial-ico.svg#tutorial"></use>
+                        </svg> Tutorial</button>
+                    <button  class="link" onclick="solicitud('get','logout')">
+                        <svg class="svg-icon">
+                            <use href="public/img/svg/logout-ico.svg#logout"></use>
+                        </svg> Cerrar Sesión</button>
+                    <a class="link" href="/terminos">
+                        <svg class="svg-icon">
+                            <use href="public/img/svg/condiciones-ico.svg#condiciones"></use>
+                        </svg> Términos y Condiciones
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">        
+        <div class="banner office"></div>
+        <section>
+            <h2>Bienvenido a tu backoffice</h2>
+            <p>Aqui veras las ultimas novedades que tenemos listas para ti.</p>
+            <div class="card overload-margin" style="min-height: auto;">
+                <h3>Nuestros Servicios</h3>
+                <ul>
+                    <li>Envío rápido de remesas</li>
+                    <li>Tasas de cambio competitivas</li>
+                    <li>Seguimiento en tiempo real de sus envíos</li>
+                    <li>Atención al cliente 24/7</li>
+                </ul>
+            </div>
+        </section>
+
+        <section >
+            <h2>Gestiona tus remesas y pagos de forma segura</h2>
+            <div class="insert grid" style="--grid:300px"></div>
+            <div class="tabs-list">
+                <button id="pay-trigger" class="active" onclick="showPay()">Métodos de Pago</button>
+                <button id="tab-trigger" onclick="showTab()">Datos Detallados</button>                    
+            </div>
+            <div class="tabs">
+                <div class="tabs-content">
+                    <div id="pagos" class="tabs-content-child">                    
+                        <div class="card-office-title">Métodos de Pago Guardados</div>
+                        <div id="pagos-container" class="pagos-dinamicos">Aqui apareceran los metodos de pago ofrecidos por nosotros</div>
+                    </div>
+                    <div id="tablas" class="tabs-content-child">                   
+                        <div class="card-office-title">Histórico de Remesas</div>
+                        <div id="tables-container" class="tablas-dinamicas"></div>                   
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <aside class="aside menu scroll-x">
+        <div class="aside-menu ">
+            <h3>Enlaces rápidos</h3>
+            <a class="link" href="/">
+                <svg class="svg-icon">
+                    <use href="public/img/svg/home-ico.svg#home"></use>
+                </svg>Home</a>
+                <buton class="link services" onclick="showServices()">
+                    <svg class="svg-icon rotate-side">
+                        <use href="public/img/svg/servicios-ico.svg#servicios"></use>
+                    </svg>Servicios:</buton>                
+                <div class="services-content hidden">
+                    <button id="user-register" class="link" onclick="lanzarModal('user-register')">Registrar nuevo usuario
+                        <svg class="svg-icon right">
+                            <use href="public/img/svg/new-user-ico.svg#new-user"></use>
+                        </svg>
+                    </button>
+                    <button id="consignment-register" class="link" onclick="lanzarModal('consignment-register')">Nueva remesa
+                        <svg class="svg-icon right">
+                            <use href="public/img/svg/remesa-ico.svg#new-remesa"></use>
+                        </svg>
+                    </button>
+                    <button id="show-users" class="link admin" onclick="showTable(event)">Ver lista de usuarios
+                        <svg class="svg-icon right">
+                            <use href="public/img/svg/user-list-ico.svg#user-list"></use>
+                        </svg>
+                    </button>
+                    <button id="show-consignment" class="link" onclick="showTable(event)">Ver lista de pedidos
+                        <svg class="svg-icon right">
+                            <use href="public/img/svg/historico-remesa-ico.svg#historico-remesa"></use>
+                        </svg>
+                    </button>
+                    <a id="login-button" class="link" href="/auth">Login</a>
+                </div>
+            <button class="link" onclick="generarTutorial()">
+                <svg class="svg-icon">
+                    <use href="public/img/svg/tutorial-ico.svg#tutorial"></use>
+                </svg> Tutorial</button>
+            <button  class="link" onclick="solicitud('get','logout')">
+                <svg class="svg-icon">
+                    <use href="public/img/svg/logout-ico.svg#logout"></use>
+                </svg> Cerrar Sesión</button>
+            <a class="link" href="/terminos">
+                <svg class="svg-icon">
+                    <use href="public/img/svg/condiciones-ico.svg#condiciones"></use>
+                </svg> Términos y Condiciones
+            </a>
+        </div>
+    </aside>
+
+    <section>
+        <!-- capas opacas -->
+        <div id="tuto-capa" onclick="closeMenu()"></div>
+        <div class="overlay" onclick="closeNotification()"></div>    
+        <!-- Modal Notificaciones -->
+        <div class="tuto-modal">
+            <img class="background-img" id="tuto-img" src="public/img/logo.webp">
+            <h2 id="modalTitle"></h2>
+            <p class="global-p" id="modalContent"></p>
+            <button class="tuto-btn" onclick="nextModal()">▶ Siguiente</button>
+            <div class="alert-section hidden">
+                <button class="delete alert-button" onclick="actionToDo(event)">Aceptar</button>
+                <button class="alert-button" onclick="closeNotification()">Cancelar</button>
+            </div>
+        </div>
+    </section>
+    <!-- Alerta de eliminacion -->
+    <dialog id="alert-re-confirm" class="modal form-container" >
+        <div class="flexbox">
+            <form class="flexbox-column form alert" method="dialog">
+                <img  class="background-img" src="public/img/logo.webp"alt="logo de la compañia">                           
+                <h2 id="alert-message"></h2>
+                <div class="field alert-button btns" >
+                    <button class="delete alert-button" onclick="actionToDo(event)">Aceptar</button>
+                    <button class="alert-button">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </dialog>
+
+    <footer class="footer footer-content">
+        <div>
+            <h3>Nbox Time</h3>
+            <p>Su socio confiable para envíos de remesas internacionales.</p>
+        </div>
+        <div>
+            <h3>Enlaces rápidos</h3>
+            <ul>
+                <a class="link" href="/">Inicio</a>
+                <a class="link" href="/terminos">Términos y Condiciones</a>
+            </ul>
+        </div>
+        <div>
+            <h3>Contáctenos</h3>
+            <p>Email: nboxtime.services@gmail.com</p>
+            <p>Teléfono: +1 234 567 890</p>
+        </div>
+         <p class="author">Copyright © 2025 - Desarrollado por Michel.dev </p>
+    </footer>  
+
+    <script defer src="public/js/contact.js"></script>
+    <script defer src="public/js/static.js"></script>
+    <script src="public/js/validacionesFrontend3.js"></script>
+    <script defer src="public/js/solicitudes.js"></script>
+    <script src="public/js/backoffice.js"></script>
+    <script src="public/js/home.js"></script>
+    <script src="public/js/tutorial.js"></script>
+</body>
+</html>

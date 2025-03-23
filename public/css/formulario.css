@@ -1,0 +1,246 @@
+/* -------contenedor del form---------- */
+.flexbox.modal {
+    overflow: scroll;
+    --bgModalColor: #41414196;
+    font-size: 1.3em;
+}
+/* --------contenedor de imputs de form de registro-------- */
+::selection {
+    color: #fff;
+    background: #d43f8d;
+}
+.background-img{
+    position: absolute;
+    opacity: .15;
+    margin: auto;
+    top: 0;
+    right: -5px;
+    left: 0;
+    bottom: 0;
+    width: 70%;
+    z-index: 0;
+}
+.multistep-form-container {
+    display: flex;
+    font-family: 'Poppins', sans-serif;
+    width: clamp(350px,40%,1200px);
+    text-align: center;
+    border-radius: 1em;
+    padding: 0px 15px 0px 15px;
+    position: absolute;
+    background-color: var(--form-background-color);
+    overflow: hidden scroll;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 2px 2px 20px #0000008f;
+}
+.multistep-form-container h2 {
+    font-size: 35px;
+    font-weight: 500;
+    margin: 20px 0 25px 0;
+}
+.multistep-form-container .form {
+    width: 95%;
+    overflow-x: clip;
+    overflow-y: visible;
+    min-height: 380px;
+}
+.multistep-form-container .form form {
+    display: flex;
+    width: 400%;
+    transition: margin-left 0.3s ease-in-out;
+}
+.form form .page {
+    display: flex;
+    width: 25%;
+    /* height: 550px; */
+    transition: margin-left 0.3s ease-in-out;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 20px;
+}
+.form form .page .title {
+    text-align: left;
+    font-size: 25px;
+    font-weight: 500;
+    margin: 10px 0 0 0;
+}
+.form form .page .field {
+    /* height: 55px; */
+    margin: auto 0;
+    display: flex;
+    position: relative;
+    flex-wrap: wrap;
+}
+form .page .field .label {
+    position: absolute;
+    top: -20px;
+    font-weight: 500;
+    font-size: 18px;
+}
+form .page .field input,
+form .page .field textarea {
+    height: 45px;
+    width: 100%;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    padding-left: 15px;
+    font-size: 18px;
+    background-image: url(../img/svg/);
+    margin: 5px 0 0 0;
+}
+.pass-ico{
+    position: absolute;
+    right: 10px;
+    top: 15px;
+    fill: var(--secondary-color);
+    width: 1.8rem;
+    height: 1.8rem;
+    opacity:.5;
+}
+.pass-ico:hover{
+    opacity:1;
+}
+form .page .field textarea {
+    padding: 15px;
+    resize: none;
+}
+form .page .field textarea:active{
+    height: 30px;
+    transition: all .5s;
+}
+form .page .field select {
+    width: 100%;
+    padding-left: 10px;
+    font-size: 17px;
+    font-weight: 500;
+}
+form .page .field button, .user-btn {
+    width: 100%;
+    height: 50px;
+    border: none;
+    background: var(--secondary-color);
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: 0.5s ease;
+    align-content: space-evenly;
+    /* position: absolute; */
+    /* bottom: 10px; */
+    gap: 183px;
+    /* display: flex; */
+}
+form .page .field button{
+    width:100%;
+}
+div.field:last-child{
+    margin-bottom: 10px!important;
+}
+form .page .field button:hover, .user-btn:hover {
+    color: #333;
+}
+form .page .btns button, .user-btn {
+    /* margin-bottom: 15px !important; */
+}
+form .page .btns button.next {
+    margin-left: 3px;
+}
+.multistep-form-container .progress-bar {
+    display: flex;
+    user-select: none;
+    gap: 15px;
+    height: 60px;
+}
+.multistep-form-container .progress-bar .step {
+    text-align: center;
+    width: 100%;
+    position: relative;
+    height: 69px;
+}
+.multistep-form-container .progress-bar .step p {
+    font-weight: 500;
+    font-size: 18px;
+    margin: 0 0 10px 0;
+}
+.progress-bar .step .bullet {
+    height: 25px;
+    width: 25px;
+    border: 2px solid var(--black-white);
+    display: inline-block;
+    border-radius: 50%;
+    position: relative;
+    transition: 0.2s;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 25px;
+}
+.progress-bar .step .bullet.active {
+    border-color: #fbbf24;
+    background: #fbbf24;
+}
+.progress-bar .step .bullet span {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.progress-bar .step .bullet.active span {
+    display: none;
+}
+.progress-bar .step .bullet:before,
+.progress-bar .step .bullet:after {
+    position: absolute;
+    content: '';
+    bottom: 9px;
+    left: 100%;
+    height: 3px;
+    width: 165%;
+    background: var(--black-white);
+}
+.progress-bar .step .bullet.active:after {
+    background: #fbbf24;
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: animate 0.3s linear forwards;
+}
+@keyframes animate {
+    100% {
+        transform: scaleX(1);
+    }
+}
+.progress-bar .step:last-child .bullet:before,
+.progress-bar .step:last-child .bullet:after {
+    display: none;
+}
+.progress-bar .step p.active {
+    color: var(--secondary-color);
+    transition: 0.2s linear;
+}
+.progress-bar .step .check {
+    position: absolute;
+    left: 50%;
+    top: 70%;
+    font-size: 15px;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+.progress-bar .step .check.active {
+    display: block;
+    color: #fff;
+}
+#marcar {
+    height: auto;
+    width: auto;
+}
+.btns {
+    flex-wrap: nowrap !important;
+    /* margin-top: 100px !important; */
+    gap: 10px;
+}
+.validation-message{
+    color: var(--alert-color);
+    font-size: 16px;
+}

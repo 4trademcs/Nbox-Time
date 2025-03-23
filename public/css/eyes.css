@@ -1,0 +1,170 @@
+:root {
+    --eyesOpen: 120px;
+    --translateX: 0%;
+    --translateY: 0%;
+}
+.background {
+    background-color: #000000e9;
+    color: white;
+    background-image: url(../img/svg/logo-ico.svg);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.eye-container {
+    display: flex;
+    width: clamp(100px, 100%, 300px);
+    height: var(--eyesOpen);
+    margin: 3rem auto;
+    position: relative;
+    gap: 20px;
+    inset: 0;
+}
+
+.tuto-eye{
+    position: sticky;
+    top: 10dvh;
+    z-index: 1;   
+    scale: .8;
+     /* margin: 0; */
+    /* translate: -80px; */
+    /* --eyesOpen: clamp(10px,15dvh,100px); */
+     /* width: clamp(100px,30%,250px); */
+    /* gap: 5%; */ 
+    .eye { animation: parpadeo 3s ease 1s infinite forwards; }
+    .iris { animation: leer 2s ease 1s infinite both; }  
+}        
+
+.eye,
+.iris {
+    margin: auto;
+    display: flex;
+    border-radius: 50%;
+    transition: height 0.2s ease;
+    box-shadow: inset -2px -8px 25px 5px #183347ed;
+}
+
+.eye {
+    width: clamp(200px, 40%, 800px);
+    background-color: white;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    animation: parpadeoSospecha 6s ease 1s infinite forwards; 
+    border-top: 10px solid black;
+}
+
+.eye:after {
+     content:'';
+     position:absolute;
+     inset: -60% -50% 0% 0%;
+     margin:auto;
+     background: #eef4f7;
+     height: 25%;
+     filter: blur(10px);
+     rotate: 20deg;
+}
+
+
+.iris {
+    background-color: #000000;
+    width: clamp(2rem, 50%, 800px);
+    aspect-ratio: 1/1;
+    position: absolute;
+    inset: 0;
+    transform: translate(var(--translate));
+    background: radial-gradient(black 50%, white 46%);
+    overflow: hidden;
+}
+
+
+.iris:after {
+    /* content:''; */
+    position:absolute;
+    inset: -40% -17% 0% 0%;
+    margin:auto;
+    background: #FDD835;
+    width: 20%;
+    filter: blur(5px);
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+}
+.iris:before {
+    content:'';
+    position:absolute;
+    inset: -80% -40% 0 0;
+    margin:auto;
+    background: #fffbff;
+    width: 50%;
+    filter: blur(6px) brightness(1);
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+}
+
+div.iris >.svg-icon.svg-logo {
+    fill: #ffe575cc;
+    width: 70%;
+    position: absolute;
+    inset: 0;
+    margin: auto;
+}
+
+@keyframes parpadeoSospecha {
+    5% { height: 0; }
+    10% { height: var(--eyesOpen); }
+    15%{height:30px}
+    50% {height:30px}
+    60% { height: var(--eyesOpen); }
+    
+}
+@keyframes parpadeo {
+    5% { height: 0; }
+    15% { height: var(--eyesOpen); }
+}
+@keyframes leer {
+    0% {translate:0px;}
+    25% {translate:20px;}
+    75% {translate:-20px;}
+}
+
+.error-message {
+    text-align: start;
+    margin-top: 2rem;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 1rem;
+}
+
+.error-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.error-subtitle {
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    font-style: "Anton";
+    text-align: start;
+}
+
+.error-text {
+    font-size: 1.2rem;
+    color: #cccccc;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    text-align: start;
+}
+
+.error-text:last-child {
+    margin-bottom: 0;
+}
+
+#smile{
+    font-size: 100px;
+    display: -webkit-box;
+}

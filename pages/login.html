@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="public/img/logo.webp" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../public/css/ventana-modal.css">
+    <link rel="stylesheet" href="../public/css/formulario.css">
+    <link rel="stylesheet" href="../public/css/general-format.css">
+    <link rel="stylesheet" href="public/css/home.css">
+    <link rel="stylesheet" href="public/css/tutorial.css">
+    <title>Login Page</title>
+</head>
+
+<body style=" background: radial-gradient(circle,var(--primary-color),var(--secondary-color));">
+    <section>
+        <div class="flexbox modal">
+            <div class="multistep-form-container">
+                <h2>Ingresar a la Oficina</h2>
+                <div class="form">
+                    <form class="form" id="login-form" name="login" method="post">
+                        <img class="background-img" src="public/img/logo.webp" alt="logo de la compañia">
+                        <div class="page slide-page">
+                            <div class="field">
+                                <label class="label" for="login-email">Email:</label>
+                                <input id="login-email" type="email" placeholder="Ingresa tu e-mail de registro" class="validate-email">
+                            </div>
+                            <div class="field">
+                                <label class="label" for="login-pass">Clave:</label>
+                                <input id="login-pass" type="password" placeholder="Establece tu contraseña" autocomplete="current-password" class="validate-password">
+                                <svg class="pass-ico" onclick="showText(event)">
+                                    <use href="public/img/svg/password-open.svg#pass-ico"></use>
+                                </svg>
+                                <svg class="pass-ico hidden" onclick="showText(event)">
+                                    <use href="public/img/svg/password.svg#pass-ico"></use>
+                                </svg>
+                            </div>
+                            <div class="field">
+                                <label class="label" for="login-pass-2fa">Re-confirma:</label>
+                                <input id="login-pass-2fa" type="password" placeholder="Reconfirma tu contraseña" class="validate-confirm-password" autocomplete="current-password">
+                                <svg class="pass-ico" onclick="showText(event)">
+                                    <use href="public/img/svg/password-open.svg#pass-ico"></use>
+                                </svg>
+                                <svg class="pass-ico hidden" onclick="showText(event)">
+                                    <use href="public/img/svg/password.svg#pass-ico"></use>
+                                </svg>
+                            </div>
+                            <div class="field">
+                                <label class="label" for="login-name">Nombre de Usuario:</label>
+                                <input id="login-name" type="text" placeholder="UsuarioNbox" class="validate-name">
+                            </div>
+                            <div class="field btns">
+                                <button class="prev" type="submit" id="login" onclick="sendLogin(event)">Ingresar</button>
+                                <div class="user-register user-btn" id="user-register" onclick="lanzarModal('user-register')">Nuevo usuario</div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <!-- capas opacas -->
+        <div id="tuto-capa" onclick="closeMenu()"></div>
+        <div class="overlay" onclick="closeNotification()"></div>
+        <!-- Modal tutorial -->
+        <div class="tuto-modal">
+            <img class="background-img" id="tuto-img" src="public/img/logo.webp">
+            <h2 id="modalTitle"></h2>
+            <p class="global-p" id="modalContent"></p>
+        </div>
+    </section>
+
+    <script defer="" src="../public/js/contact.js"></script>
+    <script src="../public/js/validacionesFrontend3.js"></script>
+    <script src="../public/js/solicitudes.js"></script>
+    <script defer="" src="../public/js/static.js"></script>
+    <script src="public/js/home.js"></script>
+</body>
+
+</html>
+
+
+

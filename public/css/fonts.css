@@ -1,0 +1,58 @@
+
+@font-face {
+  font-family: 'Anton';
+  src: url('../fonts/Anton-Regular.woff2') format('woff2'),
+       url('../fonts/Anton-Regular.woff') format('woff'),
+       url('../fonts/Anton-Regular.ttf') format('truetype');
+  font-display: swap;
+}
+
+h1,h2,h3,strong{
+  font-family: 'Anton';
+}
+
+
+/* Global Tipografía */
+.global-h2 {
+  font-family: 'Anton', sans-serif;
+  font-size: 2rem;
+}
+
+.global-h {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.5rem;
+}
+
+.global-p,.global-li,a,ul,ol{
+  font-family: sans-serif;
+  line-height: 1.5;
+  text-align:justify;
+  margin: auto;
+  text-decoration: none;
+  color: black;
+}
+
+.global-li{
+  list-style-type: '🟡';
+  font-size: 1.2rem;
+  text-align: left;
+}
+
+.global-link {
+  font-size: 1.1rem;
+  text-decoration: none;
+  color: inherit;
+}
+.global-p {font-size: 1.2rem;margin: 1rem auto;color: var(--black-white);}
+
+.global-h,.global-h2{
+  color: var(--black-white);
+  text-align: center;
+}
+
+/* Smooth scroll para la navegación */
+html {
+  scroll-behavior: smooth;
+  /* scroll-margin: -300px; */
+  /* scroll-padding: 80%; */
+}

@@ -1,0 +1,2 @@
+# Ejecuta como Administrador y usa este comando:
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser

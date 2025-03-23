@@ -1,0 +1,247 @@
+/* los hijos de las ventanas modales tipo dialog */
+#modal-logo>* {
+    color: var(--elementModalColor);
+}
+
+.container-full-alto {
+    height: 100%;
+}
+
+#modal-button-close {
+    border: none;
+    background-color: transparent;
+}
+
+#modal-form {
+    width: var(--anchoModal);
+    /* overflow: hidden; */
+    scale: 1.5;
+}
+
+.company-name {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 2.5rem;
+    opacity: 0;
+    animation: titilar 0.15s 5 5s forwards;
+    letter-spacing: .2rem;
+}
+
+.line {
+    width: 100px;
+    height: 20px;
+    background-color: var(--elementModalColor);
+    margin: 10px 0;
+    display: inline-block;
+    animation: resize 2s both;
+    transition: clip-path 3s cubic-bezier(.45, .05, .55, .95) 1s;
+    color: #fbbf24;
+    align-content: center;
+}
+
+.line-tittle {
+    color: inherit;
+    animation: disappear 6s both;
+    font-family: 'Anton';
+    text-align: center;
+}
+
+/* Modificaciones individuales para cada line */
+.line1 {
+    --translate-x: -40px;
+    --translate-y: 80px;
+    --rotate: 333deg;
+    --width: 100px;
+    --box-shadow: none;
+    animation-delay: 0.5s;
+    --clip-path: polygon(100px 21px, 114px -2px, -3px -4px, 40px 52px);
+}
+
+.line2 {
+    --translate-x: 41px;
+    --translate-y: 38.5px;
+    --rotate: 25deg;
+    --width: 100px;
+    --box-shadow: none;
+    animation-delay: 1s;
+    --clip-path: polygon(48px 58px, 98px -11px, 6px -11px, -10px 21px);
+}
+
+.line3 {
+    --translate-x: 45.5px;
+    --translate-y: 50px;
+    --rotate: 330deg;
+    --width: 120px;
+    animation-delay: 1.5s;
+    --clip-path: polygon(93px 39px, 128px -20px, -1px 2px, -14px 86px);
+}
+
+.line4 {
+    --translate-x: -50px;
+    --translate-y: 15px;
+    --rotate: 25deg;
+    --width: 115px;
+    animation-delay: 2s;
+    --clip-path: polygon(121px 75px, 114px -2px, 4px -10px, 23.5px 31px);
+}
+
+.line5 {
+    --translate-x: -80px;
+    --translate-y: -10px;
+    --rotate: 90deg;
+    --width: 70px;
+    animation-delay: 2.5s;
+}
+
+.line6 {
+    --translate-x: -40.5px;
+    --translate-y: 0;
+    --rotate: 28deg;
+    --width: 100px;
+    --box-shadow: -9px 19px 15px 0px #5559;
+    animation-delay: 3s;
+    z-index: 1;
+}
+
+.line7 {
+    --translate-x: 46.2px;
+    --translate-y: -46px;
+    --rotate: 330deg;
+    --width: 120px;
+    --box-shadow: -18px 13px 12px 1px #5559;
+    animation-delay: 3s;
+    --clip-path: polygon(118px -5px, 8px -1px, -56px 6px, 5px 125px, 149px 24px, 104px 20px);
+}
+
+@keyframes resize {
+    0% {
+        transform: translate(0, 0) rotate(0);
+        width: 100px;
+        box-shadow: none;
+        color: #fbbf24;
+        ;
+        clip-path: polygon(148px -16px, 15px -71px, -56px 6px, 123px 99px);
+    }
+
+    100% {
+        transform: translate(var(--translate-x), var(--translate-y)) rotate(var(--rotate));
+        clip-path: var(--clip-path);
+        width: var(--width);
+        box-shadow: var(--box-shadow);
+        /* color: var(--elementModalColor); */
+        transition: clip-path 3s cubic-bezier(.45, .05, .55, .95);
+    }
+}
+
+
+@keyframes titilar {
+    0%{
+        opacity: 0;          
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes disappear {
+    0% {
+        display: block;
+    }
+    95%{color: inherit;}
+    100% {
+        display: none;
+        color: black;
+    }
+}
+
+/* ============================== Modal General ========================= */
+
+.modal {
+    backdrop-filter: blur(10px);
+    background-color: var(--bgModalColor);
+    height: 100%;
+    width: 100%;
+    border: none;
+    position: fixed;    
+    top: 0;
+}
+
+
+.close-modal {
+    position: sticky;
+    top: 0;
+    background-color: #0606066b;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    border: none;
+}
+
+/* .close-modal:hover{
+    box-shadow: 0px 0px 6px 1px #42424269;
+    color:#000;
+    background-color: #000000ab;;
+    border: 1px solid #00000069;
+} */
+
+/* ----------------- Notificacion y Alerts ------------- */
+.mensaje {
+    z-index: 10;
+    background-color: var(--card-background);
+    border-radius: 1.5rem;
+    overflow: hidden;
+    box-shadow: 2px 2px 15px black;
+}
+
+.transparent {
+    background-color: #10100fab;
+}
+
+.alert-button {
+    margin: 1rem; 
+    background: var(--amarillo);
+    color: var(--negro); 
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    position: relative;
+}
+.alert-button:hover {
+    background: #ff0000;
+    transform: scale(1.1);
+}
+
+form.alert {
+    background-size: cover;
+    background-color: var(--card-background);
+    margin: auto;
+    border-radius: 1rem;
+    box-shadow: 2px 2px 20px #0000008f;
+    position: absolute;
+    overflow: hidden;
+    height: 400px;
+    padding: 20px;
+    width: clamp(300px,80dvw,1200px);
+}
+
+form.alert h2,
+.mensaje h2 {
+    margin-top: 10px;
+    margin: 0;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-weight: 100;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.field.alert-button {
+    z-index: 2;
+    display: flex;
+    gap: 10px;
+    background-color: transparent;
+    margin: 20px auto;
+}

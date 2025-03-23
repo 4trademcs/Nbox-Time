@@ -1,0 +1,225 @@
+.card-office {
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: var(--bgTable);
+}
+
+.card-office-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.card-office-title {
+    font-weight: bold;
+    margin: 1rem;
+}
+
+.card-office-value,
+.value {
+    color: #03e203;
+    font-family: 'Anton';
+}
+
+/* ----------------- tables ---------------- */
+.tablas-dinamicas {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: scroll;    
+    margin: 10px auto;
+    border-radius: 1rem;
+    border-left: 8px solid gold;
+    box-shadow: 9px 10px 10px -7px var(--elementColor);
+    background-color: var(--bgTable);
+}
+
+table {
+    border-collapse: collapse;
+    border: none !important;
+}
+
+thead{
+    position: sticky;
+    top: 0px;
+    outline: .2rem solid #000000;
+    z-index: 1;
+}
+
+td,
+tr,
+th {
+    border: none;
+    border-right: 2px solid var(--secondary-color);
+    border-collapse: collapse;
+    text-align: center;
+    padding: 2px 5px;
+}
+td:has(.process){
+    padding:0 1rem;
+}
+
+tr:nth-child(2n+1){
+    background-color: var(--background-color);
+}
+
+tr:hover {
+    background-color: var(--primary-color);
+}
+
+th {
+    border-bottom: .2rem solid #000000;
+    color: var(--secondary-color);
+    background-color: var(--bgTable);
+    text-align: center;
+    text-wrap: nowrap;
+}
+
+th:last-child,
+td:last-child {
+    border-left: none !important;
+}
+/* Tablas */
+.tabs {
+    margin: 0 auto;
+}
+
+.tabs-list {
+    display: flex;
+    border-bottom: 3px solid var(--secondary-color);
+}
+
+.tabs-list button {
+    padding: 0.5rem 1rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    border-radius: 1em 1em 0 0;
+    color: var(--black-white);
+    transition: .3s ease all;
+    margin-left: 1rem;
+    background-color: var(--primary-color);
+    border: 3px solid var(--secondary-color);
+    border-bottom: none;
+    filter: brightness(0.7) blur(.6px);
+    position: relative;
+}
+
+.tabs-list button.active {
+    font-weight: bold;
+    scale: 1.15;
+    filter: none;
+}
+
+.tabs-list button:hover {
+    background-color: var(--primary-color);
+    scale: 1.15;
+    filter: none;
+}
+
+.tabs-list button.active::after {
+    content: '';
+    height: 5px;
+    width: 100%;
+    position: absolute;
+    background-color: var(--primary-color);
+    inset: 30px 0;
+}
+
+.tabs-content {
+    display: flex;
+    background-color: var(--primary-color);
+    width: 200%;
+    transition: margin-left 1s ease;
+}
+
+.tabs-content-child {
+    width: 100dvw;
+    padding: 1rem;
+}
+.table-navigation {
+    font-weight: 300;
+    padding: 0.5rem;
+    font-family: 'Anton', sans-serif;
+    background-color: var(--card-background);
+    color: var(--secondary-color);
+    border-width: 0px;
+    border-radius: 0.6em;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px;
+}
+
+.table-navigation:hover {
+    background-color: rgba(255, 255, 255, 0.56);
+    color: rgb(0, 0, 0);
+}
+.table-adaptative { width: min(100%, 800px);}
+
+.toLeft {margin-left: -100%;}
+
+/* -------------depurar----------- */
+.background-rotate {
+    animation: backrot 5s infinite;
+    transition: all .5s;
+}
+/* Contenedor principal */
+#pagos-container {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Secciones principales (por clave del JSON) */
+.json-section {
+    padding: 15px;
+    border-radius: 8px;
+    max-width: 600px;
+    min-height: 350px;
+    background-color: var(--bgTable);
+    border: 3px solid var(--bgTable);
+    box-shadow: 0px 9px 5px #0000006e;
+}
+
+/* Título de cada sección */
+.json-section h3 {
+    text-transform: uppercase;
+}
+
+/* Elementos de cada sección */
+.json-item {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--black-white);
+}
+
+.json-item strong {
+    color: var(--black-white);
+}
+
+.json-item:last-child {
+    border: 4px dashed black;
+    padding: 10px;
+    position: relative;
+}
+
+.json-item:last-child::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('../img/alert.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    opacity: 0.3;
+}
+
+.json-section:hover {
+    border-color: #007bff;
+    border: 3px solid #007bff;
+}

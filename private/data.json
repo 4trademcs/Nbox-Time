@@ -1,0 +1,28 @@
+{
+  "paypal": {
+    "usuario": "thoybrow",
+    "correo": "thoy.cel@gmail.com",
+    "enlace": "https://www.paypal.me/thoybrow",
+    "info": "Es importante no mencionar términos relacionados con Cuba, como USD o CUP, para evitar problemas en el procesamiento del pago. Nuestro equipo se encarga de todos los detalles, por lo que usted realiza la transacción directamente con nosotros y no con ninguna entidad en Cuba. Por favor, seleccione el estado como 'envío a amigos o familiares'."
+  },
+  "BBVA": {
+    "iban": "ES11 0182 5322 2702 0082 6172",
+    "codigo": "BBVAESMM",
+    "titular": "RENE BRAVO RAMIREZ",
+    "domicilio": "Calle Eugenio Serrano 12, 28904 Getafe, Madrid",
+    "info": "Aceptamos transferencias desde más de 180 países. Evite mencionar cualquier palabra que haga referencia a Cuba, ya que esto podría causar problemas en el procesamiento del pago. Trabajamos exclusivamente con nuestra agencia para asegurar un proceso seguro y eficiente."
+  },
+  "revolut": {
+    "beneficiario": "Yoel Fuentes",
+    "usuario": "@yoelfuentes",
+    "iban": "LT153250036665172292",
+    "codigo": "REVOLT21",
+    "bank": "Revolut Bank UAB, Konstitucijos ave 21B, 08130 Vilnius, Lituania",
+    "info": "Por favor, no incluya menciones relacionadas con Cuba en ningún mensaje o detalle de la transacción. Nuestro equipo maneja todo el proceso de forma segura y profesional. Cualquier referencia a Cuba podría generar inconvenientes en la operación."
+  },
+  "zelle": {
+    "numero": "+1 (346)673-2790",
+    "nombre": "MCL & MULTISERVICES LLC",
+    "info": "Recuerde no incluir menciones a Cuba, envíos de dinero o cualquier nombre relacionado en el mensaje. Esto podría ocasionar bloqueos por parte del banco. Deje el campo de mensaje vacío y envíe una captura del pago con los detalles necesarios."
+  }
+}
