@@ -1,20 +1,15 @@
 /* los hijos de las ventanas modales tipo dialog */
-#modal-logo>* {
-    color: var(--elementModalColor);
-}
+#modal-logo>* { color: var(--elementModalColor); }
 
-.container-full-alto {
-    height: 100%;
-}
+.container-full-alto { height: 100%; }
 
 #modal-button-close {
     border: none;
     background-color: transparent;
 }
 
-#modal-form {
+#modal-form { 
     width: var(--anchoModal);
-    /* overflow: hidden; */
     scale: 1.5;
 }
 
@@ -119,7 +114,6 @@
         width: 100px;
         box-shadow: none;
         color: #fbbf24;
-        ;
         clip-path: polygon(148px -16px, 15px -71px, -56px 6px, 123px 99px);
     }
 
@@ -128,31 +122,20 @@
         clip-path: var(--clip-path);
         width: var(--width);
         box-shadow: var(--box-shadow);
-        /* color: var(--elementModalColor); */
         transition: clip-path 3s cubic-bezier(.45, .05, .55, .95);
     }
 }
 
 
 @keyframes titilar {
-    0%{
-        opacity: 0;          
-    }
-
-    100% {
-        opacity: 1;
-    }
+    0%{ opacity: 0; }
+    100% { opacity: 1; }
 }
 
 @keyframes disappear {
-    0% {
-        display: block;
-    }
+    0% { display: block; }
     95%{color: inherit;}
-    100% {
-        display: none;
-        color: black;
-    }
+    100% { display: none; color: black; }
 }
 
 /* ============================== Modal General ========================= */
@@ -167,7 +150,6 @@
     top: 0;
 }
 
-
 .close-modal {
     position: sticky;
     top: 0;
@@ -178,26 +160,14 @@
     border: none;
 }
 
-/* .close-modal:hover{
-    box-shadow: 0px 0px 6px 1px #42424269;
-    color:#000;
-    background-color: #000000ab;;
-    border: 1px solid #00000069;
-} */
-
 /* ----------------- Notificacion y Alerts ------------- */
-.mensaje {
+/* .mensaje {
     z-index: 10;
     background-color: var(--card-background);
     border-radius: 1.5rem;
     overflow: hidden;
     box-shadow: 2px 2px 15px black;
-}
-
-.transparent {
-    background-color: #10100fab;
-}
-
+} */
 .alert-button {
     margin: 1rem; 
     background: var(--amarillo);
@@ -213,7 +183,7 @@
     background: #ff0000;
     transform: scale(1.1);
 }
-
+/* 
 form.alert {
     background-size: cover;
     background-color: var(--card-background);
@@ -225,10 +195,10 @@ form.alert {
     height: 400px;
     padding: 20px;
     width: clamp(300px,80dvw,1200px);
-}
+} */
 
-form.alert h2,
-.mensaje h2 {
+/* form.alert h2, */
+/* .mensaje h2 {
     margin-top: 10px;
     margin: 0;
     margin-bottom: 10px;
@@ -236,12 +206,12 @@ form.alert h2,
     font-weight: 100;
     text-transform: uppercase;
     text-align: center;
-}
+} */
 
-.field.alert-button {
+/* .field.alert-button {
     z-index: 2;
     display: flex;
     gap: 10px;
     background-color: transparent;
     margin: 20px auto;
-}
+} */

@@ -320,9 +320,7 @@ ul {
   min-width: 200px;
 }
 
-.footer {
-  h3,p,h2,li,ol,ul { color: var(--primary-color)!important; }    
-}
+.footer {  h3,p,h2,li,ol,ul { color: var(--primary-color)!important; } }
 
 .author {
   text-align: center;
@@ -351,14 +349,16 @@ ul {
         rotate: -20deg;
         left: 100px;       
       }
-      a:nth-child(3){        
+      a:nth-child(3){
         rotate: 20deg;
         position: absolute;
-        right: 100px;        
+        right: 100px;
       }
      a .card.title:nth-child(n){
-        max-width: 350px;
+        max-height: 400px;
+        max-width: 300px;
         min-height: 350px;
+        min-width: 350px;
       }
   }
   
