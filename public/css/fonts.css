@@ -29,7 +29,7 @@ h1,h2,h3,strong{
   text-align:justify;
   margin: auto;
   text-decoration: none;
-  color: black;
+  color: var(--black-white);
 }
 
 .global-li{

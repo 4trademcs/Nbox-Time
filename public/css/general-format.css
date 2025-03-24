@@ -282,7 +282,7 @@ div.flexbox.modal {
     display: flex;
     flex-direction: column;
     position: relative;
-    padding: 50px 10px 0 10px;
+    padding: 0 10px 0 10px;
     gap: 70px;
     backdrop-filter: brightness(0.7) contrast(0.7);
 }
@@ -627,7 +627,7 @@ div.flyer.card{
     position: absolute;
     width: 90%;
     background-image: url(../img/card.png);
-    background-repeat: repeat-x;
+    background-repeat: repeat;
     background-attachment: fixed;
     background-size: contain;
     background-position: center;
@@ -673,9 +673,9 @@ div.flyer.card{
 .back-cap:hover{ scale:1.1; }
 
 @keyframes twoblur{
-    0%{filter: blur(var(--blur,10px));}
+    0%{filter: blur(var(--blur,20px));}
     50%{filter: blur(0px);}
-    100%{filter: blur(var(--blur,10px));}
+    100%{filter: blur(var(--blur,20px));}
 }
 
 .card {
@@ -687,6 +687,12 @@ div.flyer.card{
     width: min(100%, 600px);
 }
 
+.card > * {
+    position: relative;
+    z-index:2;
+    margin: 0.5rem auto 2rem auto;
+    display: block;
+}
 .card.title:after{
     content:'';
     width:100%;
@@ -697,13 +703,9 @@ div.flyer.card{
     border-radius: 1rem 1rem 0 0;
     /* box-shadow: 0px 8px 7px 0px #0000001f; */
 }
-.card > * {
-    position: relative;
-    z-index:2;
-    margin: 0.5rem auto 2rem auto;
-    display: block;
+.card.title h3{
+    color:black;
 }
-
 .card-3d {
     display: flex;
     background-color: black;
@@ -765,7 +767,7 @@ div.flyer.card{
     aspect-ratio: 9 / 19;
     rotate: -10deg;
     position: absolute;
-    inset: -20% 10%;
+    inset: -90% 10%;
 }
 
 .modelo {
