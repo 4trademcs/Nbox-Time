@@ -30,7 +30,6 @@
   <link rel="stylesheet" href="public/css/fonts.css">
   <link rel="stylesheet" href="public/css/general-format.css">
   <link rel="stylesheet" href="public/css/ventana-modal.css">
-  <link rel="stylesheet" href="public/css/formulario.css">
   <link rel="stylesheet" href="public/css/home.css">
   <link rel="stylesheet" href="public/css/seccions-layout.css">
   <link rel="stylesheet" href="public/css/tutorial.css">  
@@ -55,8 +54,6 @@
       <p class="global-p" id="modalContent"></p>
     </div>
   </section>
-  
-  <div class="bg-paper"></div>
 
   <dialog open="" id="modal-logo" class="modal" style="z-index: 20;">
     <div class="flexbox container-full-alto">
@@ -90,7 +87,6 @@
       </form>
     </div>
   </dialog>
-
 
   <header class="header">
     <div class="logo flexbox" onclick="showMenu()">
@@ -152,6 +148,7 @@
   </header>
 
   <main class="main">
+    <!-- Banner  -->
     <div class="banner index">
       <div class="logo-coin flexbox">
         <svg class="svg-middle" id="nbox-rotate">
@@ -160,6 +157,7 @@
         <div class="svg-back-rotate"></div>
       </div>
     </div>
+    <!-- Cards de presentacion de cada servicio -->
     <section class="content animated-section">
       <h2 class="global-h2">Bienvenido a Nbox Enterprise</h2>
       <p class="global-p">
@@ -205,7 +203,6 @@
         </a> 
        </div>
     </section>
-
     <!-- Slider Promociones -->
     <section class="slider-container" style="--margin: 2rem;">
       <div class="slider" autostop="true" style="--width: 400px; --height: 400px; --quantity: 4; --duration:10">
@@ -217,7 +214,6 @@
         </div>
       </div>
     </section>
-
     <!-- Sección para Nbox Time - Envío de Remesas -->
     <section id="nbox-time-service" class="service-section animated-section" style="--timeline:--time">
       <h2 class="global-h2">Nbox Time - Envío de Remesas</h2>
@@ -322,7 +318,6 @@
         </div>
       </div>
     </section>
-
     <!-- Card de la tarjeta 3D -->
     <section class="content animated-section">
         <div class="typewritter"> <h3>Más fácil que nunca...</h3> </div>
@@ -339,7 +334,6 @@
           interactuar. Con nosotros, la distancia ya no es un obstáculo; únete a nuestra comunidad y descubre cómo
           revolucionamos el mundo de las remesas, enviando esperanza, cariño y apoyo.</p>
     </section>
-
     <!-- Cards apiladas con efecto hover -->
     <section class="overload-margin animated-section" >  
       <h3 class="global-h">Aún no tienes claro lo que ofrecemos?</h3>  
@@ -391,7 +385,6 @@
         </div>
       </div>                
     </section>
-
     <!-- Seccion del flyer del telefono -->
     <section class="full-flyer"> 
       <div class="front-cap">
@@ -404,7 +397,6 @@
         <h3 style="inset: 0 0%;margin: 3rem auto;font-size: 2rem;">Desde nuestro sistema</h3>
       </div>       
     </section> 
-
     <!-- Slider Static de imágenes -->
     <section class="slider-container"  style="--margin: 2rem; --items:10" id="services-slider">
       <h2 class="global-h2">Desliza a los lados para conocer sobre nuestros servicios</h2>
@@ -437,13 +429,12 @@
           <button class="slider-button" onclick="slider('services-slider', 'forward')">→</button>
       </div>
     </section>
-
-    <!-- Seccion de las cards que rotan automaticamente -->
+    <!-- Seccion de la card que rota automaticamente -->
     <section class="overload-margin animated-section" >  
       <h3 class="global-h">Métodos de pago</h3> 
       <img class="modelo" src="public/img/modelo-mulata.webp" alt="modelo femenina señalando"> 
       <div class="flyer card"> 
-          <div class="rotate-card-box">  
+          <!-- <div class="rotate-card-box">  
             <div class="card rotate-2d frontface auto-rotate preset" style="background-color: #4FC3F7;">    
               <ul style="padding: 10px;">
                 <li>Transferencias USD</li>
@@ -456,10 +447,10 @@
               <p>Puedes acceder a todas nuestras caracteristicas desde la oficina, 
                 logueate con nosotros mediante tus credenciales</p>
             </div>
-          </div>       
+          </div> -->
       </div>                
     </section>  
-
+    <!-- Mapa del mundo  -->
     <section class="borders-modiff">     
       <svg class="mundi">
         <use href="public/img/svg/mundi.svg#mundi"></use>
@@ -469,7 +460,7 @@
       <p class="content">Puedes enviar remesas desde <strong>cualquier parte del mundo</strong> por solo 10% de
         comisión. Recibe CUP y USD en efectivo o su equivalente en transferencia.</p>
     </section>
-
+    <!-- Tutorial y ojos -->
     <section class="remittance-steps" id="tutorial">
       <div class="steps-tuto-container">
         <div class="eye-container tuto-eye">
@@ -526,7 +517,6 @@
         </div>
       </div>
     </section>
-
   </main>
 
   <aside class="aside scroll-x">

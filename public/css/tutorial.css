@@ -21,6 +21,7 @@
 }
 
 .tuto-modal {
+    display: flex;
     position: fixed;
     background: white;
     inset: var(--inset);
@@ -55,9 +56,9 @@
     color:black;
 }
 #modalTitle{
-    /* margin: 0; */
+    margin: 1rem auto;
     position: absolute;
-    top: 0;
+    inset: 0;
 }
 .tuto-btn {
     background: var(--amarillo);

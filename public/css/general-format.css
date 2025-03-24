@@ -26,6 +26,18 @@ div.flexbox.modal {
 
 .bg-img{ max-width: 80vw; }
 
+.background-img{
+    position: absolute;
+    opacity: .15;
+    margin: auto;
+    top: 0;
+    right: -5px;
+    left: 0;
+    bottom: 0;
+    width: 70%;
+    z-index: 0;
+}
+
 *::-webkit-scrollbar {
     width: 0;
     height: 0;

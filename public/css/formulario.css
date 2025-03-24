@@ -9,17 +9,7 @@
     color: #fff;
     background: #d43f8d;
 }
-.background-img{
-    position: absolute;
-    opacity: .15;
-    margin: auto;
-    top: 0;
-    right: -5px;
-    left: 0;
-    bottom: 0;
-    width: 70%;
-    z-index: 0;
-}
+
 .multistep-form-container {
     display: flex;
     font-family: 'Poppins', sans-serif;
@@ -98,9 +88,8 @@ form .page .field textarea {
     height: 1.8rem;
     opacity:.5;
 }
-.pass-ico:hover{
-    opacity:1;
-}
+.pass-ico:hover{ opacity:1; }
+
 form .page .field textarea {
     padding: 15px;
     resize: none;
@@ -129,26 +118,16 @@ form .page .field button, .user-btn {
     text-transform: uppercase;
     transition: 0.5s ease;
     align-content: space-evenly;
-    /* position: absolute; */
-    /* bottom: 10px; */
     gap: 183px;
-    /* display: flex; */
 }
-form .page .field button{
-    width:100%;
-}
-div.field:last-child{
-    margin-bottom: 10px!important;
-}
-form .page .field button:hover, .user-btn:hover {
-    color: #333;
-}
-form .page .btns button, .user-btn {
-    /* margin-bottom: 15px !important; */
-}
-form .page .btns button.next {
-    margin-left: 3px;
-}
+form .page .field button{ width:100%; }
+
+div.field:last-child{ margin-bottom: 10px!important; }
+
+form .page .field button:hover, .user-btn:hover { color: #333; }
+
+form .page .btns button.next { margin-left: 3px; }
+
 .multistep-form-container .progress-bar {
     display: flex;
     user-select: none;
@@ -207,14 +186,11 @@ form .page .btns button.next {
     animation: animate 0.3s linear forwards;
 }
 @keyframes animate {
-    100% {
-        transform: scaleX(1);
-    }
+    100% { transform: scaleX(1); }
 }
 .progress-bar .step:last-child .bullet:before,
-.progress-bar .step:last-child .bullet:after {
-    display: none;
-}
+.progress-bar .step:last-child .bullet:after { display: none; }
+
 .progress-bar .step p.active {
     color: var(--secondary-color);
     transition: 0.2s linear;
@@ -237,7 +213,6 @@ form .page .btns button.next {
 }
 .btns {
     flex-wrap: nowrap !important;
-    /* margin-top: 100px !important; */
     gap: 10px;
 }
 .validation-message{
