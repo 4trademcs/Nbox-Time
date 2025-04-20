@@ -1,11 +1,6 @@
 :root {
   --dark-bg: #0b0f19;
   --panel-dark-bg: #232e47;
-  --panel-light-bg: #fff;
-  --yellow: #fbc900;
-  --white: #fff;
-  --black: #000;
-  --gray: #e5e7eb;
 }
 
 body.dark-mode {
@@ -24,7 +19,7 @@ body.dark-mode {
   content: "";
   width: 80px;
   height: 4px;
-  background: var(--yellow);
+  background: #FFD000;
   display: block;
   margin: 0.5rem auto 0;
   animation: sidetoside 1s infinite both alternate;
@@ -69,7 +64,7 @@ body.dark-mode {
 }
 .why-us .icon {
   font-size: 2.2rem;
-  color: var(--yellow);
+  color: #FFD000;
   margin-bottom: 0.75rem;
 }
 
@@ -91,12 +86,12 @@ body.dark-mode {
   color:black;
 }
 .section-factura > div {
-  flex: 1 1 300px;      /* base de 300px y puede crecer/shrink */
+  flex: 1 1 300px;      
   padding: 2rem;
 }
 /* IZQUIERDA */
 .section-left {
-  background: #d6d6d6;  /* gris claro */
+  background: #d6d6d6;  
 }
 .section-left h2 {
   font-size: 2rem;
@@ -133,7 +128,7 @@ body.dark-mode {
 
 /* DERECHA */
 .section-right {
-  background: #eaeaea9e;  /* gris medio */
+  background: #eaeaea9e;  
 }
 .section-right h3 {
   margin-top: 0;
