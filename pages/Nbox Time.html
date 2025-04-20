@@ -474,8 +474,28 @@
         </div>
     </section> 
      <!-- Facturas -->
+
     <section class="section-factura">
       <div class="section-left">
+        <h2 class="section-title">Factura:</h2> 
+        <p>Este es un ejemplo visual de sus datos a la hora de trabajar con nosotros:</p>   
+        <div class="invoice">
+          <p><strong>Nombre:</strong> Carlos López</p>
+          <p><strong>Titular:</strong> María González</p>
+          <p><strong>Teléfono:</strong> +53 ********</p>
+          <p><strong>Tipo:</strong> Remesa</p>
+          <p><strong>Dirección:</strong> Ayestaran, #3456 Pasillo, Cerro</p>
+          <p><strong>Tarjeta:</strong> **** **** **** 1234</p>
+          <p><strong>Monto:</strong> $150.00</p>
+          <p><strong>Patrocinador:</strong> Tania Robinson</p>
+          <p><strong>Cliente:</strong> Pendiente</p>
+          <p><strong>Gestor:</strong> Pendiente</p>
+          <p><strong>Estado:</strong> Pendiente</p>
+        </div>    
+        <input type="number" id="amount" placeholder="Ingrese el monto (0–1000)" min="0" max="1000" oninput="validatenumber()" />
+        <p id="result" class="result-box"> Se recibirán 0 USD</p>
+      </div>
+      <div class="section-right">
         <h2 class="section-title">Contáctenos</h2>
         <p>Estamos aquí para responder a todas sus preguntas y ayudarle con sus necesidades de envío de remesas.</p>    
         <div class="contact-item">
@@ -495,8 +515,7 @@
           <div>
             <strong>Oficina</strong><br /><p>Contáctenos para más información</p>   
           </div>
-        </div>
-    
+        </div>    
         <div class="social-links">
           <a href="https://instagram.com/tu_empresa" target="_blank">
             <i class="fab fa-instagram"></i> Instagram
@@ -505,28 +524,7 @@
             <i class="fab fa-whatsapp"></i> WhatsApp
           </a>
         </div>
-      </div>
-    
-      <!-- DERECHA -->
-      <div class="section-right">
-        <h2 class="section-title">Factura:</h2> 
-        <p>Este es un ejemplo visual de sus datos a la hora de trabajar con nosotros:</p>   
-        <div class="invoice">
-          <p><strong>Nombre:</strong> Carlos López</p>
-          <p><strong>Titular:</strong> María González</p>
-          <p><strong>Teléfono:</strong> +53 ********</p>
-          <p><strong>Tipo:</strong> Remesa</p>
-          <p><strong>Dirección:</strong> Ayestaran, #3456 Pasillo, Cerro</p>
-          <p><strong>Tarjeta:</strong> **** **** **** 1234</p>
-          <p><strong>Monto:</strong> $150.00</p>
-          <p><strong>Patrocinador:</strong> Tania Robinson</p>
-          <p><strong>Cliente:</strong> Pendiente</p>
-          <p><strong>Gestor:</strong> Pendiente</p>
-          <p><strong>Estado:</strong> Pendiente</p>
-        </div>    
-        <input type="number" id="amount" placeholder="Ingrese el monto (0–1000)" min="0" max="1000" oninput="validatenumber()" />
-        <p id="result" class="result-box"> Se recibirán 0 USD</p>
-      </div>
+      </div>      
     </section>
   </main>
 
