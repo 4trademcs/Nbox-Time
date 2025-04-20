@@ -96,7 +96,7 @@ body.dark-mode {
 }
 /* IZQUIERDA */
 .section-left {
-  background: #eaeaea9e;  /* gris claro */
+  background: #d6d6d6;  /* gris claro */
 }
 .section-left h2 {
   font-size: 2rem;
@@ -133,7 +133,7 @@ body.dark-mode {
 
 /* DERECHA */
 .section-right {
-  background: #d6d6d6;  /* gris medio */
+  background: #eaeaea9e;  /* gris medio */
 }
 .section-right h3 {
   margin-top: 0;
