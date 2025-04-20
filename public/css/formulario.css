@@ -1,7 +1,6 @@
 /* -------contenedor del form---------- */
 .flexbox.modal {
     overflow: scroll;
-    --bgModalColor: #41414196;
     font-size: 1.3em;
 }
 /* --------contenedor de imputs de form de registro-------- */
@@ -79,6 +78,20 @@ form .page .field textarea {
     background-image: url(../img/svg/);
     margin: 5px 0 0 0;
 }
+
+.change-pass {
+    z-index: 1;
+    background-color: transparent;
+    border: none;
+    color:var(--secondary-color);
+    text-align: end;
+    opacity:.6;
+    font-size:1rem;
+    cursor: pointer;
+}
+
+.change-pass:hover{ opacity:1; }
+
 .pass-ico{
     position: absolute;
     right: 10px;

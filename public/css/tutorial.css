@@ -25,7 +25,7 @@
     position: fixed;
     background: white;
     inset: var(--inset);
-    padding: 3.5rem 1rem;
+    padding:0 1rem;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     scale: 0.8;
@@ -36,6 +36,8 @@
     z-index: -10;
     margin: auto;
     color: black;
+    flex-direction: column;
+    align-items: center;
 }
 .comprobante-img {
     overflow:scroll;
@@ -52,14 +54,8 @@
     width:auto;
     opacity:.1;
 }
-.tuto-modal p{
-    color:black;
-}
-#modalTitle{
-    margin: 1rem auto;
-    position: absolute;
-    inset: 0;
-}
+.tuto-modal p{ color:black; }
+
 .tuto-btn {
     background: var(--amarillo);
     color: var(--negro);

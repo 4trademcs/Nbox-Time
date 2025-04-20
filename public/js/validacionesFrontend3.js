@@ -7,12 +7,10 @@ function check() {
 
     // Manejo del campo de patrocinador
     if (sponsorField) {
-        if (sponsorField.value === "Patrocinador") {
-            sponsorIdField.innerHTML = `<label class="label dinamic-delete" for="contact-bono">ID de su patrocinador:</label>  
-                                            <input id="contact-bono" class="sql" type="text" placeholder="Alvarez1" required>`;
-        } else {
-            sponsorIdField.innerHTML = '';
-        }
+        sponsorField.value === "Patrocinador"
+            ? sponsorIdField.innerHTML = `<label class="label dinamic-delete" for="contact-bono">ID de su patrocinador:</label>  
+                                            <input id="contact-bono" class="sql" type="text" placeholder="Alvarez1" required>`
+            :  sponsorIdField.innerHTML = '';  
     }
 
     // Manejo de campos dinámicos según el tipo de remesa
@@ -25,9 +23,7 @@ function check() {
             dynamicField.innerHTML = `
                 <label class="label dinamic-delete" for="remesa-card">Tarjeta</label>
                 <input id="remesa-card" class="validate-tel" type="tel" maxlength="16" placeholder="9230045604230957 sin espacios ni '-'" required>`;
-        } else {
-            dynamicField.innerHTML = '';
-        }
+        } else { dynamicField.innerHTML = ''; }
     }
 }
 
@@ -41,7 +37,8 @@ const navigateSteps = (event, direction, margin, ...validateInputs) => {
             const actions = {
                 "form-user-register": guardarPersona,
                 "form-consignment-register": guardarRemesa,
-                "login": sendLogin
+                "login": sendLogin,
+                "form-change-pass":changePass
             };
             actions[document.querySelector("form.validated").id]?.(event);
         } else {

@@ -1,5 +1,5 @@
 /* los hijos de las ventanas modales tipo dialog */
-#modal-logo>* { color: var(--elementModalColor); }
+#modal-logo>* { color:black; }
 
 .container-full-alto { height: 100%; }
 
@@ -9,7 +9,7 @@
 }
 
 #modal-form { 
-    width: var(--anchoModal);
+    width:35%;
     scale: 1.5;
 }
 
@@ -25,7 +25,7 @@
 .line {
     width: 100px;
     height: 20px;
-    background-color: var(--elementModalColor);
+    background-color:black;
     margin: 10px 0;
     display: inline-block;
     animation: resize 2s both;
@@ -116,7 +116,6 @@
         color: #fbbf24;
         clip-path: polygon(148px -16px, 15px -71px, -56px 6px, 123px 99px);
     }
-
     100% {
         transform: translate(var(--translate-x), var(--translate-y)) rotate(var(--rotate));
         clip-path: var(--clip-path);
@@ -142,7 +141,7 @@
 
 .modal {
     backdrop-filter: blur(10px);
-    background-color: var(--bgModalColor);
+    background-color: var(--bgModalColor,#41414196);
     height: 100%;
     width: 100%;
     border: none;
@@ -161,13 +160,6 @@
 }
 
 /* ----------------- Notificacion y Alerts ------------- */
-/* .mensaje {
-    z-index: 10;
-    background-color: var(--card-background);
-    border-radius: 1.5rem;
-    overflow: hidden;
-    box-shadow: 2px 2px 15px black;
-} */
 .alert-button {
     margin: 1rem; 
     background: var(--amarillo);
@@ -183,6 +175,14 @@
     background: #ff0000;
     transform: scale(1.1);
 }
+/* .mensaje {
+    z-index: 10;
+    background-color: var(--card-background);
+    border-radius: 1.5rem;
+    overflow: hidden;
+    box-shadow: 2px 2px 15px black;
+} */
+
 /* 
 form.alert {
     background-size: cover;

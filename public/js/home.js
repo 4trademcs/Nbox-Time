@@ -52,18 +52,10 @@ const showServices=()=>{
       localStorage.setItem('darkMode', !isDarkMode ? 'true' : 'false');    
       document.body.classList.toggle('dark-mode', !isDarkMode);
 };
-// control de los sliders
-// const slider = (id,direction)=> {   
-//     const slider = document.getElementById(id); 
-//     const number =  slider.style.getPropertyValue(--itemsNumber);
-//     direction =="foward" ? number++ : number--;
-//     if(number >= 10) number = 1;
-//     const element = document.getElementById(`slide-pos${number}`);
-//     element.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });   
-
 
 // control de los sliders
 let currentSlideIndex = 0; // Variable global para gestionar el índice actual
+
 const slider = (id, direction) => {
     const sliderContainer = document.getElementById(id);
     const slides = sliderContainer.querySelectorAll('.slider-static img');
@@ -73,7 +65,6 @@ const slider = (id, direction) => {
     if (direction === "forward") currentSlideIndex = (currentSlideIndex + 1) % slides.length;
     else if (direction === "backward")  currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
     
-    console.log(currentSlideIndex)
     // Desplazarse al nuevo slide
     const element = slides[currentSlideIndex];
     element.scrollIntoView({behavior: 'smooth', block: 'center', inline: 'center'});
@@ -86,3 +77,18 @@ const focused = (event) => {
     document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
     clickedLink.classList.add('active');
 };
+
+// Factura logica
+const validatenumber=()=>{
+    const input = document.getElementById('amount');
+    const result = document.getElementById('result');
+   
+    const val = parseFloat(input.value);
+    if (isNaN(val) || val < 0 || val > 1000) {
+        result.textContent = 'Error: ingrese un valor entre 0 y 1000';
+        return;
+    }
+    const neto = (val * 0.9).toFixed(2);
+    result.textContent = `Usted recibirá ${neto} USD o su equivalencia en CUP según la tasa de cambio actual`;
+    
+}

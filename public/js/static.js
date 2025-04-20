@@ -109,7 +109,7 @@ function lanzarModal(id) {
                                             <div class="page slide-page active next1">
                                                 <h3 class="title">Información de Contacto</h3>
                                                 <div class="field">
-                                                    <label class="label" for="contact-email">Correo Electronico</label>
+                                                    <label class="label" for="contact-email">Correo Electrónico</label>
                                                     <input id="contact-email" name="email" type="email" placeholder="tu_email@gmail.com" class="validate-email sql">
                                                 </div>
                                                 <div class="field">
@@ -158,8 +158,8 @@ function lanzarModal(id) {
                                             <div class="page next3">
                                                 <h3 class="title">Información Personal</h3>
                                                 <div class="field">
-                                                    <label class="label" for="contact-tel">Número de Telefono</label>
-                                                    <input id="contact-tel" name="telefono" type="tel" placeholder="(+53)********" class="validate-tel">
+                                                    <label class="label" for="contact-tel">Número de Teléfono</label>
+                                                    <input id="contact-tel" name="teléfono" type="tel" placeholder="(+53)********" class="validate-tel">
                                                 </div>
                                                 <div class="field">
                                                     <label class="label" for="contact-direction">Direccion</label>
@@ -200,14 +200,40 @@ function lanzarModal(id) {
                                 </div>
                             </div>`;
 
+    const change_pass = ` <div id="form-container" class="flexbox modal">
+                            <button class="close-modal" onclick="eliminarHTML('form-container')"></button>
+                            <div class="multistep-form-container">
+                                <h2 id="form-title"></h2>                        
+                                <div class="form">
+                                    <form class="form validated" id="form-change-pass" name="change-pass">
+                                        <img class="background-img" src="public/img/logo.webp" alt="logo de la compañia">                                       
+                                        <div class="page slide-page active next1">
+                                            <h3 class="title">Información de Contacto</h3>
+                                            <div class="field">
+                                                <label class="label" for="pass-email">Correo Electrónico</label>
+                                                <input id="pass-email" name="email" type="email" placeholder="tu_email@gmail.com" class="validate-email sql">                                                
+                                            </div>   
+                                            <div class="field">
+                                                    <label class="label" for="pass-tel">Número de Teléfono de registro</label>
+                                                    <input id="pass-tel" name="teléfono" type="tel" placeholder="(+53)********" class="validate-tel">
+                                                </div> 
+                                            <div class="field">
+                                                <button class="submit" onclick="navigateSteps(event, 'submit', 0, 'email','phone')">Enviar</button>
+                                            </div>
+                                        </div>                    
+                                    </form>
+                                </div>
+                            </div>
+                        </div>`;
+
     const  banner = `<div class="banner"></div>`;
 
-    const tuto_table = `<div class="card-office-title">Historial de pedidos</div>
+    const tuto_table = `<div class="card-office-title global-h">Historial de pedidos</div>
                         <div class="filtred-navigation" class="focusSection secondplane">
                            <select id="filterKey" class="focusSection secondplane" onchange="displaySelectedOption()" title="Tarjeta">
                                 <option value="Nombre">Nombre</option>
                                 <option value="Titular">Titular</option>
-                                <option value="Telefono">Telefono</option>
+                                <option value="Teléfono">Teléfono</option>
                                 <option value="Tipo">Tipo</option>
                                 <option value="Direccion">Direccion</option>
                                 <option value="Tarjeta">Tarjeta</option>
@@ -229,7 +255,7 @@ function lanzarModal(id) {
                                     <tr>
                                         <th class="">Nombre</th>
                                         <th class="">Titular</th>
-                                        <th class="">Telefono</th>
+                                        <th class="">Teléfono</th>
                                         <th class="details hidden">Tipo</th>
                                         <th class="details hidden">Direccion</th>
                                         <th class="details hidden">Tarjeta</th>
@@ -327,7 +353,13 @@ function lanzarModal(id) {
             action = 'registrar';
             document.body.insertAdjacentHTML('beforeend', user_register);
             document.getElementById('form-title').textContent = title;
-            break;                
+            break;    
+        case 'change-pass':
+            title = 'Cambio de clave';
+            action = 'pass';
+            document.body.insertAdjacentHTML('beforeend', change_pass);
+            document.getElementById('form-title').textContent = title;
+            break;              
         case 'banner':
             document.querySelector('.main').insertAdjacentHTML('afterbegin', banner);
             break;

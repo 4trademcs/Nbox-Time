@@ -27,13 +27,23 @@
   grid-template-columns: 2fr 2fr;
   color: var(--black-white);
 }
-.service-image { min-width: 45%; }
+.service-image {min-width: 45%;/* box-shadow: -8px 12px 7px 0px #00000024, 8px 13px 7px #00000024, 0px 15px 10px 0px #00000061; */}
+
+.section-tone{
+  background-color: var(--secondary-color);
+  padding: 3rem 1rem;
+}
+
+.section-tone p{
+  color: var(--white-black);
+}
 
 .service-image img {
   width: 100%;
   height: auto;
   border-radius: 1rem;
   animation: fadeInSection ease both;
+  box-shadow: -4px 5px 7px 0px #00000024, 5px 13px 7px #00000024, 0px 6px 10px 0px #d9d9d93b;
 }  
 /* Animación de entrada para la sección */
 .animated-section{
@@ -43,6 +53,7 @@
   animation-timeline: var(--timeline);
   animation-range: entry 25% cover 30%;
   --timeline: --time;
+  padding: 2rem 0;
 } 
 @keyframes fadeInSection {
   from{

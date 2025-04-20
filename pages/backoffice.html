@@ -11,11 +11,31 @@
     <link rel="stylesheet" href="public/css/home.css">
     <link rel="stylesheet" href="public/css/backoffice.css">
     <link rel="stylesheet" href="public/css/tutorial.css">
+    <link rel="stylesheet" href="public/css/seccions-layout.css">
     <link rel="stylesheet" href="public/css/fonts.css">
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 </head>
 
 <body class="grid-container">
+    
+    <section>
+        <!-- capas opacas -->
+        <div id="tuto-capa" onclick="closeMenu()"></div>
+        <div class="overlay" onclick="closeNotification()"></div> 
+        <div class="body background"></div>   
+        <!-- Modal Notificaciones -->
+        <div class="tuto-modal">
+            <img class="background-img" id="tuto-img" src="public/img/logo.webp">
+            <h2 id="modalTitle"></h2>
+            <p class="global-p" id="modalContent"></p>
+            <button class="tuto-btn" onclick="nextModal()">▶ Siguiente</button>
+            <div class="alert-section hidden">
+                <button class="delete alert-button" onclick="actionToDo(event)">Aceptar</button>
+                <button class="alert-button" onclick="closeNotification()">Cancelar</button>
+            </div>
+        </div>
+    </section>
+
     <header class="header">
         <div class="logo flexbox" onclick="showMenu()">     
             <svg class="svg-icon svg-logo">
@@ -102,35 +122,70 @@
 
     <main class="main">        
         <div class="banner office"></div>
-        <section>
-            <h2>Bienvenido a tu backoffice</h2>
-            <p>Aqui veras las ultimas novedades que tenemos listas para ti.</p>
-            <div class="card overload-margin" style="min-height: auto;">
-                <h3>Nuestros Servicios</h3>
-                <ul>
-                    <li>Envío rápido de remesas</li>
-                    <li>Tasas de cambio competitivas</li>
-                    <li>Seguimiento en tiempo real de sus envíos</li>
-                    <li>Atención al cliente 24/7</li>
-                </ul>
+        <section class="select-section">
+            <img class="nbox-img" src="/public/img/back-s.jpg" alt="">
+            <div class="nbox-service1"></div>
+            <div class="nbox-service2"></div>
+            <div class="nbox-service3"></div>
+            <div class="nbox-floor"></div>
+        </section>
+        <section class="content animated-section">
+            <h2 class="global-h2">Bienvenido a tu backoffice</h2>
+            <p class="global-p">Aqui podrás acceder a las últimas novedades que tenemos listas para ti.</p>
+            <div class="flexbox-column enterprise-info">
+                <a href="#nbox-time-service">
+                  <div class="card upscale" style="z-index: 1;">
+                    <h3 class="global-h">Nbox Time</h3>
+                    <ul class="card-sub-items">
+                      <li class="global-li">Envío rápido de remesas</li>
+                      <li class="global-li">Tasas de cambio competitivas</li>
+                      <li class="global-li">Información en tiempo real de sus envíos a través de nuestros gestores</li>
+                      <li class="global-li">Atención personalizada 24/7 al cliente vía Whatsapp</li>
+                      <li class="global-li">Gestión de Combos de aseo y comida</li>
+                    </ul>
+                  </div>
+                </a>
+                <a href="#nbox-travel-service">
+                  <div class="card upscale">
+                    <h3 class="global-h">Nbox Travel</h3>
+                    <ul class="card-sub-items">
+                      <li class="global-li">Gestión de pasaportes</li>
+                      <li class="global-li">Gestión de residencia</li>
+                      <li class="global-li">Diversidad de métodos de pago</li>
+                      <li class="global-li">Atención personalizada 24/7 al cliente</li>
+                      <li class="global-li">Atención y recogida en aeropuerto</li>
+                    </ul>
+                  </div>
+                </a> 
+                <a href="#nbox-food-service">
+                  <div class="card upscale">
+                    <h3 class="global-h">Nbox-Food</h3>
+                    <ul class="card-sub-items">
+                      <li class="global-li">Envío de combos de aseo</li>
+                      <li class="global-li">Combos de comida</li>
+                      <li class="global-li">Venta de electrodomésticos</li>
+                      <li class="global-li">Transporte incluído por coste adicional</li>
+                    </ul>
+                  </div>
+                </a> 
             </div>
         </section>
 
         <section >
-            <h2>Gestiona tus remesas y pagos de forma segura</h2>
+            <h2 class="global-h2">Gestiona tus remesas y pagos de forma segura</h2>
             <div class="insert grid" style="--grid:300px"></div>
-            <div class="tabs-list">
-                <button id="pay-trigger" class="active" onclick="showPay()">Métodos de Pago</button>
-                <button id="tab-trigger" onclick="showTab()">Datos Detallados</button>                    
-            </div>
             <div class="tabs">
+                <div class="tabs-list">
+                    <button id="pay-trigger" class="active" onclick="showPay()">Métodos de Pago</button>
+                    <button id="tab-trigger" onclick="showTab()">Datos Detallados</button>                    
+                </div>            
                 <div class="tabs-content">
                     <div id="pagos" class="tabs-content-child">                    
-                        <div class="card-office-title">Métodos de Pago Guardados</div>
-                        <div id="pagos-container" class="pagos-dinamicos">Aqui apareceran los metodos de pago ofrecidos por nosotros</div>
+                        <div class="card-office-title global-h">Métodos de Pago Guardados</div>
+                        <div id="pagos-container" class="pagos-dinamicos global-p">Aqui aparecerán los métodos de pago ofrecidos por nosotros</div>
                     </div>
                     <div id="tablas" class="tabs-content-child">                   
-                        <div class="card-office-title">Histórico de Remesas</div>
+                        <div class="card-office-title global-h">Histórico de Remesas</div>
                         <div id="tables-container" class="tablas-dinamicas"></div>                   
                     </div>
                 </div>
@@ -188,22 +243,7 @@
         </div>
     </aside>
 
-    <section>
-        <!-- capas opacas -->
-        <div id="tuto-capa" onclick="closeMenu()"></div>
-        <div class="overlay" onclick="closeNotification()"></div>    
-        <!-- Modal Notificaciones -->
-        <div class="tuto-modal">
-            <img class="background-img" id="tuto-img" src="public/img/logo.webp">
-            <h2 id="modalTitle"></h2>
-            <p class="global-p" id="modalContent"></p>
-            <button class="tuto-btn" onclick="nextModal()">▶ Siguiente</button>
-            <div class="alert-section hidden">
-                <button class="delete alert-button" onclick="actionToDo(event)">Aceptar</button>
-                <button class="alert-button" onclick="closeNotification()">Cancelar</button>
-            </div>
-        </div>
-    </section>
+
     <!-- Alerta de eliminacion -->
     <!-- <dialog id="alert-re-confirm" class="modal form-container" >
         <div class="flexbox">
@@ -218,25 +258,26 @@
         </div>
     </dialog> -->
 
-    <footer class="footer footer-content">
+    <footer class="footer">
         <div>
-            <h3>Nbox Time</h3>
-            <p>Su socio confiable para envíos de remesas internacionales.</p>
+          <h3 class="global-h">Nbox Time</h3>
+          <p class="global-p">Su socio confiable para envíos de remesas internacionales.</p>
         </div>
         <div>
-            <h3>Enlaces rápidos</h3>
-            <ul>
-                <a class="link" href="/">Inicio</a>
-                <a class="link" href="/terminos">Términos y Condiciones</a>
-            </ul>
+          <h3 class="global-h">Enlaces rápidos</h3>
+          <ul>
+            <li><a class="link global-link" href="#">Inicio</a></li>
+            <li><a class="link global-link" href="#">Servicios</a></li>
+            <li><a class="link global-link" href="/terminos">Términos y Condiciones</a></li>
+          </ul>
         </div>
         <div>
-            <h3>Contáctenos</h3>
-            <p>Email: nboxtime.services@gmail.com</p>
-            <p>Teléfono: +1 234 567 890</p>
+          <h3 class="global-h">Contáctenos</h3>
+          <p class="global-p">Email: nboxtime.services@gmail.com</p>
+          <p class="global-p">Teléfono: +1 234 567 890</p>
         </div>
-         <p class="author">Copyright © 2025 - Desarrollado por Michel.dev </p>
-    </footer>  
+        <p class="author">Copyright © 2025 - Desarrollado por Michel.dev</p>
+      </footer> 
 
     <script defer src="public/js/contact.js"></script>
     <script defer src="public/js/static.js"></script>

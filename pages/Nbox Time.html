@@ -34,6 +34,9 @@
   <link rel="stylesheet" href="public/css/seccions-layout.css">
   <link rel="stylesheet" href="public/css/tutorial.css">  
   <link rel="stylesheet" href="public/css/eyes.css">
+  <link rel="stylesheet" href="public/css/components.css">
+    <!-- Font Awesome para iconos -->
+  <link rel="stylesheet"  href="public/fonts/fontawesome.min.css"/>
   <!-- Archivo CSS para fuentes y estilos globales -->
   <link rel="alternate" hreflang="es" href="https://example.com/es/" />
   <link rel="alternate" hreflang="en" href="https://example.com/en/" />
@@ -44,9 +47,10 @@
 <body class="grid-container">
    
   <section>
-    <!-- capas opacas -->
+    <!-- capas -->
     <div id="tuto-capa" onclick="closeMenu()"></div>
     <div class="overlay" onclick="closeNotification()"></div>
+    <!-- <div class="body background"></div> -->
     <!-- Modal tutorial -->
     <div class="tuto-modal">
       <img class="background-img" id="tuto-img" src="public/img/logo.webp">
@@ -55,7 +59,7 @@
     </div>
   </section>
 
-  <dialog open="" id="modal-logo" class="modal" style="z-index: 20;">
+  <dialog open="" id="modal-logo" class="modal" style="z-index: 20; --bgModalColor: #f8b92f;">
     <div class="flexbox container-full-alto">
       <form method="dialog" class="flexbox" id="modal-form">
         <button class="flexbox" id="modal-button-close">
@@ -96,7 +100,7 @@
       <h4 id="logo-name">Nbox Time</h4>
     </div>
     <section class="slider-container pay" style="--margin: auto;--width:90vwd;">
-      <div class="slider" reverse="true" style="--width: 100px;--height: 50px;--quantity: 10;--duration:15">
+      <div class="slider" reverse="true" style="--width: 100px;--height: 50px;--quantity: 10;--duration:10s">
         <div class="list">
           <div class="item" style="--position: 1"><img src="public/img/bizum.png" alt=""></div>
           <div class="item" style="--position: 2"><img src="public/img/bbva.png" alt=""></div>
@@ -157,19 +161,52 @@
         <div class="svg-back-rotate"></div>
       </div>
     </div>
-    <!-- Cards de presentacion de cada servicio -->
-    <section class="content animated-section">
+
+    <section class="content animated-section content">
       <h2 class="global-h2">Bienvenido a Nbox Enterprise</h2>
       <p class="global-p">
-        Somos una empresa que pretende establecerse como su socio confiable para envíos de remesas internacionales. Con
-        nuestra plataforma segura y eficiente, puedes enviar dinero a sus seres queridos en Cuba desde cualquier parte
-        del mundo. Conozca la forma en la que operamos y sea parte de nuestro crecimiento!
+        Somos una empresa que pretende establecerse como su socio confiable para cubrir una gama de amplios servicios que ofrecerle: 
+        envíos de remesas internacionales, comida y viajes. Con nuestra plataforma segura y eficiente, puedes enviar dinero a sus seres 
+        queridos en Cuba desde cualquier parte del mundo. Conozca la forma en la que operamos y sea parte de nuestro crecimiento!
       </p>
+    </section>
+
+    <!-- Sección: ¿Por qué elegirnos? -->
+    <section class="why-us">
+      <h2 class="section-title">¿Por qué elegirnos?</h2>
+      <div class="section-grid">
+        <div class="panel-base whyus-panel">
+          <i class="fas fa-dollar-sign icon"></i>
+          <h3>Tarifas</h3>
+          <p>Ofrecemos las mejores tasas del mercado para sus envíos con total transparencia.</p>
+        </div>
+        <div class="panel-base whyus-panel">
+          <i class="fas fa-shield-alt icon"></i>
+          <h3>Seguridad</h3>
+          <p>Utilizamos tecnología avanzada para proteger sus transacciones bajo su control.</p>
+        </div>
+        <div class="panel-base whyus-panel">
+          <i class="fas fa-clock icon"></i>
+          <h3>Rapidez</h3>
+          <p>Sus remesas llegan a destino en cuestión de minutos una vez procesadas.</p>
+        </div>
+        <div class="panel-base whyus-panel">
+          <i class="fas fa-coins icon"></i>
+          <h3>Economía</h3>
+          <p>Aceptamos diversos métodos de pago, incluyendo criptomonedas, transferencias y efectivo.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cards de presentacion de cada servicio -->
+    <section class="content animated-section">
+      <h2 class="section-title">Nuestros Servicios</h2>
       <div class="flexbox-column enterprise-info">
         <a href="#nbox-time-service">
-          <div class="card title" style="z-index: 1;">
+          <div class="card upscale" style="z-index: 1;">
             <h3 class="global-h">Nbox Time</h3>
-            <ul>
+            <i class="fas fa-dollar-sign icon"></i>
+            <ul class="card-sub-items">
               <li class="global-li">Envío rápido de remesas</li>
               <li class="global-li">Tasas de cambio competitivas</li>
               <li class="global-li">Información en tiempo real de sus envíos a través de nuestros gestores</li>
@@ -179,9 +216,10 @@
           </div>
         </a>
         <a href="#nbox-travel-service">
-          <div class="card title">
+          <div class="card upscale">
             <h3 class="global-h">Nbox Travel</h3>
-            <ul>
+            <i class="fas fa-paper-plane icon"></i>
+            <ul class="card-sub-items">
               <li class="global-li">Gestión de pasaportes</li>
               <li class="global-li">Gestión de residencia</li>
               <li class="global-li">Diversidad de métodos de pago</li>
@@ -191,9 +229,10 @@
           </div>
         </a> 
         <a href="#nbox-food-service">
-          <div class="card title">
+          <div class="card upscale">
             <h3 class="global-h">Nbox-Food</h3>
-            <ul>
+            <i class="fas fa-box icon"></i>
+            <ul class="card-sub-items">
               <li class="global-li">Envío de combos de aseo</li>
               <li class="global-li">Combos de comida</li>
               <li class="global-li">Venta de electrodomésticos</li>
@@ -201,11 +240,11 @@
             </ul>
           </div>
         </a> 
-       </div>
+      </div>
     </section>
     <!-- Slider Promociones -->
     <section class="slider-container" style="--margin: 2rem;">
-      <div class="slider" autostop="true" style="--width: 400px; --height: 400px; --quantity: 4; --duration:10">
+      <div class="slider" autostop="true" style="--width: 400px; --height: 400px; --quantity: 4; --duration:20s">
         <div class="list">
           <div class="item" style="--position: 1"><img src="public/img/movil-slide (1).webp" alt=""></div>
           <div class="item" style="--position: 2"><img src="public/img/movil-slide (2).webp" alt=""></div>
@@ -215,11 +254,11 @@
       </div>
     </section>
     <!-- Sección para Nbox Time - Envío de Remesas -->
-    <section id="nbox-time-service" class="service-section animated-section" style="--timeline:--time">
+    <section id="nbox-time-service" class="service-section animated-section content" style="--timeline:--time">
       <h2 class="global-h2">Nbox Time - Envío de Remesas</h2>
       <div class="service-container">
-        <div class="service-text">
-          <p class="global-p">
+        <div class="service-text ">
+          <p class="global-p ">
             En Nbox Time, entendemos que cada envío de dinero es mucho más que una simple transferencia: es un lazo que
             une familias. Nuestra plataforma se ha diseñado meticulosamente para garantizar que cada operación se
             realice con seguridad y eficiencia, permitiéndote enviar remesas desde cualquier parte del mundo y con
@@ -248,7 +287,7 @@
       </div>
     </section>
     <!-- Sección para Nbox Food - Combos de Comida -->
-    <section id="nbox-food-service" class="service-section animated-section"style="--timeline:--time2">
+    <section id="nbox-food-service" class="service-section animated-section content"style="--timeline:--time2">
       <h2 class="global-h2 new">Nbox Food - Combos de Comida y aseo</h2>
       <div class="service-container reverse">
         <div class="service-text">
@@ -280,7 +319,7 @@
       </div>
     </section>
     <!-- Sección para Nbox Travel Agency - Agencia de Viajes -->
-    <section id="nbox-travel-service" class="service-section animated-section" style="--timeline:--time3">
+    <section id="nbox-travel-service" class="service-section animated-section content" style="--timeline:--time3">
       <h2 class="global-h2 new">Nbox Travel Agency - Agencia de Viajes</h2>
       <div class="service-container">
         <div class="service-text">
@@ -319,85 +358,22 @@
       </div>
     </section>
     <!-- Card de la tarjeta 3D -->
-    <section class="content animated-section">
+    <section class="section-tone">
         <div class="typewritter"> <h3>Más fácil que nunca...</h3> </div>
-        <p class="global-p">En nuestro slider se encuentran los métodos de pago que aceptamos; una vez que seas parte de
+        <p class="content global-p">En nuestro slider se encuentran los métodos de pago que aceptamos; una vez que seas parte de
           <strong>Nbox Time</strong>, tus familiares dejarán de preocuparse por sus finanzas, tendrás una cuenta a la cual 
           acceder como cliente de nuestra compañía donde solicitar todas tus transferencias, como una tarjeta de crédito de 
           fondos instantáneos que van directamente a su destino sin permanecer en las arcas ni el control de nadie, tu y tus 
           familiares tienen el control de su dinero.</p>       
-        <div class="credit-card card-3d animated">
+        <div class="credit-card card-3d">
           <div class="chip"></div>
           <img src="public/img/pago.webp" alt="Tarjeta de crédito de Nbox Time">
         </div>      
-        <p class="global-p">En nuestras redes sociales tenemos toda la información actualizada, además de novedades para
+        <p class="content global-p">En nuestras redes sociales tenemos toda la información actualizada, además de novedades para
           interactuar. Con nosotros, la distancia ya no es un obstáculo; únete a nuestra comunidad y descubre cómo
           revolucionamos el mundo de las remesas, enviando esperanza, cariño y apoyo.</p>
     </section>
-    <!-- Cards apiladas con efecto hover -->
-    <section class="overload-margin animated-section" >  
-      <h3 class="global-h">Aún no tienes claro lo que ofrecemos?</h3>  
-      <img class="modelo" src="public/img/modelo-rubia.webp" alt="modelo femenina señalando" style="clip-path: none;"> 
-      <div class="flyer"> 
-        <div class="rotate-card-box">  
-          <div class="card title rotate-2d frontface card1" onclick="rotateCard(event)">    
-            <h3 class="global-h">Tarifas</h3>
-            <img src="public/img/transparencia.png" alt="logo de la tarjeta">
-          </div> 
-          <div class="card rotate-2d backface" style="--back:var(--tarifas);"> 
-            <h3 class="global-h">Tarifas</h3>
-            <img src="public/img/transparencia.png" alt="logo de la tarjeta">
-            <p class="global-p">Ofrecemos las mejores tasas del mercado para sus envíos. Compartimos información de relevancia con usted, verifique siempre que le atienda uno de los agentes que ponemos a disposición del dominio público por nuestros canales oficiales.</p>
-          </div>
-        </div>
-        <div class="rotate-card-box">  
-          <div class="card title rotate-2d frontface card2" onclick="rotateCard(event)">    
-            <h3 class="global-h">Seguridad</h3>
-            <img src="public/img/seguro.png" alt="">
-          </div> 
-          <div class="card rotate-2d backface" style="--back:var(--seguridad);"> 
-            <h3 class="global-h">Seguridad</h3>
-            <img src="public/img/seguro.png" alt="logo de la tarjeta">
-            <p class="global-p">Utilizamos la tecnología y nos apalancamos de sus propios bancos para proteger sus transacciones y que todas estén completamente bajo su control y seguimiento.</p>
-          </div>
-        </div>
-        <div class="rotate-card-box">  
-          <div class="card title rotate-2d frontface card3" onclick="rotateCard(event)">    
-            <h3 class="global-h">Rapidez</h3>
-            <img src="public/img/rapido.png" alt="">            
-          </div> 
-          <div class="card rotate-2d backface" style="--back:var(--rapidez);"> 
-            <h3 class="global-h">Rapidez</h3>
-            <img src="public/img/rapido.png" alt="logo de la tarjeta">    
-            <p class="global-p">Sus remesas llegan a destino y las transferencias suceden en cuestión de minutos una vez que sea atendido por nuestros gestores.</p>
-          </div>
-        </div>
-        <div class="rotate-card-box">  
-          <div class="card title rotate-2d frontface card4" onclick="rotateCard(event)">    
-            <h3 class="global-h">Economía</h3>
-            <img src="public/img/economia.png" alt="">          
-          </div> 
-          <div class="card rotate-2d backface" style="--back:var(--economia);"> 
-            <h3 class="global-h">Economía</h3>
-            <img src="public/img/economia.png" alt="logo de la tarjeta">
-            <p class="global-p">Aceptamos una diversa gama de métodos de pago, incluyendo criptomonedas (BTC, USDT), transferencias y efectivo, para que su dinero llegue a sus familiares de la forma más rápida.</p>
-          </div>
-        </div>
-      </div>                
-    </section>
-    <!-- Seccion del flyer del telefono -->
-    <section class="full-flyer"> 
-      <div class="front-cap">
-        <h3 style="inset: 50% 0px;margin: auto;font-size: 3rem;">Hasta su destino en Cuba</h3>
-        <div class="phone card-3d animated" style="--rotateX: -5deg; --rotateY: -12deg; --shadowOffsetX: -6px; --shadowOffsetY: -2px; --scale: 1.2; --borderTop: 0; --borderBottom: 0; --borderLeft: 0; --borderRight: 3px;"><div class="reflection" style="background-image: radial-gradient(circle at 11% -25%, rgb(211, 211, 211) 50%, rgb(0, 0, 0)); opacity: 0;"></div>
-          <img src="public/img/img (2).png" alt="familia feliz en fondo de pantalla de un celular">
-        </div>
-      </div> 
-      <div class="back-cap">
-        <h3 style="inset: 0 0%;margin: 3rem auto;font-size: 2rem;">Desde nuestro sistema</h3>
-      </div>       
-    </section> 
-    <!-- Slider Static de imágenes -->
+  
     <section class="slider-container"  style="--margin: 2rem; --items:10" id="services-slider">
       <h2 class="global-h2">Desliza a los lados para conocer sobre nuestros servicios</h2>
       <div class="slider-static">
@@ -429,25 +405,6 @@
           <button class="slider-button" onclick="slider('services-slider', 'forward')">→</button>
       </div>
     </section>
-    <!-- Seccion de la card que rota automaticamente -->
-    <section class="overload-margin animated-section" >  
-      <h3 class="global-h">Métodos de pago</h3> 
-      <img class="modelo" src="public/img/modelo-mulata.webp" alt="modelo femenina señalando"> 
-      <div class="flyer card"> 
-          <!-- <div class="rotate-card-box">  
-            <div class="card rotate-2d frontface auto-rotate preset" style="background-color: #4FC3F7;">    
-              <ul style="padding: 10px;">
-                <li>Transferencias USD</li>
-                <li>Transferencias CUP</li>
-                <li>Efectivo USD</li>
-                <li>Efectivo CUP</li>
-              </ul>
-            </div> 
-            <div class="card rotate-2d auto-rotate backface preset"style="background-color:gray"> 
-              <p>Puedes acceder a todas nuestras caracteristicas desde la oficina, 
-                logueate con nosotros mediante tus credenciales</p>
-            </div>
-          </div> -->
       </div>                
     </section>  
     <!-- Mapa del mundo  -->
@@ -457,12 +414,12 @@
       </svg>
       <div class="border-angle rigth"></div>
       <div class="border-angle left"></div>
-      <p class="content">Puedes enviar remesas desde <strong>cualquier parte del mundo</strong> por solo 10% de
+      <p>Puedes enviar remesas desde <strong>cualquier parte del mundo</strong> por solo 10% de
         comisión. Recibe CUP y USD en efectivo o su equivalente en transferencia.</p>
     </section>
+    
     <!-- Tutorial y ojos -->
-    <section class="remittance-steps" id="tutorial">
-      <div class="steps-tuto-container">
+     <section class="landing-tuto flexbox-column" id="tutorial">
         <div class="eye-container tuto-eye">
             <div class="eye" style="--translateX: 40%; --translateY: -40%;">
                 <div class="iris">
@@ -515,6 +472,60 @@
           <p class="global-p">Una vez confirmada por ambas partes, tu remesa se marcará como completada y podrás verla
             en tu historial.</p>
         </div>
+    </section> 
+     <!-- Facturas -->
+    <section class="section-factura">
+      <div class="section-left">
+        <h2 class="section-title">Contáctenos</h2>
+        <p>Estamos aquí para responder a todas sus preguntas y ayudarle con sus necesidades de envío de remesas.</p>    
+        <div class="contact-item">
+          <i class="fa-regular fa-envelope"></i>
+          <div>
+            <strong>Email</strong><br /><p>nboxtime.services@gmail.com</p>            
+          </div>
+        </div>
+        <div class="contact-item">
+          <i class="fa-solid fa-phone"></i>
+          <div>
+            <strong>Teléfono</strong><br/><p>+1 234 567 890</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <i class="fa-solid fa-location-dot"></i>
+          <div>
+            <strong>Oficina</strong><br /><p>Contáctenos para más información</p>   
+          </div>
+        </div>
+    
+        <div class="social-links">
+          <a href="https://instagram.com/tu_empresa" target="_blank">
+            <i class="fab fa-instagram"></i> Instagram
+          </a>
+          <a href="https://wa.me/1234567890" target="_blank">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+        </div>
+      </div>
+    
+      <!-- DERECHA -->
+      <div class="section-right">
+        <h2 class="section-title">Factura:</h2> 
+        <p>Este es un ejemplo visual de sus datos a la hora de trabajar con nosotros:</p>   
+        <div class="invoice">
+          <p><strong>Nombre:</strong> Carlos López</p>
+          <p><strong>Titular:</strong> María González</p>
+          <p><strong>Teléfono:</strong> +53 ********</p>
+          <p><strong>Tipo:</strong> Remesa</p>
+          <p><strong>Dirección:</strong> Ayestaran, #3456 Pasillo, Cerro</p>
+          <p><strong>Tarjeta:</strong> **** **** **** 1234</p>
+          <p><strong>Monto:</strong> $150.00</p>
+          <p><strong>Patrocinador:</strong> Tania Robinson</p>
+          <p><strong>Cliente:</strong> Pendiente</p>
+          <p><strong>Gestor:</strong> Pendiente</p>
+          <p><strong>Estado:</strong> Pendiente</p>
+        </div>    
+        <input type="number" id="amount" placeholder="Ingrese el monto (0–1000)" min="0" max="1000" oninput="validatenumber()" />
+        <p id="result" class="result-box"> Se recibirán 0 USD</p>
       </div>
     </section>
   </main>
@@ -553,9 +564,9 @@
     <div>
       <h3 class="global-h">Enlaces rápidos</h3>
       <ul>
-        <li><a class="link global-link" href="#">Inicio</a></li>
-        <li><a class="link global-link" href="#">Servicios</a></li>
-        <li><a class="link global-link" href="/terminos">Términos y Condiciones</a></li>
+        <li><a class="global-link" href="#">Inicio</a></li>
+        <li><a class="global-link" href="#">Servicios</a></li>
+        <li><a class="global-link" href="/terminos">Términos y Condiciones</a></li>
       </ul>
     </div>
     <div>

@@ -1,28 +1,8 @@
-:root {
-    /* -------------- ventana modal logo------------ */
-    --bgModalColor: #fbbe24;
-    --elementModalColor: black;
-    --anchoModal: 35%;
-    /* -------------- formulario new user------- */
-    --bgColor: #444;
-    --elementColor: black;
-    --linkColor: #69f;
-    /* ----------------- table ----------------- */
-    --bgTable: white;
-}
-
-
-dialog,
-dialog *,
-div.flexbox.modal {
-    box-sizing: border-box;
+dialog *,div.flexbox.modal{
     margin: 0;
     padding: 0;
-    inset: 0;
-    font-family: 'Anton', sans-serif;
-    scrollbar-width: none;
     z-index: 10;
-}
+} 
 
 .bg-img{ max-width: 80vw; }
 
@@ -50,17 +30,12 @@ div.flexbox.modal {
     flex-wrap: wrap;
 }
 
-.column {
-    flex-direction: column;
-}
+.column { flex-direction: column; }
 
 .flexbox-column {
     display: flex;
     flex-wrap: nowrap;
     flex-direction: column;
-    align-content: center;
-    align-items: stretch;
-    justify-content: center;
     gap: 1rem;
 }
 
@@ -123,14 +98,13 @@ div.flexbox.modal {
     height: var(--height);
     position: absolute;
     left: 100%;
-    animation: autoRun 10s linear infinite;
+    animation: autoRun var(--duration) linear infinite;
     transition: filter 0.5s;
-    animation-delay: calc((10s / var(--quantity)) * (var(--position) - 1) - 10s) !important;
+    animation-delay: calc((var(--duration) / var(
+    --quantity)) * (var(--position) - 1) - 10s) !important;
 }
 
-.slider .list .item img {
-    width: 100%;
-}
+.slider .list .item img { width: 100%; }
 
 @keyframes autoRun {
     from { left: 100%; }
@@ -165,17 +139,9 @@ div.flexbox.modal {
 }
 
 @keyframes slider {
-    0% {
-        transform: translateX(calc(0%));
-    }
-
-    50% {
-        transform: translateX(calc(-100%));
-    }
-
-    100% {
-        transform: translateX(0px);
-    }
+    0% { transform: translateX(calc(0%)); }
+    50% { transform: translateX(calc(-100%)); }
+    100% { transform: translateX(0px); }
 }
 
 /* -----------------------slider-static------------------------ */
@@ -222,14 +188,9 @@ div.flexbox.modal {
         outline: 3px solid black;
     }
     
-    .nav-link:hover {
-        background: beige;
-        transform: scale(1.5);
-    }
+    .nav-link:hover { background: beige; transform: scale(1.5); }
     
-    .nav-link.active {
-        transform: scale(2); 
-    }
+    .nav-link.active { transform: scale(2); }
 }
 /* ---controls del slider--- */
 .slider-controls {
@@ -267,27 +228,27 @@ div.flexbox.modal {
     background: rgb(137 132 132 / 80%);
 }
 
-/* ----------------------------svg title--------------------------------------- */
-
-.remittance-steps {
-    margin: 0 auto !important;
-    background: url(../img/tuto-back.webp);
-    background-repeat: no-repeat;
+/* ----------------------------Tuto home--------------------------------------- */
+.landing-tuto{
+    position:relative;
+}
+.landing-tuto::before{
+    content:'';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url(../img/pay-method.png), linear-gradient(0deg, #ffffff87 60%, #000000f2 100%);
     background-attachment: fixed;
-    background-size: cover;
-    background-position: center;
+    background-size: 65%;
+    background-color: gray;
+    opacity: .15;
 }
 
-.remittance-steps h2 {
-    font-size: 2rem;
-    color: #ffffff;
-    margin-bottom: 20px;
-}
-
-.remittance-steps .intro-text {
-    color: #ffffff;
-    font-size: 2rem;
-    margin-bottom: 40px;
+.bg-leve{
+    position: absolute;
+    width:100%;
+    top: 115px;
+    z-index: 1;
 }
 
 .steps-tuto-container {
@@ -302,27 +263,22 @@ div.flexbox.modal {
 .step-tuto {
    display: flex;
    flex-direction: column;
-   text-align: center;
    position: relative;
    justify-content: center;
    align-items: center;
-   border-radius: 50%;
-   padding: 50px;
-   backdrop-filter: blur(15px);
-   background: linear-gradient(359deg, rgb(0, 0, 0), transparent);
-   border: 3px solid black;
-   border-top: hidden;
-   transition: transform .5s ease;
+   padding: 2rem 1rem;
    width: clamp(119px,90dvw,500px);
-   height: clamp(119px,90dvw,500px);
    margin: 0 auto;
+   transition: transform .3s ease;
+   z-index: 1;
+   border-radius: 1rem;
+   border-top: 1px solid #b4b7bb;
+   box-shadow: 0px 7px 9px 1px #9393938f;
+   background-color: whitesmoke;
 }
-.step-tuto:last-child {margin-bottom:5rem;}
+.step-tuto:last-child { margin-bottom:5rem; }
 
 .step-tuto:hover {
-    border: 5px solid #f7a600;
-    border-top: hidden;
-    border-bottom: 20px solid #f7a600;
     transform: translateY(-15px);
 }
 
@@ -334,8 +290,8 @@ div.flexbox.modal {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    background-color: #f7a600;
-    color: black;
+    background-color: #ffcc00;
+    color: #000000;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -343,7 +299,7 @@ div.flexbox.modal {
     font-size: 2.5rem;
     margin: auto;
     translate: 2px 2px;
-    border: 5px solid black;
+    border: 4px solid var(--secondary-color);
 }
 
 .tuto-title{
@@ -360,36 +316,36 @@ div.flexbox.modal {
 
 .step-tuto h3 {
     font-size: 2rem;
-    color: #ffffff;
+    color: black;
     margin-bottom: 10px;
-    filter: drop-shadow(2px 4px 2px black);
+    font-family: sans-serif;
+    font-weight: 700;
 }
 
 .step-tuto p {
-    color: white;
+    color: black;
     font-size: 1.2rem;
     line-height: 1.5;
-    font-weight: 700;
-    filter: drop-shadow(0px 5px 2px black);
 }
 
 /* Barra vertical */
 .step-icon::before {
     content: '';
     position: absolute;
-    width: 10px;
+    width: 6px;
     height: 80%;
-    background-color: #000000;
+    background-color: var(--secondary-color);
     translate: 0px 85px;
 }
 
 .step-icon:not(:nth-child(2))::after {
     content: '';
     position: absolute;
-    width: 10px;
+    width: 6px;
     height: 85%;
-    background-color: #010000;
+    background-color: var(--secondary-color);
     translate: 0px -90px;
+    z-index: -1;
 }
 
 /* ------------------------banner------------------------- */
@@ -478,22 +434,13 @@ div.flexbox.modal {
 }
 
 @keyframes bgZoomIn {
-    from {
-        filter: blur(3px);
-        transform: scale(1.5);
-    } to {
-        transform: scale(1);
-        filter: none;
-    }
+    from { filter: blur(3px); transform: scale(1.5); }
+    to { transform: scale(1); filter: none; }
 }
 
 @keyframes bgZoomOut {
-    from {
-        transform: scale(1);
-        filter: drop-shadow(2px 4px 6px black);
-    } to {
-        transform: var(--t-p);
-    }
+    from { transform: scale(1); filter: drop-shadow(2px 4px 6px black); }
+    to { transform: var(--t-p); }
 }
 
 /* ----------------------animacion de escribir----------------------------------- */
@@ -505,6 +452,7 @@ div.flexbox.modal {
     height:5rem;
     display: flex;
     margin: auto;
+    color: var(--white-black);
 }
 
 .typewritter::after{
@@ -513,7 +461,7 @@ div.flexbox.modal {
      /* margin:auto; */
      top: 8px;
      width: .21rem;
-     background-color: var(--black-white);
+     background-color: var(--white-black);
      border-radius: 1rem;
      animation: titilar .4s infinite alternate;
      position: relative;
@@ -626,7 +574,7 @@ div.flexbox.modal {
     /* z-index:10 */
 }
 
-.full-flyer:hover *{animation: none;/* z-index: 12; *//* position: relative; */}
+.full-flyer:hover { .front-cap,.back-cap{animation: none;} }
 
 .flyer {
     width: 90%;
@@ -690,34 +638,62 @@ div.flyer.card{
     100%{filter: blur(var(--blur,20px));}
 }
 
+/* ----------------------Cards-------------------- */
 .card {
     background-color: var(--card-background);
     border-radius: 1em;
-    padding: 1rem;
+    padding: .5rem;
     box-shadow: #00000026 0px -2px 9px 4px;
     position: relative;
-    width: min(100%, 600px);
+    width: min(600px,80dvw);
+    min-width: 250px;
+    margin: auto;
 }
 
-.card > * {
-    position: relative;
-    z-index:2;
-    margin: 0.5rem auto 2rem auto;
-    display: block;
-}
-.card.title:after{
-    content:'';
-    width:100%;
+.card:not(.rotate-2d) h3 {
     position: absolute;
-    height: 3.5rem;
     inset: 0;
-    background-color: var(--amarillo);
-    border-radius: 1rem 1rem 0 0;
-    /* box-shadow: 0px 8px 7px 0px #0000001f; */
+    margin: 0 auto;
+    background-color: var(--secondary-color);
+    height: 3.5rem;
+    align-content: center;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+    color: var(--primary-color);
 }
-.card.title h3{
-    color:black;
+
+.card-sub-items{ margin:4rem auto 2rem auto; }
+
+.card-item {
+    display: flex;
+    gap: 5px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--black-white);
 }
+
+.card-item strong { color: var(--black-white); }
+
+.card-item:last-child {
+    border: 4px dashed black;
+    padding: 10px;
+    position: relative;
+}
+
+.card-item:last-child::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('../img/alert.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    opacity: 0.3;
+}
+
+.card:hover { outline: 3px solid var(--selected); }
+
+/* Cards 3D */
 .card-3d {
     display: flex;
     background-color: black;
@@ -727,9 +703,9 @@ div.flyer.card{
     overflow: hidden;
     transform-style: preserve-3d;
     box-shadow: 4px 5px 13px rgba(0, 0, 0, 0.2);
+    animation: rotate3d 6s ease-in-out 0s infinite normal none running ;
 }
 
-.card-3d.animated {animation: 6s ease-in-out 0s infinite normal none running rotate3dAnimation;}
 .card-3d.active {
     transform: perspective(1000px) rotateX(var(--rotateX, 0)) rotateY(var(--rotateY, 0)) scale3d(1.05, 1.05, 1.05);
     box-shadow: var(--shadowOffsetX, 0) var(--shadowOffsetY, 0) 15px rgba(68, 68, 68, 0.6);
@@ -756,7 +732,6 @@ div.flyer.card{
     margin: 2rem auto;
     max-width: 500px;
     aspect-ratio: 16/9;
-    /* width: clamp(100px,100dvw,500px); */
 }
 
 .credit-card::before, .chip {
@@ -808,7 +783,7 @@ div.flyer.card{
     mix-blend-mode: soft-light;
 }
 
- /*------------- cards q rotan y giran ----------- */
+ /*------------- Cards q rotan y giran ----------- */
 .rotate-card-box {
     position: absolute;
     transition: all 1s ease;
@@ -828,6 +803,7 @@ div.flyer.card{
     transition: transform 1s ease;
     position: absolute;
     outline: 3px solid black;
+    margin: inherit;
 }
 
 .rotate-2d.frontface {
@@ -838,10 +814,12 @@ div.flyer.card{
     width: clamp(200px,40dvw,250px);
 }
 
-.rotate-2d.frontface:hover,.card.title:hover {
+.rotate-2d.frontface:hover,
+.card.upscale:hover {
     cursor:pointer;
     animation: upscale .5s both alternate ease-in-out infinite;
-    z-index:1;
+    z-index:2;
+    outline:3px solid black;
 }
 
 @keyframes upscale{ from{scale:1} to{scale:1.1} }
@@ -854,6 +832,8 @@ div.flyer.card{
     width:min(500px,90dvw);
     height:max-content;
 }
+
+.card1,.card2,.card3,.card4{ box-shadow: #0000008a -7px 1px 9px 4px; }
 
 .card1{
     --back:var(--tarifas);
@@ -875,9 +855,6 @@ div.flyer.card{
     rotate: 10deg;
     inset: 3em 7.5em;
 }
-.card1,.card2,.card3,.card4{
-    box-shadow: #0000008a -7px 1px 9px 4px;
-}
 
 .preset{
     height:200px !important;
@@ -895,16 +872,14 @@ div.flyer.card{
    100%{transform:rotateY(var(--rotationInitial));} 
 }
 
-@keyframes rotate3dAnimation {
-    33% {
-        transform: perspective(1000px) scale3d(1, 1, 1) rotateY(30deg);
-        box-shadow: rgba(68, 68, 68, 0.6) 7px 0px 10px;
-        border-width: 0px 0px 0px 6px;
+@keyframes rotate3d {
+    33% { transform: perspective(1000px) scale3d(1, 1, 1) rotateY(30deg);
+          box-shadow: rgba(68, 68, 68, 0.6) 7px 0px 10px;
+          border-width: 0px 0px 0px 6px;  
     }
-    66% {
-        transform: perspective(1000px) scale3d(1, 1, 1) rotateY(-30deg);
-        box-shadow: rgba(68, 68, 68, 0.6) -7px 0px 10px;
-        border-width: 0px 6px 0px 0px;
+    66% { transform: perspective(1000px) scale3d(1, 1, 1) rotateY(-30deg);
+          box-shadow: rgba(68, 68, 68, 0.6) -7px 0px 10px;
+          border-width: 0px 6px 0px 0px;   
     }
 }
 

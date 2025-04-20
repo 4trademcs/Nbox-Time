@@ -7,10 +7,22 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: url('../fonts/Inter-Regular.woff2') format('woff2'),
+       url('../fonts/Inter-Regular.woff') format('woff');
+}
+
 h1,h2,h3,strong{
   font-family: 'Anton';
 }
 
+p {
+  font-family: 'Inter';
+}
 
 /* Global Tipografía */
 .global-h2 {
@@ -24,9 +36,8 @@ h1,h2,h3,strong{
 }
 
 .global-p,.global-li,a,ul,ol{
-  font-family: sans-serif;
+  font-family: 'Inter';
   line-height: 1.5;
-  text-align:justify;
   margin: auto;
   text-decoration: none;
   color: var(--black-white);
@@ -34,7 +45,7 @@ h1,h2,h3,strong{
 
 .global-li{
   list-style-type: '🟡';
-  font-size: 1.2rem;
+  font-size: 1rem;
   text-align: left;
 }
 

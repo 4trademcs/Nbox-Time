@@ -71,12 +71,15 @@ const renderContainer = (data) => {
     const container = document.querySelector('#pagos-container');
     container.innerHTML = '';
     container.innerHTML = Object.entries(data).map(([key, values]) => 
-        `<div class="json-section">
-            <h3>${key.toUpperCase()}</h3>
-            ${Object.entries(values).map(([subKey, value]) => 
-                `<div class="json-item">
-                    <strong>${subKey}:</strong> <span>${value}</span>
-                </div>`).join('')}
+        `<div class="card">
+            <h3 class="global-h">${key.toUpperCase()}</h3>
+                <div class="card-sub-items">
+                 ${Object.entries(values).map(([subKey, value]) => 
+                    `<div class="card-item">
+                        <strong>${subKey}:</strong> 
+                        <span>${value}</span>
+                     </div>`).join('')}
+                </div>
         </div>`).join('');
 };
 

@@ -34,7 +34,6 @@ class Pedido {
 
 // +===================================== Manejo de usuarios =====================================+
 function guardarPersona() {
-
     const persona = new Usuario;
     // Asignar valores a las propiedades del objeto persona
     persona.nombre = document.forms['contact']['contact-name'].value;
@@ -44,21 +43,18 @@ function guardarPersona() {
     persona.direccion = document.forms['contact']['contact-direction'].value;
     persona.carnet = document.forms['contact']['contact-dni'].value;
     persona.rol = "Cliente";
-
      // Asignar valor al campo dinámico si existe
     persona.patrocinador = document.forms['contact']['contact-sponsor'].value !== "Patrocinador" ?
                            document.forms['contact']['contact-sponsor'].value :
                            document.forms['contact']['contact-bono'].value    
-    persona.bono = '0';
-   
+    persona.bono = '0';   
     //verificar si se trata de editar a un usuario
     if (action == 'editar') {
         persona.id = idActual;  
         console.log(`enviar a backend: `,JSON.stringify(persona));          
         solicitud('PUT','edit', persona);
         eliminarHTML("form-container");      
-    } 
-    
+    }     
     //verificar si se trata de ingresar nuevo usuario valido
     else { 
         console.log(`enviar a backend: `,JSON.stringify(persona));           
@@ -71,30 +67,24 @@ function guardarPersona() {
 
 // ================================= Manejo de remesa ===============================
 function guardarRemesa() {
-
     const remesa = new Pedido;
     remesa.nombre = document.forms['remesa']['remesa-name'].value;
     remesa.titular = document.forms['remesa']['remesa-owner'].value;
     remesa.telefono = document.forms['remesa']['remesa-tel'].value;
     remesa.monto = document.forms['remesa']['remesa-monto'].value;
     remesa.tipo = document.forms['remesa']['remesa-type'].value;
-
-
     // Asignar valores a los campos dinámicos
     const directionField = document.getElementById('remesa-direction');
     const cardField = document.getElementById('remesa-card');
     if (directionField)  remesa.direccion = directionField.value; 
-    if (cardField)  remesa.tarjeta = cardField.value;
-   
-
+    if (cardField)  remesa.tarjeta = cardField.value;  
     //verificar si se trata de editar a un pedido
     if (action == 'editar') {
         remesa.id = idActual;  
         console.log(`enviar a backend: `,JSON.stringify(remesa));          
         solicitud('PUT','edit', remesa);
         eliminarHTML("form-container");     
-    } 
-    
+    }     
     //verificar si se trata de ingresar nuevo pedido valido
     else { 
         console.log(`enviar a backend: `,JSON.stringify(remesa));           
@@ -105,35 +95,39 @@ function guardarRemesa() {
 
 // ======================== Manejo del Login ==============================
 function sendLogin(event) {
-        event.preventDefault();
-    
+        event.preventDefault();    
         // Validar los campos del formulario
         const isValid = validateStep("slide-page", "email", "password", "confirmPassword"/*, "name"*/);
-        if (!isValid) {
-            console.log("Validación fallida. Verifica los campos.");
-            return; // Detener la ejecución si la validación falla
-        }
-    
+        if (!isValid) { console.error("Validación fallida. Verifica los campos.");
+            return;
+        }    
         // Crear el objeto login solo si la validación es exitosa
         const login = {
             nombre: document.getElementById('login-name').value,
             pass: document.getElementById('login-pass').value,
             email: document.getElementById('login-email').value,
-        };
-    
-        console.log("Datos a enviar:", login);
-    
+        };    
+        console.log("Datos a enviar:", login);    
         // Llamar a la función para enviar los datos
         solicitud('POST', 'login', login);
     };
     
 
 // ======================== Manejo de solicitudes de forms(logout) ==============================
-const form=document.querySelector('.form-get');
+const form =document.querySelector('.form-get');
     if(form){
     form.addEventListener('submit',async(event)=>{
         event.preventDefault();
-        console.log(event.target.method);
-        console.log(event.target.classList[1])
         solicitud(event.target.method,event.target.classList[1]);
     });}
+
+// ======================== Manejo de Cambio de clave ==============================
+const changePass =()=>{
+    // Crear el objeto login solo si la validación es exitosa llegado a este punto
+    const pass = { 
+        email: document.getElementById('login-email').value,
+        phone: document.getElementById('pass-tel').value
+    };    
+    console.log("Datos enviados a backend:", pass);       
+    solicitud('POST', 'changeOwnPass', pass);// Llamar a la función para enviar los datos
+};

@@ -16,11 +16,10 @@ const notificacionFront = (data) => {
     const alertSection = document.querySelector('.alert-section');
 
     isTutorial = false;
-    button ? button.classList.add('hidden'):null;
+    button ? button.classList.add('hidden'):null;    
     
-    
-    action =='delete' ? alertSection? alertSection.classList.remove('hidden'):null
-                      : alertSection? alertSection.classList.add('hidden'):null;
+    action =='delete' ? alertSection ? alertSection.classList.remove('hidden'):null
+                      : alertSection ? alertSection.classList.add('hidden'):null;
     // Manejar imagen
     data.img ? (imagen.src = data.img,modal.classList.add('comprobante-img'),imagen.style.opacity='1') 
              : 'public/img/logo.webp';
@@ -38,27 +37,28 @@ const notificacionFront = (data) => {
 };
  const closeNotification=()=>{
     if(!isTutorial){
-    const modal = document.querySelector('.tuto-modal');
-    const title = document.getElementById('modalTitle');
-    const content = document.getElementById('modalContent');
-    const overlay = document.querySelector('.overlay');
-    const button = document.querySelector('.tuto-btn');
-    const alertSection = document.querySelector('.alert-section');
-    const imagen = document.querySelector('#tuto-img');
+        const modal = document.querySelector('.tuto-modal');
+        const title = document.getElementById('modalTitle');
+        const content = document.getElementById('modalContent');
+        const overlay = document.querySelector('.overlay');
+        const button = document.querySelector('.tuto-btn');
+        const alertSection = document.querySelector('.alert-section');
+        const imagen = document.querySelector('#tuto-img');
 
-    alertSection? alertSection.classList.add('hidden'):null;
-    overlay.classList.remove('thirdplane', 'active');
-    modal.classList.remove('firstplane', 'active');
-    setTimeout(() =>{
-    title.textContent = 'Notificacion Nbox:'
-    content.textContent = 'Nada nuevo para mostrar'; 
-    content.classList.remove('hidden');
-    title.classList.remove('hidden');       
-    button.classList.remove('hidden');
-    imagen.src = 'public/img/logo.webp';
-    imagen.style.opacity='.15'
-    modal.classList.remove('comprobante-img')
-    },500);}
+        alertSection? alertSection.classList.add('hidden'):null;
+        overlay.classList.remove('thirdplane', 'active');
+        modal.classList.remove('firstplane', 'active');
+        setTimeout(() =>{
+            title.textContent = 'Notificacion Nbox:'
+            content.textContent = 'Nada nuevo para mostrar'; 
+            content.classList.remove('hidden');
+            title.classList.remove('hidden');       
+            button.classList.remove('hidden');
+            imagen.src = 'public/img/logo.webp';
+            imagen.style.opacity='.15'
+            modal.classList.remove('comprobante-img')
+        },500);
+    }
 }
 
 // Procesamiento antes de llamar métodos de solicitudes al servidor
@@ -90,7 +90,7 @@ function actionToDo(e) { // Obtener confirmación para borrar o confirmar entreg
     bandera = action;
     action= 'inicial';
     bandera == 'delete' ? solicitud('DELETE', 'delete', { id: idActual }) 
-                       : solicitud('PATCH', 'confirm', { id: idActual });  
+                        : solicitud('PATCH', 'confirm', { id: idActual });  
 }
 
 function editFrom_DB(e) { // Abrir ventana modal para editar
@@ -109,7 +109,6 @@ function showPic (e){
 function uploadImg(e) {
     const file = e.target.files[0];
     if (!file) { alert('No se seleccionó ningún archivo');  return; }
-    // Validar tamaño del archivo (3 MB máximo)
     const maxSize = 3 * 1024 * 1024; // 3 MB en bytes
     if (file.size > maxSize) {
         const data = { message: 'Tamaño superior a 3 MB o formato no permitido' };
@@ -128,15 +127,9 @@ function uploadImg(e) {
     const formData = new FormData();
     formData.append('file', file);
     formData.append('className', className); // Agregar la clase como variable adicional
-    // Verificar contenido del FormData
-    console.log('Contenido del FormData:');
-    for (let [key, value] of formData.entries()) {
-        console.log(key, value);
-    }
     // Enviar la solicitud al backend
     solicitud('POST', 'upload', formData, null);
 }
-
 
 // ==============================================================================
 // ================================ Métodos =====================================
@@ -156,29 +149,22 @@ async function solicitud(method, ruta, objeto = null, contentType = 'application
         const response = await fetch(`/${ruta}`, options);
         const responseType = response.headers.get('Content-Type');
         let data = null;
-
         // Manejar respuesta de imagen directa
         if (responseType?.startsWith('image/')) {
             const blob = await response.blob();
-            data = { 
-                img: URL.createObjectURL(blob),
-            };
+            data = { img: URL.createObjectURL(blob), };
             notificacionFront(data);
             return data;
-        }
-        
+        }        
         // Manejar JSON
         if (responseType?.includes('application/json')) {
             data = await response.json();
             if (data.message || data.img) notificacionFront(data);
-        } else {
-            window.location.href = `/${ruta}`;
-        }
-
+        } else { window.location.href = `/${ruta}`; }
         console.log('✅ Datos obtenidos:', data);
         return data;
-    } catch (error) {
-        console.error('❌ Error en solicitud:', error);
+
+    } catch (error) { console.error('❌ Error en solicitud:', error);
         throw error;
     }
 }
@@ -191,26 +177,20 @@ const solicitarData = async (tableName) => {
     try {
         const response = await fetch(`/show?table=${tableName}`);
         const result = await response.json();
-        console.log('Respuesta del backend:', result);
-        
+        console.log('Respuesta del backend:', result);        
         // Verificar si la respuesta contiene `tableData` con estructura válida
         if (result.data && !Array.isArray(result.data)) {
             result.message = 'Ocurrió un problema sin definir al procesar la solicitud.';
             notificacionFront(result);
-        }
-            
+        }            
         // Guardar el objeto completo del backend en `tableDatos`
-        tableDatos = result;      
-     
-    } catch (error) {
-        console.error('Error al obtener los datos:', error);
-    }
+        tableDatos = result;       
+    } catch (error) { console.error('Error al obtener los datos:', error); }
 };
 
 const estadistica = async (tableName) => {
     // Verificar si `tableDatos` está vacío o no tiene datos
     if (!tableDatos.data || tableDatos.data.length === 0) { await solicitarData(tableName); }
-
     if (tableName == 'pedidos'){
         const data = tableDatos.data;
         const totalEnviado = calcularTotalEnviado(data);
@@ -218,7 +198,6 @@ const estadistica = async (tableName) => {
         const porcentajeCompletadas = calcularPorcentajeCompletadas(data);
         const distribucionPorTipo = calcularDistribucionPorTipo(data);
         const topClientes = calcularTopClientes(data);
-
         // Generar el contenido HTML
         smartCard(...totalEnviado,...remesas,...porcentajeCompletadas,...distribucionPorTipo,...topClientes );
     }else if (tableName == 'usuarios'){   console.log('estadisticas usuarios');   }
@@ -239,26 +218,20 @@ const imprimirDatos = async (tableName = 'pedidos') => {
         const columnasVisibles = ['Nombre', 'Titular', 'Monto', 'Cliente', 'Gestor', 'Estado', 'Acciones', 'Rol', 'Email','Carnet','Bono','Telefono',];
 
         // Construcción de encabezados
-        const tableHeaders = Object.keys(data[0])
-            .filter(key => key !== 'protectedId')
-            .map(key => {
-                const hiddenClass = columnasVisibles.includes(key) ? '' : 'details hidden';
-                return `<th class="${hiddenClass}">${key}</th>`;
-            })
-            .join('');
+        const tableHeaders = Object.keys(data[0]).filter(key => key !== 'protectedId').map(key => {
+            const hiddenClass = columnasVisibles.includes(key) ? '' : 'details hidden';
+            return `<th class="${hiddenClass}">${key}</th>`;
+        }).join('');
 
         const headerRow = `<tr>${tableHeaders}<th>Acciones</th></tr>`;
 
         // Construcción de filas de datos
         const tableRows = data.slice(indice, indice + entradastoshow).map(row => {
-            const botones = generarBotonesProceso(row, userRole);
-            const rowData = Object.keys(row)
-                .filter(key => key !== 'protectedId')
-                .map(key => {
-                    const hiddenClass = columnasVisibles.includes(key) ? '' : 'details hidden';
-                    return `<td class="${hiddenClass}">${row[key]}</td>`;
-                }).join('');
-
+            generarBotonesProceso(row, userRole);
+            const rowData = Object.keys(row).filter(key => key !== 'protectedId').map(key => {
+                const hiddenClass = columnasVisibles.includes(key) ? '' : 'details hidden';
+                return `<td class="${hiddenClass}">${row[key]}</td>`;
+            }).join('');
             const accionesCell = `<td>
                                     <div style="display: flex; gap: 10px;">
                                         <button class="${row.protectedId} page-button action-edit" onclick="solicitarEdit(event)">Editar</button>
@@ -267,17 +240,15 @@ const imprimirDatos = async (tableName = 'pedidos') => {
                                 </td>`;
             return `<tr>${rowData}${accionesCell}</tr>`;
         }).join('');   
-
         // Contenedor de la tabla
         const tableContainer = document.getElementById('tablas');
-        tableContainer.innerHTML = `<div class="card-office-title">Historial de ${tableDatos.tableName}</div>                                    
+        tableContainer.innerHTML = `<div class="card-office-title global-h">Historial de ${tableDatos.tableName}</div>                                    
                                     <div id="tables-container" class="tablas-dinamicas table-adaptative">
                                         <table>
                                             <thead>${headerRow}</thead>
                                             <tbody>${tableRows}</tbody>
                                         </table>
                                     </div>`;
-
         // Controles adicionales
         actualizarControles(data, tableName);
         estadistica(tableName); 
@@ -332,8 +303,7 @@ const generarBotonesProceso = (row, userRole) => {
             row.Cliente = `${row.Cliente}`;
             row.Gestor =  `${row.Gestor}`;  
             return row;
-    }
-    
+    }    
 };
 
 // Función para actualizar controles de navegación y filtrado
@@ -343,7 +313,7 @@ const actualizarControles = (data, tableName) => {
             <select id="filterKey" onchange="displaySelectedOption()">
                 ${Object.keys(data[0]).slice(0, -1).map(key => `<option value="${key}">${key}</option>`).join('')}
             </select>
-            <input type="text" id="filterValue" placeholder="🔍..buscar" oninput="debouncedFilter('${tableName}')">
+            <input type="text" id="filterValue" placeholder="🔍..buscar" oninput=" setTimeout(() => {applyFilter('${tableName}')}, 2000)">
             <button class="table-navigation" onclick="applyFilter('${tableName}')">Filtrar</button> 
             <button onclick="detailsColumnVisibility()" class="table-navigation">Detalles</button>                        
         </div>`;
@@ -372,45 +342,26 @@ const displaySelectedOption = () => {
 // --------cambiar paginas-------
 const cambiarPagina = (direccion, tableName) => {
     const nuevoIndice = indice + direccion * entradastoshow;
-
     if (nuevoIndice >= 0 && nuevoIndice < tableDatos.data.length) {
         indice = nuevoIndice; 
         imprimirDatos(tableName);
-    } else {
-        notificacionFront({ message: direccion > 0? 'No hay más datos para mostrar.': 'Estás en la primera página.', });
-    }
+    } else  notificacionFront({ message: direccion > 0? 'No hay más datos para mostrar.': 'Estás en la primera página.', });
 };
 
 // --------------- filtros -------------
-const applyFilter = (tableName) => {
+const applyFilter = (tableName) => {   
     const filterKey = document.getElementById('filterKey').value.trim();
     const filterValue = document.getElementById('filterValue').value.trim().toLowerCase();
-
-    if (!filterKey || !filterValue) { notificacionFront({ message: 'Ingrese un valor válido para filtrar.' });
-        return;
-    }
+    if (!filterKey || !filterValue)  return notificacionFront({ message: 'Ingrese un valor válido para filtrar.' }); 
     // Filtrar directamente en `tableDatos.data`
-    const filteredData = tableDatos.data.filter(row =>
-        String(row[filterKey]).toLowerCase().includes(filterValue)
-    );
-
-    if (filteredData.length === 0) { notificacionFront({ message: 'No hay coincidencias.' });
-        return;
-    }
-
+    const filteredData = tableDatos.data.filter(row => String(row[filterKey]).toLowerCase().includes(filterValue) );
+    if (filteredData.length === 0)  return notificacionFront({ message: 'No hay coincidencias.' }); 
     // Actualizar índice y mostrar datos filtrados
     indice = 0;
     const originalData = tableDatos.data;
     tableDatos.data = filteredData;
     imprimirDatos(tableName);
     tableDatos.data = originalData;
-};
-
-// ----------tiempo de demora-------
-let debounceTimer;
-const debouncedFilter = (tableName) => {
-    clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(() => applyFilter(tableName), 2000);
 };
 
 const refreshBackoffice = async (tableName) => {
