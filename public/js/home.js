@@ -82,6 +82,7 @@ const focused = (event) => {
 const validatenumber=()=>{
     const input = document.getElementById('amount');
     const result = document.getElementById('result');
+    const payresult = document.getElementById('payresult');
    
     const val = parseFloat(input.value);
     if (isNaN(val) || val < 0 || val > 1000) {
@@ -90,5 +91,5 @@ const validatenumber=()=>{
     }
     const neto = (val * 0.9).toFixed(2);
     result.textContent = `Usted recibirá ${neto} USD o su equivalencia en CUP según la tasa de cambio actual`;
-    
+    payresult.innerHTML = `<strong>Monto:</strong>${neto} USD`;
 }

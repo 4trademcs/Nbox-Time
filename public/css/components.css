@@ -1,11 +1,15 @@
 :root {
   --dark-bg: #0b0f19;
   --panel-dark-bg: #232e47;
+  --gray-ligth:#d6d6d6;
+  --gray-dark: #eaeaea9e;
 }
 
 body.dark-mode {
   --dark-bg: #232e47;
   --panel-dark-bg: #0b0f19;
+  --gray-ligth: #eaeaea9e;
+  --gray-dark: #0b0f19;
 }
 
 /* Títulos con subrayado */
@@ -82,8 +86,8 @@ body.dark-mode {
   flex-wrap: wrap;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
-.section-factura * {
-  color:black;
+.section-left {
+   color:black; 
 }
 .section-factura > div {
   flex: 1 1 300px;      
@@ -91,7 +95,7 @@ body.dark-mode {
 }
 /* IZQUIERDA */
 .section-left {
-  background: #d6d6d6;  
+  background: var(--gray-ligth);
 }
 .section-left h2 {
   font-size: 2rem;
@@ -116,7 +120,6 @@ body.dark-mode {
   display: inline-flex;
   align-items: center;
   text-decoration: none;
-  color: #333;
   margin-right: 1.5rem;
   font-size: 1.1rem;
 }
@@ -128,7 +131,7 @@ body.dark-mode {
 
 /* DERECHA */
 .section-right {
-  background: #eaeaea9e;  
+  background: var(--gray-dark);
 }
 .section-right h3 {
   margin-top: 0;
@@ -141,7 +144,7 @@ body.dark-mode {
   width: 100px;
   display: inline-block;
 }
-.section-right input[type="number"] {
+.section-left input[type="number"] {
   width: 100%;
   padding: 0.75rem;
   border: 1px solid #ccc;

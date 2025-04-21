@@ -405,7 +405,7 @@ p.author {
     background-color: var(--asideBack);
     transition: translate .5s ease;
     backdrop-filter: blur(20px);
-    border-right: 2px solid black;
+    /* border-right: 2px solid black; */
     overflow-y: scroll;
     z-index: 9;
   }
