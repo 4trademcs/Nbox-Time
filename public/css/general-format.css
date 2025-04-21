@@ -241,6 +241,7 @@ dialog *,div.flexbox.modal{
     background-attachment: fixed;
     background-size: 55%;
     background-color: gray;
+    background-blend-mode: luminosity;
     opacity: .15;
 }
 
